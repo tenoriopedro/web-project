@@ -1,5 +1,8 @@
-FROM python:3.11.10-alpine3.21
+FROM python:3.11-alpine
 LABEL mantainer="pstsouza13@gmail.com"
+
+# Install client PostgreSQL
+RUN apk update && apk add postgresql-client
 
 # This environment variable is used to control whether Python should
 # write bytecode (.pyc) files to disk. 1 = No, 0 = yes
@@ -11,11 +14,11 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Copy the "djangoapp" and "scripts" folder into the container.
-COPY djangoapp /djangoapp
+COPY djangoweb /djangoweb
 COPY scripts /scripts
 
 # Enter the django folder in the container
-WORKDIR /djangoapp
+WORKDIR /djangoweb
 
 # Port 8000 will be available for connections external to the container
 # It is the port I will use for Django.
@@ -28,7 +31,7 @@ EXPOSE 8000
 # image and make it more efficient.
 RUN python -m venv /venv && \
   /venv/bin/pip install --upgrade pip && \
-  /venv/bin/pip install -r /djangoapp/requirements.txt && \
+  /venv/bin/pip install -r /djangoweb/requirements.txt && \
   adduser --disabled-password --no-create-home duser && \
   mkdir -p /data/web/static && \
   mkdir -p /data/web/media && \
