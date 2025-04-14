@@ -1,0 +1,24 @@
+services:
+  djangoweb:
+    container_name: djangoweb
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./djangoweb:/djangoweb
+      - ./data/web/static:/data/web/static/
+      - ./data/web/media:/data/web/media/
+    env_file:
+      - ./dotenv_files/.env
+    depends_on:
+      - psql
+    command: /scripts/commands.sh
+
+  psql:
+    container_name: psql
+    image: postgres:14-alpine
+    volumes:
+      - ./data/postgres/data:/var/lib/postgresql/data/
+    env_file:
+      - ./dotenv_files/.env
