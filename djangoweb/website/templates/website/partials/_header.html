@@ -1,1 +1,88 @@
-<h1>HEADER</h1>
+<header class="header">
+
+    <!-- Menu Desktop -->
+    <nav class="container nav-desktop">
+        <div class="logo">
+            <a href="#home" class="logo-img" title="Gazil Equipamentos">
+                <img src="{{ site_setup.favicon.url }}" alt="Logo Gazil Equipamentos">
+            </a>
+            <a href="#home" class="logo-text">
+                Gazil Equipamentos
+            </a>
+        </div>
+
+        <button class="hamburger" aria-label="Menu" aria-expanded="false">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+
+        <ul class="menu">
+            <li>
+                <a href="#home" class="nav-link">Home</a>
+            </li>
+            <li class="dropdown-parent">
+                <a href="#produtos" class="nav-link dropdown-toggle">Produtos
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#" class="dropdown-item">LINK 1</a>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-item">LINK 2</a>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-item">LINK 3</a>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-item">LINK 4</a>
+                    </li>
+                </ul>
+
+            </li>
+            <li>
+                <a href="#quemsomos" class="nav-link">Quem Somos</a>
+            </li>
+            <li>
+                <a href="#contatos" class="nav-link">Contatos</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Menu Mobile -->
+
+    <nav class="nav-mobile">
+        <ul class="menu-mobile">
+            <li>
+                <a href="#home" class="nav-link">Home</a>
+            </li>
+            <li class="dropdown-parent">
+                <a href="#produtos" class="nav-link dropdown-toggle">Produtos</a>
+
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#">Link1</a>
+                    </li>
+                    <li>
+                        <a href="#">Link2</a>
+                    </li>
+                    <li>
+                        <a href="#">Link3</a>
+                    </li>
+                    <li>
+                        <a href="#">Link4</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="nav-link">Quem somos</a>
+            </li>
+            <li>
+                <a href="#" class="nav-link">Contato</a>
+            </li>
+        </ul>
+    </nav>
+
+
+</header>

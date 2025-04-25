@@ -27,7 +27,7 @@
     /* SOMBRAS */
 
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 html {
@@ -52,3 +52,326 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
+/* HEADER */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+
+}
+
+.header {
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-md);
+    position: fixed;
+    top: 0;
+    z-index: 2000;
+    padding: var(--space-sm) 0;
+    width: 100%;
+}
+
+.logo{
+    position: relative;
+    min-height: 50px;
+}
+
+.logo-img{
+    display: block;
+    width: 75px;
+}
+
+.logo-text{
+    display: none;
+    font-family: var(--font-title);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-transform: uppercase;
+}
+
+.logo-img, 
+.logo-text {
+    transition: opacity 0.3s ease;
+}
+
+.nav-desktop{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu{
+    display: flex;
+    list-style: none;
+    gap: var(--space-lg);
+}
+
+.nav-link{
+    color: var(--color-primary);
+    font-weight: 600;
+    padding: var(--space-xs) 0;
+    position: relative;
+    transition: color 0.3s;
+    text-transform: uppercase;
+}
+
+.nav-link:hover {
+    color: var(--color-secondary);
+}
+
+/* Dropdown navbar Produtos */
+
+.dropdown-parent{
+    position: relative;
+}
+
+.dropdown-menu{
+    position: absolute;
+    background: var(--color-white);
+    box-shadow: var(--shadow-md);
+    border-radius: var(--border-radius);
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s;
+    z-index:100;
+    list-style: none;
+    padding-left: 0;
+}
+
+.dropdown-item{
+    display: block;
+    padding: var(--space-sm) var(--space-md);
+    color: var(--color-primary);
+    transition: background 0.3s;
+}
+
+.dropdown-item:hover{
+    background: var(--color-light);
+}
+
+.dropdown-parent:hover .dropdown-menu{
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-toggle::after {
+    content: "";
+    display: inline-block;
+    margin-left: 2px;
+    margin-top: 2px;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+    transform: rotate(225deg);
+    transition: transform 0.3s;
+}
+
+.dropdown-parent:hover .dropdown-toggle::after {
+    transform: rotate(45deg);
+    margin-bottom: 3px;
+    border-right: 2px solid var(--color-secondary);border-bottom: 2px solid var(--color-secondary);
+}
+
+.dropdown-parent:hover .nav-link{
+    color: var(--color-secondary);
+}
+
+
+/* === MENU MOBILE + RESPONSIVIDADE */
+
+.hamburger {
+    display: none; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-xs);
+    z-index: 1000;
+}
+
+.hamburger-line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-primary);
+    margin: 5px 0;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Transformação em X */
+.hamburger[aria-expanded="true"] .hamburger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger[aria-expanded="true"] .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger[aria-expanded="true"] .hamburger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ===== MENU MOBILE ===== */
+.nav-mobile {
+    display: none;
+    position: fixed;
+    top: 67px;
+    left: 0;
+    width: 100%;
+    background: var(--color-white);
+    box-shadow: var(--shadow-md);
+    height: calc(100vh - 67px);
+    overflow-y: auto;
+    padding: 0;
+    opacity: 0;
+    transition: opacity 0.5s;
+    
+}
+
+.nav-mobile[data-visible="true"] {
+    transform: translateY(0);
+    opacity: 1;;
+}
+
+/* Dropdown Mobile */
+.nav-mobile .dropdown-menu {
+    position: fixed;
+    box-shadow: var(--shadow-md);
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    display: none;
+    margin: 0;
+    z-index: 100;
+    
+}
+
+.nav-mobile .dropdown-parent.active .dropdown-menu {
+    display: block;
+}
+
+.menu-mobile{
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    display: none;
+    box-shadow: var(--shadow-md);
+}
+
+.menu-mobile > li {
+    padding: 0 var(--space-md);
+}
+
+.menu-mobile .nav-link{
+    display: block;
+    padding: var(--space-sm) 0;
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-light);
+}
+
+.nav-mobile .dropdown-menu{
+    padding-left: var(--space-md);
+    display: none;
+}
+
+.nav-mobile .dropdown-menu a{
+    display: block;
+    padding: var(--space-xs) 0;
+    color: var(--color-gray);
+    transition: color 0.3s;
+}
+
+.nav-mobile .dropdown-menu a:hover{
+    color: var(--color-primary);
+}
+
+/* ===== RESPONSIVIDADE ===== */
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav-desktop .menu {
+        display: none; 
+    }
+
+    .container {
+        width: 100%;
+        padding: 7px 0;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+    }
+
+    .logo-img {
+        display: none;
+        position: absolute;
+        opacity: 0;
+    }
+
+    .nav-mobile {
+        display: block;
+    }
+
+    .logo-text {
+        display: block;
+        opacity: 1;
+    }
+
+    .dropdown-parent:hover .dropdown-toggle::after{
+        margin-bottom: 0;
+    }
+
+    .nav-mobile .dropdown-parent.active .dropdown-toggle::after {
+        transform: rotate(45deg);
+        margin-bottom: 3px;
+    }
+
+    .nav-mobile .dropdown-parent .dropdown-toggle::after {
+        transform: rotate(225deg);
+        margin-left: 4px;
+    }
+
+    .nav-mobile[data-visible="true"] .menu-mobile{
+        display: block;
+    }
+
+    .dropdown-menu[area-expanded="false"]{
+        opacity: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .hamburger {
+        margin-right: 1.5rem;
+    }
+
+    .logo-text {
+        padding: 0 var(--space-lg);
+    }
+}
+
+@media (max-width: 360px){
+    .logo-text{
+        padding: 0.5rem;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+    .hamburger {
+        margin-right: 2rem;
+    }
+
+    .logo-text {
+        margin: 0 5rem;
+    }
+}
+
+
