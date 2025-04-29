@@ -3,10 +3,10 @@
     <!-- Menu Desktop -->
     <nav class="container nav-desktop">
         <div class="logo">
-            <a href="#home" class="logo-img" title="Gazil Equipamentos">
+            <a href="{% url "website:home" %}" class="logo-img" title="Gazil Equipamentos">
                 <img src="{{ site_setup.favicon.url }}" alt="Logo Gazil Equipamentos">
             </a>
-            <a href="#home" class="logo-text">
+            <a href="{% url "website:home" %}" class="logo-text">
                 Gazil Equipamentos
             </a>
         </div>
@@ -19,10 +19,10 @@
 
         <ul class="menu">
             <li>
-                <a href="#home" class="nav-link">Home</a>
+                <a href="{% url "website:home" %}" class="nav-link">Home</a>
             </li>
             <li class="dropdown-parent">
-                <a href="#produtos" class="nav-link dropdown-toggle">Produtos
+                <a href="{% url "products:index" %}" class="nav-link dropdown-toggle">Produtos
                 </a>
 
                 <ul class="dropdown-menu">
@@ -42,10 +42,10 @@
 
             </li>
             <li>
-                <a href="#quemsomos" class="nav-link">Quem Somos</a>
+                <a href="{% url "website:who_we_are" %}" class="nav-link">Quem Somos</a>
             </li>
             <li>
-                <a href="#contatos" class="nav-link">Contatos</a>
+                <a href="{% url "website:contacts" %}" class="nav-link">Contatos</a>
             </li>
         </ul>
     </nav>
@@ -55,10 +55,10 @@
     <nav class="nav-mobile">
         <ul class="menu-mobile">
             <li>
-                <a href="#home" class="nav-link">Home</a>
+                <a href="{% url "website:home" %}" class="nav-link">Home</a>
             </li>
             <li class="dropdown-parent">
-                <a href="#produtos" class="nav-link dropdown-toggle">Produtos</a>
+                <a href="{% url "products:index" %}" class="nav-link dropdown-toggle">Produtos</a>
 
                 <ul class="dropdown-menu">
                     <li>
@@ -76,10 +76,10 @@
                 </ul>
             </li>
             <li>
-                <a href="#" class="nav-link">Quem somos</a>
+                <a href="{% url "website:who_we_are" %}" class="nav-link">Quem somos</a>
             </li>
             <li>
-                <a href="#" class="nav-link">Contatos</a>
+                <a href="{% url "website:contacts" %}" class="nav-link">Contatos</a>
             </li>
         </ul>
     </nav>
