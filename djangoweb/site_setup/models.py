@@ -56,3 +56,27 @@ class SiteSetup(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class Banner(models.Model):
+
+    class Meta:
+        ordering = ["order"]
+        verbose_name = "Banner"
+        verbose_name_plural = "Banners"
+
+    title = models.CharField(max_length=255, blank=True)
+    banner_img = models.ImageField(
+        upload_to='assets/banners/%Y/%m', 
+        blank=True, default='',
+    )
+    is_active = models.BooleanField(default=True)
+    order = models. PositiveIntegerField(default=0)
+    site_setup = models.ForeignKey(
+        'SiteSetup', on_delete=models.CASCADE,
+        blank=True, null=True, default=None,
+        related_name='banners',
+    )
+
+    def __str__(self):
+        return self.title

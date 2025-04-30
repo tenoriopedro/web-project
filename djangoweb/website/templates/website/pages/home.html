@@ -2,4 +2,26 @@
 
 {% block content %}
 
+    {% if banners %}
+        <section class="banner-slider glide">
+            <div class="glide__track" data-glide-el="track">
+                <ul class="glide__slides">
+                    {% for banner in banners %}
+                        <li class="glide__slide">
+                            <div class="banner-image" 
+                            style="background-image: url('{{ banner.banner_img.url }}');"
+                            role="img" 
+                            aria-label="{{ banner.title }}"></div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+      
+            <div class="glide__arrows" data-glide-el="controls">
+                <button class="glide__arrow glide__arrow--left" data-glide-dir="<">‹</button>
+                <button class="glide__arrow glide__arrow--right" data-glide-dir=">">›</button>
+            </div>
+        </section>
+    
+    {% endif %}
 {% endblock content %}

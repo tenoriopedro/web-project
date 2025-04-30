@@ -284,11 +284,6 @@ a {
     font-weight: 600;
     border-bottom: 2px solid var(--color-light);
 }
-/* 
-.nav-mobile .dropdown-menu{
-    padding-left: var(--space-md);
-    display: none;
-} */
 
 .nav-mobile .dropdown-menu a{
     display: block;
@@ -301,6 +296,78 @@ a {
     color: var(--color-primary);
 }
 
+
+/* ===== BANNER ===== */
+
+.banner-slider {
+    max-width: 100vw;
+    aspect-ratio: 16 / 5;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-white);
+    top: 105px;
+    margin-bottom: 2rem;
+}
+
+.glide__slide{
+    width: 100%;
+}
+
+.banner-image {
+    width: 100%;
+    aspect-ratio: 16 / 5;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: var(--color-light); 
+  }
+  
+.glide__arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--border-radius);
+    display: flex;
+    color: var(--color-white);
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    font-size: 1.5rem;
+    padding: 0.3rem 1rem;
+    cursor: pointer;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.glide__arrow:hover{
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.glide__arrow--left {
+    left: 10px;
+}
+  
+.glide__arrow--right {
+    right: 10px;
+}
+
+.banner-slider .glide__arrows{
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    z-index: 10;
+}
+
+.banner-slider:hover .glide__arrows{
+    opacity: 1;
+    pointer-events: auto;
+}
 /* ===== RESPONSIVIDADE ===== */
 
 @media (max-width: 768px) {
