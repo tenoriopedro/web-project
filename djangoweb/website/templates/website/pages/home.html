@@ -8,10 +8,25 @@
                 <ul class="glide__slides">
                     {% for banner in banners %}
                         <li class="glide__slide">
-                            <div class="banner-image" 
+                            <div class="banner-image banner-slide"  
                             style="background-image: url('{{ banner.banner_img.url }}');"
                             role="img" 
-                            aria-label="{{ banner.title }}"></div>
+                            aria-label="{{ banner.title }}">
+                                {% if banner.description %}
+                                    <div class="banner-overlay">
+                                        <div class="banner-content">
+                                            <h2 class="banner-description">
+                                                {{ banner.description }}
+                                            </h2>
+                                            {% if 'button' in banner.title %}
+                                                <a href="{% url "products:index" %}" class="banner-btn">
+                                                    Ver Produtos
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
                         </li>
                     {% endfor %}
                 </ul>

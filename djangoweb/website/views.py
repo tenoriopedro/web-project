@@ -14,7 +14,6 @@ def home(request):
         }
     )
 
-
 def contacts(request):
     return render(
         request,

@@ -10,7 +10,6 @@ class MenuLink(models.Model):
 
     text = models.CharField(max_length=50)
     url_or_path = models.CharField(max_length=2048)
-    new_tab = models.BooleanField(default=False)
     site_setup = models.ForeignKey(
         'SiteSetup', on_delete=models.CASCADE,
         blank=True, null=True, default=None,
@@ -27,13 +26,6 @@ class SiteSetup(models.Model):
 
     title = models.CharField(max_length=65)
     description = models.CharField(max_length=255)
-    show_header = models.BooleanField(default=True)
-    show_search = models.BooleanField(default=True)
-    show_menu = models.BooleanField(default=True)
-    show_description = models.BooleanField(default=True)
-    show_pagination = models.BooleanField(default=True)
-    show_footer = models.BooleanField(default=True)
-
     favicon = models.ImageField(
         upload_to='assets/favicon/%Y/%m/',
         blank=True,
@@ -66,6 +58,7 @@ class Banner(models.Model):
         verbose_name_plural = "Banners"
 
     title = models.CharField(max_length=255, blank=True)
+    description = models.CharField(max_length=500, default='', blank=True)
     banner_img = models.ImageField(
         upload_to='assets/banners/%Y/%m', 
         blank=True, default='',
