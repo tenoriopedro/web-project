@@ -12,20 +12,18 @@
                             style="background-image: url('{{ banner.banner_img.url }}');"
                             role="img" 
                             aria-label="{{ banner.title }}">
-                                {% if banner.description %}
-                                    <div class="banner-overlay">
-                                        <div class="banner-content">
-                                            <h2 class="banner-description">
-                                                {{ banner.description }}
-                                            </h2>
-                                            {% if 'button' in banner.title %}
-                                                <a href="{% url "products:index" %}" class="banner-btn">
-                                                    Ver Produtos
-                                                </a>
-                                            {% endif %}
-                                        </div>
+                                <div class="banner-overlay">
+                                    <div class="banner-content">
+                                        <h2 class="banner-description">
+                                            {{ banner.description }}
+                                        </h2>
+                                        {% if 'button' in banner.title %}
+                                            <a href="{% url "products:index" %}" class="banner-btn">
+                                                Ver Produtos
+                                            </a>
+                                        {% endif %}
                                     </div>
-                                {% endif %}
+                                </div>
                             </div>
                         </li>
                     {% endfor %}

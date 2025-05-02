@@ -301,7 +301,7 @@ a {
 
 .banner-slider {
     max-width: 100vw;
-    aspect-ratio: 16 / 5;
+    aspect-ratio: 17 / 4;
     position: relative;
     overflow: hidden;
     background-color: var(--color-white);
@@ -319,7 +319,7 @@ a {
 
 .banner-image {
     width: 100%;
-    aspect-ratio: 16 / 5;
+    aspect-ratio: 17 / 4;
     background-repeat: no-repeat;
     background-size: cover;
 }
