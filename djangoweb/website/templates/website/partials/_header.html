@@ -18,69 +18,54 @@
         </button>
 
         <ul class="menu">
-            <li>
-                <a href="{% url "website:home" %}" class="nav-link">Home</a>
-            </li>
-            <li class="dropdown-parent">
-                <a href="{% url "products:index" %}" class="nav-link dropdown-toggle">Produtos
-                </a>
-
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="#" class="dropdown-item">LINK 1</a>
+            {% for menu_link in site_setup.menulink_set.all %}
+                {% if menu_link.text == 'produtos' %}
+                    <li class="dropdown-parent">
+                        <a href="{{ menu_link.url_or_path }}" class="nav-link dropdown-toggle">
+                            {{ menu_link.text }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for submenu in site_setup.submenu_link.all %}
+                                <li>
+                                    <a href="{{ submenu.url_or_path }}" class="dropdown-item">{{ submenu.text }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </li>
+                {% else %}
                     <li>
-                        <a href="#" class="dropdown-item">LINK 2</a>
+                        <a href="{{ menu_link.url_or_path }}" class="nav-link">{{ menu_link.text }}</a>
                     </li>
-                    <li>
-                        <a href="#" class="dropdown-item">LINK 3</a>
-                    </li>
-                    <li>
-                        <a href="#" class="dropdown-item">LINK 4</a>
-                    </li>
-                </ul>
-
-            </li>
-            <li>
-                <a href="{% url "website:who_we_are" %}" class="nav-link">Quem Somos</a>
-            </li>
-            <li>
-                <a href="{% url "website:contacts" %}" class="nav-link">Contatos</a>
-            </li>
-        </ul>
+                {% endif %}
+            {% endfor %}
+        </ul> 
     </nav>
 
     <!-- Menu Mobile -->
 
     <nav class="nav-mobile">
         <ul class="menu-mobile">
-            <li>
-                <a href="{% url "website:home" %}" class="nav-link">Home</a>
-            </li>
-            <li class="dropdown-parent">
-                <a href="{% url "products:index" %}" class="nav-link dropdown-toggle">Produtos</a>
+            {% for menu_link in site_setup.menulink_set.all %}
+                {% if menu_link.text == 'produtos' %}
 
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="#">Link1</a>
+                    <li class="dropdown-parent">
+                        <a href="{{ menu_link.url_or_path }}" class="nav-link dropdown-toggle">
+                            {{ menu_link.text }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for submenu in site_setup.submenu_link.all %}
+                                <li>
+                                    <a href="{{ submenu.url_or_path }}">{{ submenu.text }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </li>
+                {% else %}
                     <li>
-                        <a href="#">Link2</a>
+                        <a href="{{ menu_link.url_or_path }}" class="nav-link">{{ menu_link.text }}</a>
                     </li>
-                    <li>
-                        <a href="#">Link3</a>
-                    </li>
-                    <li>
-                        <a href="#">Link4</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="{% url "website:who_we_are" %}" class="nav-link">Quem somos</a>
-            </li>
-            <li>
-                <a href="{% url "website:contacts" %}" class="nav-link">Contatos</a>
-            </li>
+                {% endif %}
+            {% endfor %}
         </ul>
     </nav>
 

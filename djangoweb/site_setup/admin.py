@@ -1,5 +1,5 @@
 from django.contrib import admin
-from site_setup.models import MenuLink, SiteSetup, Banner
+from site_setup.models import MenuLink, SiteSetup, Banner, SubMenuLink
 
 
 # @admin.register(MenuLink)
@@ -13,6 +13,10 @@ class MenuLinkInline(admin.TabularInline):
     model = MenuLink
     extra = 1
 
+class SubMenuLinkInline(admin.TabularInline):
+    model = SubMenuLink
+    extra = 1
+
 class BannerInline(admin.TabularInline):
     model = Banner
     extra = 1
@@ -20,7 +24,7 @@ class BannerInline(admin.TabularInline):
 @admin.register(SiteSetup)
 class SiteSetupAdmin(admin.ModelAdmin):
     list_display = 'title', 'description',
-    inlines = MenuLinkInline, BannerInline,
+    inlines = MenuLinkInline, SubMenuLinkInline, BannerInline, 
 
     def has_add_permission(self, request):
         return not SiteSetup.objects.exists()

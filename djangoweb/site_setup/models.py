@@ -17,7 +17,20 @@ class MenuLink(models.Model):
 
     def __str__(self):
         return self.text
+    
 
+class SubMenuLink(models.Model):
+    class Meta:
+        verbose_name = "Sub Menu(Products)"
+        verbose_name_plural = "Sub Menus (Products)"
+
+    text = models.CharField(max_length=100)
+    url_or_path = models.CharField(max_length=2048, default=None)
+    site_setup = models.ForeignKey(
+        'SiteSetup', on_delete=models.CASCADE,
+        blank=True, null=True, default=None,
+        related_name='submenu_link'
+    )
 
 class SiteSetup(models.Model):
     class Meta:

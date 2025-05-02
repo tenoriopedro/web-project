@@ -107,7 +107,7 @@ a {
 .menu{
     display: flex;
     list-style: none;
-    gap: var(--space-lg);
+    gap: 3.5rem;
 }
 
 .nav-link{
@@ -134,7 +134,7 @@ a {
     background: var(--color-white);
     box-shadow: var(--shadow-md);
     border-radius: var(--border-radius);
-    min-width: 200px;
+    min-width: 270px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
@@ -153,6 +153,7 @@ a {
 
 .dropdown-item:hover{
     background: var(--color-light);
+    border-radius: var(--border-radius);
 }
 
 .dropdown-parent:hover .dropdown-menu{
@@ -245,6 +246,7 @@ a {
 /* Dropdown Mobile */
 .nav-mobile .dropdown-menu {
     padding-left: var(--space-md);
+    padding-right: var(--space-md);
     position: fixed;
     box-shadow: var(--shadow-md);
     opacity: 0;
@@ -342,7 +344,6 @@ a {
     justify-content: center;
     align-items: center;
     padding: var(--space-lg);
-    border-radius: var(--border-radius);
 }
 
 .banner-content{
@@ -425,6 +426,20 @@ a {
 }
 /* ===== RESPONSIVIDADE ===== */
 
+@media (max-width: 1000px) {
+    .banner-description{
+        font-size: 2rem;
+        margin-bottom: var(--space-sm);
+        max-width: 100%;
+    }
+
+    .banner-btn{
+        padding: var(--space-sm) var(--space-md);
+        margin-top: var(--space-md);
+        font-size: 1rem;
+    }
+}
+
 @media (max-width: 768px) {
     .hamburger {
         display: block;
@@ -477,11 +492,11 @@ a {
 
     /* ==== BANNER ==== */
     .banner-slider{
-        aspect-ratio: 16 / 7
+        aspect-ratio: 17 / 5
     }
 
     .banner-image{
-        aspect-ratio: 16 / 7;
+        aspect-ratio: 17 / 5;
     }
 
     .banner-slide{
@@ -514,14 +529,26 @@ a {
     .banner-btn{
         padding: var(--space-xs) var(--space-sm);
         margin-top: var(--space-sm);
-        font-size: 0.9rem;
+        font-size: 0.75rem;
     }
 }
 
-@media (max-width: 450px){
+@media (max-width: 460px){
     .logo-text{
         padding: 0 15px;
         margin: 1.4rem 0;
+    }
+
+    .banner-description{
+        font-size: 1rem;
+        margin-bottom: var(--space-xs);
+        max-width: 100%;
+    }
+
+    .banner-btn{
+        padding: var(--space-xs) var(--space-sm);
+        margin-top: var(--space-sm);
+        font-size: 0.5rem;
     }
 }
 
