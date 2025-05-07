@@ -1,6 +1,6 @@
 from django.db import models
 from utils.model_validator import validate_png
-from utils.images import resize_image
+from utils.save_check import check_favicon
 
 
 class MenuLink(models.Model):
@@ -52,12 +52,7 @@ class SiteSetup(models.Model):
         super().save(*args, **kwargs)
         favicon_changed = False
 
-        if self.favicon:
-            favicon_changed = current_favicon_name != self.favicon.name
-
-        if favicon_changed:
-            resize_image(self.favicon, 64)
-
+        check_favicon(self.favicon, current_favicon_name, favicon_changed)
 
     def __str__(self):
         return self.title
