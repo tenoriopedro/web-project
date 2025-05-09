@@ -17,9 +17,9 @@
                                         <h2 class="banner-description">
                                             {{ banner.description }}
                                         </h2>
-                                        {% if 'button' in banner.title %}
+                                        {% if banner.button_name %}
                                             <a href="{% url "products:index" %}" class="banner-btn">
-                                                Ver Produtos
+                                                {{ banner.button_name }}
                                             </a>
                                         {% endif %}
                                     </div>

@@ -32,6 +32,9 @@ class SubMenuLink(models.Model):
         related_name='submenu_link'
     )
 
+    def __str__(self):
+        return self.text
+
 class SiteSetup(models.Model):
     class Meta:
         verbose_name = 'Setup'
@@ -67,6 +70,8 @@ class Banner(models.Model):
 
     title = models.CharField(max_length=255, blank=True)
     description = models.CharField(max_length=500, default='', blank=True)
+    button_name = models.CharField(max_length=50, blank=True)
+    button_link = models.CharField(max_length=100, blank=True)
     banner_img = models.ImageField(
         upload_to='assets/banners/%Y/%m', 
         blank=True, default='',
