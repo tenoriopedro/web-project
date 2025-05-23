@@ -23,7 +23,7 @@ class BannerInline(admin.TabularInline):
 
 @admin.register(SiteSetup)
 class SiteSetupAdmin(admin.ModelAdmin):
-    list_display = 'title', 'description',
+    list_display = 'title', 'description', 'whatsapp_number', 'whatsapp_message',
     inlines = MenuLinkInline, SubMenuLinkInline, BannerInline, 
 
     def has_add_permission(self, request):

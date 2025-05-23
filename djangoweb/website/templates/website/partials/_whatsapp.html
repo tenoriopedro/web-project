@@ -1,0 +1,10 @@
+{% if site_setup.whatsapp_number and site_setup.whatsapp_message %}
+    <a href="http://wa.me/{{ site_setup.whatsapp_number }}?text={{ site_setup.whatsapp_message|urlencode }}" 
+    class="whatsapp-float" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    aria-label="Fale conosco no Whatsapp">
+        <img src="{{ site_setup.whatsapp_icon.url }}" alt="Whatsapp">
+
+    </a>
+{% endif %}

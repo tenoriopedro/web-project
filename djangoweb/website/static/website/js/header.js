@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
         hamburger.setAttribute('aria-expanded', !isExpanded);
         navMobile.setAttribute('data-visible', !isExpanded);
-        document.body.style.overflow = isExpanded ? 'hidden' : 'auto';
     });
 
     // Verifica ao carregar a página

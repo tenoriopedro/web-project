@@ -2,26 +2,34 @@
 
 {% block content %}
 
+    <!-- BANNER -->
+
     {% if banners %}
         <section class="banner-slider glide">
+
             <div class="glide__track" data-glide-el="track">
+
                 <ul class="glide__slides">
                     {% for banner in banners %}
+
                         <li class="glide__slide">
                             <div class="banner-image banner-slide"  
                             style="background-image: url('{{ banner.banner_img.url }}');"
                             role="img" 
                             aria-label="{{ banner.title }}">
+
                                 <div class="banner-overlay">
                                     <div class="banner-content">
                                         <h2 class="banner-description">
                                             {{ banner.description }}
                                         </h2>
+
                                         {% if banner.button_name %}
                                             <a href="{% url "products:index" %}" class="banner-btn">
                                                 {{ banner.button_name }}
                                             </a>
                                         {% endif %}
+
                                     </div>
                                 </div>
                             </div>
@@ -36,5 +44,37 @@
             </div>
         </section>
     
+    {% endif %}
+
+    <!-- FEATURED PRODUCTS -->
+
+    {% if featured_products %}
+        <section class="featured-products">
+
+            <div class="container">
+
+                <div class="products-grid">
+
+                    {% for product in featured_products %}
+
+                        <a href="{{ product.button_link }}" class="product-card-link">
+                            <div class="product-card">
+
+                                <h3 class="product-title">{{ product.title }}</h3>
+
+                                <img src="{{ product.image.url }}" alt="{{ product.title }}">
+
+                                <p class="product-description">{{ product.description }}</p>
+
+                                <span class="product-btn">
+                                    {{ product.button_name }}
+                                </span>
+
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
     {% endif %}
 {% endblock content %}

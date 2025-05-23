@@ -1,6 +1,7 @@
 from django.db import models
 from utils.model_validator import validate_png
 from utils.save_check import check_favicon
+from django.core.validators import RegexValidator
 
 
 class MenuLink(models.Model):
@@ -38,7 +39,7 @@ class SubMenuLink(models.Model):
 class SiteSetup(models.Model):
     class Meta:
         verbose_name = 'Setup'
-        verbose_name_plural = 'Setup'
+        verbose_name_plural = 'Setups'
 
     title = models.CharField(max_length=65)
     description = models.CharField(max_length=255)
@@ -47,6 +48,34 @@ class SiteSetup(models.Model):
         blank=True,
         default='',
         validators=[validate_png],
+    )
+    whatsapp_number = models.CharField(
+        max_length=25,
+        verbose_name="Número do Whatsapp",
+        help_text="Inclua o código do país",
+        validators=[
+            RegexValidator(
+                regex=r'^\+?\d+$',
+                message='Digite apenas números, com ou sem + . Ex: +5521999999999'
+            )
+        ],
+        default='',
+        blank=False,
+        null=False,
+    )
+    whatsapp_message = models.CharField(
+        max_length=255,
+        verbose_name="Mensagem automática do WhatsApp",
+        help_text="Mensagem que será pré-preenchida quando o cliente clicar.",
+        default='',
+        blank=False,
+        null=False,
+    )
+    whatsapp_icon = models.ImageField(
+        upload_to='assets/whatsapp_icon/%Y/%m/',
+        verbose_name='Icone Whatsapp',
+        blank=False,
+        default='',
     )
 
     def save(self, *args, **kwargs):
