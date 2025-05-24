@@ -9,7 +9,7 @@ class MenuLink(models.Model):
         verbose_name = 'Menu Link'
         verbose_name_plural = 'Menu Links'
 
-    text = models.CharField(max_length=50)
+    text = models.CharField(max_length=50, verbose_name='Texto')
     url_or_path = models.CharField(max_length=2048)
     site_setup = models.ForeignKey(
         'SiteSetup', on_delete=models.CASCADE,
@@ -25,7 +25,7 @@ class SubMenuLink(models.Model):
         verbose_name = "Sub Menu(Products)"
         verbose_name_plural = "Sub Menus (Products)"
 
-    text = models.CharField(max_length=100)
+    text = models.CharField(max_length=100, verbose_name='Texto')
     url_or_path = models.CharField(max_length=2048, default=None)
     site_setup = models.ForeignKey(
         'SiteSetup', on_delete=models.CASCADE,
@@ -41,8 +41,8 @@ class SiteSetup(models.Model):
         verbose_name = 'Setup'
         verbose_name_plural = 'Setups'
 
-    title = models.CharField(max_length=65)
-    description = models.CharField(max_length=255)
+    title = models.CharField(max_length=65, verbose_name='Título')
+    description = models.CharField(max_length=255, verbose_name='Descrição')
     favicon = models.ImageField(
         upload_to='assets/favicon/%Y/%m/',
         blank=True,
@@ -97,16 +97,16 @@ class Banner(models.Model):
         verbose_name = "Banner"
         verbose_name_plural = "Banners"
 
-    title = models.CharField(max_length=255, blank=True)
-    description = models.CharField(max_length=500, default='', blank=True)
-    button_name = models.CharField(max_length=50, blank=True)
-    button_link = models.CharField(max_length=100, blank=True)
+    title = models.CharField(max_length=255, blank=True, verbose_name='Título')
+    description = models.CharField(max_length=500, default='', blank=True, verbose_name='Descrição')
+    button_name = models.CharField(max_length=50, blank=True, verbose_name='Button Name')
+    button_link = models.CharField(max_length=100, blank=True, verbose_name='Button Link')
     banner_img = models.ImageField(
         upload_to='assets/banners/%Y/%m', 
-        blank=True, default='',
+        blank=True, default='', verbose_name='Banner Imagem'
     )
-    is_active = models.BooleanField(default=True)
-    order = models. PositiveIntegerField(default=0)
+    is_active = models.BooleanField(default=True, verbose_name='Ativo?')
+    order = models. PositiveIntegerField(default=0, verbose_name='Ordem')
     site_setup = models.ForeignKey(
         'SiteSetup', on_delete=models.CASCADE,
         blank=True, null=True, default=None,

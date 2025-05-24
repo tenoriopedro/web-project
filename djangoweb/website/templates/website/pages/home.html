@@ -77,4 +77,28 @@
             </div>
         </section>
     {% endif %}
+
+    <section class="why-gazil">
+
+        <div class="container">
+
+            <h2 class="section-title">Por que escolher a Gazil?</h2>
+
+            <div class="reasons-grid">
+
+                {% for reason in why_gazil %}
+
+                    <div class="reason-card">
+                        <i class="icon">{{ reason.icon }}</i>
+                        <h3 class="reason-title">{{ reason.title }}</h3>
+                        <p>{{ reason.description }}</p>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </section>
 {% endblock content %}

@@ -5,7 +5,8 @@
     --color-light: #ECECEC;          /* Fundos claros */
     --color-white: #FAFAFA;
     --color-gray: #8D99AE;
-    --color-dark-gray: #555;           /* Bordas, textos secundários */
+    --color-dark-gray: #555;         /* Bordas, textos secundários */
+    --color-dark: #1e1e1e;
 
     /* FONTES */
 
@@ -457,7 +458,7 @@ a {
 .featured-products {
     padding: 4rem 2rem;
     background-color: var(--color-light);
-    margin-top: 4rem;
+    margin-top: 5rem;
 }
 
 .section-title{
@@ -517,6 +518,48 @@ a {
     background-color: #a80320;
 }
 
+/* ===== WHY GAZIL SECTION ===== */
+.why-gazil{
+    padding: 4rem 2rem;
+    background-color: var(--color-white);
+}
+
+.why-gazil .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--color-dark);
+}
+
+.reasons-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+}
+
+.reason-card {
+    padding: 2rem;
+    text-align: center;
+}
+
+.reason-card .icon{
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+}
+
+.reason-title{
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--color-dark);
+    margin-bottom: 0.5rem;
+}
+
+.reason-description{
+    font-size: 1rem;
+    color: var(--color-dark-gray);
+    line-height: 1.5;
+}
 
 
 /* ============== RESPONSIVIDADE ================= */
@@ -640,9 +683,9 @@ a {
     }
 
     .banner-btn{
-        padding: var(--space-xs) var(--space-sm);
+        padding: var(--space-sm) var(--space-md);
         margin-top: var(--space-sm);
-        font-size: 0.75rem;
+        font-size: 1rem;
     }
 }
 
@@ -659,9 +702,8 @@ a {
     }
 
     .banner-btn{
-        padding: var(--space-xs) var(--space-sm);
-        margin-top: var(--space-sm);
-        font-size: 0.5rem;
+        margin-top: var(--space-md);
+        font-size: 0.75rem;
     }
 }
 
@@ -670,12 +712,6 @@ a {
         font-size: 1rem;
         margin-bottom: var(--space-xs);
         max-width: 100%;
-    }
-
-    .banner-btn{
-        padding: var(--space-xs) var(--space-sm);
-        margin-top: var(--space-sm);
-        font-size: 0.5rem;
     }
 }
 
