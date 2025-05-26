@@ -77,6 +77,12 @@ class SiteSetup(models.Model):
         blank=False,
         default='',
     )
+    background_image = models.ImageField(
+        upload_to='assets/background/%Y/%m',
+        verbose_name='Background Imagem',
+        blank=False,
+        default='',
+    )
 
     def save(self, *args, **kwargs):
 
@@ -85,6 +91,7 @@ class SiteSetup(models.Model):
         favicon_changed = False
 
         check_favicon(self.favicon, current_favicon_name, favicon_changed)
+        
 
     def __str__(self):
         return self.title

@@ -30,6 +30,15 @@
 
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
     --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    /* Z-INDEX SEMÂNTICO */
+    --z-header: 1000;
+    --z-dropdown: 1100;
+    --z-modal: 1200;
+    --z-backdrop: 1190;
+    --z-toast: 1300;
+    --z-floating-btn: 1400;
+    --z-whatsapp: 1500;
 }
 
 html {
@@ -42,6 +51,9 @@ body {
     line-height: 1.6;
     color: var(--color-primary);
     background-color: var(--color-white);
+    background-image: var(--background-image-url);
+    background-attachment: fixed;
+    background-position: left;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -62,7 +74,7 @@ a {
     height: 80px;
     bottom: 80px;
     right: 30px;
-    z-index: 9999;
+    z-index: var(--z-whatsapp);
     cursor: pointer;
     transition: transform 0.3s ease;
 }
@@ -90,7 +102,7 @@ a {
     box-shadow: var(--shadow-md);
     position: fixed;
     top: 0;
-    z-index: 2000;
+    z-index: var(--z-header);
     padding: var(--space-sm) 0;
     width: 100%;
 }
@@ -124,8 +136,8 @@ a {
 
 .nav-desktop{
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 }
 
 .menu{
@@ -169,7 +181,7 @@ a {
     visibility: hidden;
     transform: translateY(10px);
     transition: all 0.3s;
-    z-index:100;
+    z-index: var(--z-dropdown);
     list-style: none;
     padding-left: 0;
 }
@@ -224,7 +236,7 @@ a {
     border: none;
     cursor: pointer;
     padding: var(--space-xs);
-    z-index: 1000;
+    z-index: var(--z-header);
 }
 
 .hamburger-line {
@@ -252,7 +264,7 @@ a {
 /* ===== MENU MOBILE ===== */
 .nav-mobile {
     position: absolute;
-    top: 100px;
+    top: 120px;
     left: 0;
     width: 100%;
     background: var(--color-white);
@@ -262,7 +274,7 @@ a {
     opacity: 0;
     pointer-events: none;
     transition: transform 0.5s ease, opacity 0.5s ease;
-    z-index: 999;
+    z-index: var(--z-dropdown);
     
 }
 
@@ -283,7 +295,7 @@ a {
     transform: translateY(10px);
     transition: all 0.5s;
     margin: 0;
-    z-index: 100;
+    z-index: var(--z-dropdown);
     pointer-events: none;
 }
 
@@ -455,7 +467,6 @@ a {
     display: flex;
     justify-content: space-between;
     padding: 0 1.5rem;
-    z-index: 10;
 }
 
 .banner-slider:hover .glide__arrows{
@@ -536,7 +547,6 @@ a {
 /* ===== WHY GAZIL SECTION ===== */
 .why-gazil{
     padding: 4rem 2rem;
-    background-color: var(--color-white);
 }
 
 .why-gazil .section-title {
@@ -555,6 +565,9 @@ a {
 .reason-card {
     padding: 2rem;
     text-align: center;
+    background: var(--color-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
 }
 
 .reason-card .icon{
@@ -580,10 +593,6 @@ a {
 /* ============== RESPONSIVIDADE ================= */
 
 @media (max-width: 1025px) {
-
-    .dropdown-parent:hover .nav-link, .nav-link:hover{
-        color: initial;
-    }
 
     .dropdown-parent:hover .dropdown-toggle::after {
         transform: rotate(45deg);
@@ -618,6 +627,11 @@ a {
         transition: transform 0.3s;
     }
 
+    .dropdown-parent:hover .dropdown-toggle::after{
+        border-right: 2px solid var(--color-secondary);
+        border-bottom: 2px solid var(--color-secondary);
+    }
+
     .banner-slider{
         aspect-ratio: 17 / 6;
     }
@@ -642,7 +656,7 @@ a {
 @media (max-width: 768px) {
     .hamburger {
         display: block;
-        margin-left: 15rem;
+        margin-left: auto;
     }
 
     .header-socials{
@@ -742,10 +756,6 @@ a {
         font-size: 1rem;
     }
 
-    .hamburger{
-        margin-left: 7rem;
-    }
-
     .header-socials{
         margin-right: 2rem;
     }
@@ -754,13 +764,8 @@ a {
 @media (max-width: 460px){
 
     .header-socials{
-        margin-right: 1.5rem;
-        margin-left: 0.5rem;
-        gap: 1rem;
-    }
-
-    .hamburger{
-        margin-left: 5rem;
+        margin: 0 auto;
+        gap: 2rem;
     }
 
     .banner-description{
@@ -780,10 +785,6 @@ a {
         font-size: 1rem;
         margin-bottom: var(--space-xs);
         max-width: 100%;
-    }
-
-    .hamburger{
-        margin-left: 2rem;
     }
 }
 
