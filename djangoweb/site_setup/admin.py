@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.apps import apps
 from django.utils.translation import gettext_lazy as _ 
-from site_setup.models import MenuLink, SiteSetup, Banner, SubMenuLink
+from site_setup.models import MenuLink, SiteSetup, Banner, SubMenuLink, Contacts
 
 
 admin.site.index_title = _("Painel Administrativo")
@@ -23,10 +23,14 @@ class BannerInline(admin.TabularInline):
     model = Banner
     extra = 1
 
+class ContactsInline(admin.StackedInline):
+    model = Contacts
+    extra = 0
+
 @admin.register(SiteSetup)
 class SiteSetupAdmin(admin.ModelAdmin):
     list_display = 'title', 'description',
-    inlines = MenuLinkInline, SubMenuLinkInline, BannerInline, 
+    inlines = ContactsInline, MenuLinkInline, SubMenuLinkInline, BannerInline, 
 
     def has_add_permission(self, request):
         return not SiteSetup.objects.exists()

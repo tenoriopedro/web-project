@@ -49,6 +49,12 @@ class SiteSetup(models.Model):
         default='',
         validators=[validate_png],
     )
+    background_image = models.ImageField(
+        upload_to='assets/background/%Y/%m',
+        verbose_name='Background Imagem',
+        blank=False,
+        default='',
+    )
     whatsapp_number = models.CharField(
         max_length=25,
         verbose_name="Número do Whatsapp",
@@ -63,23 +69,9 @@ class SiteSetup(models.Model):
         blank=False,
         null=False,
     )
-    whatsapp_message = models.CharField(
-        max_length=255,
-        verbose_name="Mensagem automática do WhatsApp",
-        help_text="Mensagem que será pré-preenchida quando o cliente clicar.",
-        default='',
-        blank=False,
-        null=False,
-    )
     whatsapp_icon = models.ImageField(
         upload_to='assets/whatsapp_icon/%Y/%m/',
         verbose_name='Icone Whatsapp',
-        blank=False,
-        default='',
-    )
-    background_image = models.ImageField(
-        upload_to='assets/background/%Y/%m',
-        verbose_name='Background Imagem',
         blank=False,
         default='',
     )
@@ -122,3 +114,35 @@ class Banner(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class Contacts(models.Model):
+
+    class Meta:
+        verbose_name = "Contato"
+        verbose_name_plural = "Contatos"
+
+    time = models.CharField(max_length=255, default='', verbose_name="Horário")
+    telephone_number_bonsucesso = models.CharField(max_length=55, default='', verbose_name="Número Telefone Fixo(Bonsucesso)")
+    telephone_number_saocristovao = models.CharField(max_length=55, default='', verbose_name="Número Telefone Fixo(São Cristóvão)")
+    email = models.CharField(max_length=65, default='', verbose_name="Email")
+    whatsapp_number_footer = models.CharField(
+        max_length=25,
+        verbose_name="Número do Whatsapp para Footer",
+        default='',
+        blank=False,
+        null=False,
+    )
+    address_bonsucesso = models.CharField(max_length=155, default='', verbose_name="Endereço Bonsucesso")
+    address_saocristovao = models.CharField(max_length=155, default='', verbose_name="Endereço São Cristóvão")
+    instagram_url = models.URLField(default='', verbose_name="Instagram")
+    facebook_url = models.URLField(default='', verbose_name="Facebook")
+
+    site_setup = models.ForeignKey(
+        'SiteSetup', on_delete=models.CASCADE,
+        blank=True, null=True, default=None,
+        related_name='contacts',
+    )
+
+    def __str__(self):
+        return 'Gazil Equipamentos'

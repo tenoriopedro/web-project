@@ -1,1 +1,91 @@
+<footer class="footer">
 
+    <div class="footer-container container">
+
+        <!-- COLUNA 1: LOGO E NOME -->
+        <div class="footer-col footer-brand">
+            <img src="{{ site_setup.favicon.url }}" alt="Logo {{ site_setup.title }}" class="footer-logo-img">
+            <h2 class="footer-logo">{{ site_setup.title }}</h2>
+        </div>
+
+         <!-- COLUNA 2: LINKS ÚTEIS -->
+        <div class="footer-col footer-links">
+            <h3>Links</h3>
+            <ul>
+                {% for link in site_setup.menulink_set.all %}
+                    <li>
+                        <a href="{{ link.url_or_path }}">
+                            {{ link.text }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- COLUNA 3: CONTATOS -->
+        <div class="footer-col footer-contact">
+            <h3>Contatos</h3>
+            
+            {% for contact in site_setup.contacts.all %}
+                <div class="footer-social">
+
+                    <!--INSTAGRAM-->
+                    <a href="{{ contact.instagram_url }}" 
+                    target="_blank" 
+                    aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                
+
+                    <!--FACEBOOK-->
+                    <a href="{{ contact.facebook_url }}" 
+                    target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+
+                    </a>
+                </div>
+
+                <ul>
+                    <li><i class="fas fa-phone-alt"></i>{{ contact.telephone_number_bonsucesso }}</li>
+                    <li><i class="fas fa-phone-alt"></i>{{ contact.telephone_number_saocristovao }}</li>
+                    <li><i class="fas fa-envelope"></i>{{ contact.email }}</li>
+                    <li><i class="fab fa-whatsapp"></i>{{ contact.whatsapp_number_footer }}</li>
+                </ul>
+
+            {% endfor %}
+        </div>
+
+        <!-- COLUNA 4: ENDEREÇO E HORARIOS -->
+        <div class="footer-col footer-address">
+
+            <h3>Horários</h3>
+            {% for contact in site_setup.contacts.all %}
+                <p><i class="fas fa-clock"></i> {{ contact.time }}</p>
+            {% endfor %}
+            <h3>Endereços</h3>
+            {% for contact in site_setup.contacts.all %}
+                <p>Loja Bonsucesso: {{ contact.address_bonsucesso }}</p>
+                <p>Loja São Cristóvão: {{ contact.address_saocristovao }}</p>
+            {% endfor %}
+        </div>
+
+        <!-- COLUNA 5: MAPAS -->
+        {% comment %} <div class="footer-col footer-map">
+            <h3>Nossas Lojas</h3>
+            <iframe src=""
+                width="100%" height="200" 
+                style="border:0;" 
+                allowfullscreen="" loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade" 
+                title="Localização das lojas">
+            </iframe>
+        </div> {% endcomment %}
+    </div>
+
+    <!-- CRÉDITOS -->
+        
+    <div class="footer-bottom">
+        <p>&copy; {% now "Y" %} {{ site_setup.title }}. Todos os direitos reservados.</p>
+    </div>
+
+</footer>

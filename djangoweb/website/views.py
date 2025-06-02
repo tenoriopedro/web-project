@@ -8,7 +8,6 @@ def home(request):
     featured_products = FeaturedProducts.objects.all()
     why_gazil = WhyGazil.objects.order_by('id')
 
-
     return render(
         request,
         'website/pages/home.html',
