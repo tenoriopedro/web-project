@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Remove Tooltip
         setTimeout(() => {
             tooltip.classList.remove("show");
-            // stopRotation();
+            stopRotation();
         }, 6000);
     }
 
