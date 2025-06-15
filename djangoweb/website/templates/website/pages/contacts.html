@@ -1,9 +1,154 @@
 {% extends "website/base.html" %}
+{% load static %}
 
 {% block content %}
-    <h1>CONTACTS HERE</h1>
-    <h1>CONTACTS HERE</h1>
-    <h1>CONTACTS HERE</h1>
-    <h1>CONTACTS HERE</h1>
-    <h1>CONTACTS HERE</h1>
+    <section class="contact-header">
+
+        <div class="container">
+            <h1>Fale Conosco</h1>
+            <p>Tem dúvidas, sugestões ou quer solicitar um orçamento? Preencha o formulário abaixo ou use um dos nossos canais diretos.</p>
+        </div>
+
+    </section>
+
+
+
+    <section class="contact-section">
+
+        <div class="container">
+
+            <div class="contact-grid">
+                
+                <!-- COLUNA 1: FORMULÁRIO -->
+        
+                <div class="contact-form">
+                    <h2 class="section-title-contact">Envie uma mensagem:</h2>
+        
+                    <form action="" method="post">
+                        {% csrf_token %}
+        
+                        <input type="text" name="name" placeholder="Seu nome*" required>
+                        <input type="email" name="email" placeholder="Seu email*" required>
+                        <textarea name="message" placeholder="Sua mensagem*" required></textarea>
+                        
+                        <div class="form-required-alert">
+                            <i class="fas fa-info-circle"></i> 
+                            Campos com * são obrigatórios.
+                        </div>
+
+                        <button type="submit">Enviar</button>
+
+                    </form>
+                </div>
+                
+                
+                <!-- COLUNA 2: CANAIS DE ATENDIMENTO -->
+                
+                <div class="contact-info">
+                    <h2 class="section-title-contact">Canais de Atendimento:</h2>
+                    <ul class="contact-list">
+                        <li class="contact-item email">
+                            <div class="contact-line">
+                                <i class="fas fa-envelope icon" aria-hidden="true"></i>
+                                <strong>Email:</strong>
+                                <span class="email-text">{{ contacts.email }}</span>
+                                <button class="copy-email-button" aria-label="Copiar e-mail">
+                                    <i class="fas fa-clipboard" title="Copiar"></i>
+                                </button>
+                                <span class="copy-feedback" aria-hidden="true">
+                                    <i class="fas fa-check-circle"></i> Copiado!
+                                </span>
+                            </div>
+                        </li>
+
+                        <li class="contact-item">
+                            <div class="contact-line">
+                                <i class="fas fa-phone icon" aria-hidden="true"></i>
+                                <strong>Telefones:</strong>
+                            </div>
+                            <div class="contact-sublist">
+                                <span>{{ contacts.telephone_number_bonsucesso }}</span><br>
+                                <span>{{ contacts.telephone_number_saocristovao }}</span>
+                            </div>
+                        </li>
+
+                        <li class="contact-item">
+                            <div class="contact-line">
+                                <i class="fas fa-hashtag icon" aria-hidden="true"></i>
+                                <strong>Redes Sociais:</strong>
+                            </div>
+
+                            <div class="contact-sublist">
+                                <!-- INSTAGRAM -->
+                                <a href="{{ contacts.instagram_url }}" 
+                                    target="_blank" 
+                                    aria-label="Instagram">
+                                    <i class="fab fa-instagram icon"></i>
+                                </a>
+                                
+                                <!-- FACEBOOK -->
+                                <a href="{{ contacts.facebook_url }}" 
+                                target="_blank" aria-label="Facebook">
+                                    <i class="fab fa-facebook-f icon"></i>
+
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+            <!-- ENDEREÇOS E MAPA JUNTOS -->
+            <div class="location-and-map">
+
+                <div class="contact-locations">
+
+                    <h2 class="section-title-contact address">Nossos Endereços:</h2>
+
+                    <div class="address-list">
+                        <div class="address-item">
+                            <strong>Bonsucesso:</strong>
+                            <span class="address-text">
+                                {{ contacts.address_bonsucesso }}
+                            </span>
+                            <a class="map-link" 
+                            href="{{ contacts.address_bonsucesso_link }}" 
+                            target="_blank">
+                                Ver no Google Maps
+                            </a>
+                        </div>
+
+                        <div class="address-item">
+                            <strong>São Cristóvão:</strong>
+                            <span class="address-text">
+                                {{ contacts.address_saocristovao }}
+                            </span>
+                            <a class="map-link" 
+                            href="{{ contacts.address_saocristovao_link }}"
+                            target="_blank" >
+                                Ver no Google Maps
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MAPA -->
+                <div class="contact-map map-container">
+
+                    <div id="custom-map"></div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+<script src="{% static "website/js/contacts.js" %}"></script>
+<script src="{% static "website/js/map.js" %}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ google_api_key }}&callback=initMap&loading=async"
+  async>
+</script>
 {% endblock content %}

@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from site_setup.models import SiteSetup
 from website.models import FeaturedProducts, WhyGazil
+import os
+import dotenv
+
+dotenv.load_dotenv()
 
 def home(request):
     site_setup = SiteSetup.objects.first()
@@ -20,9 +24,19 @@ def home(request):
     )
 
 def contacts(request):
+
+    site_setup = SiteSetup.objects.first()
+    contacts = site_setup.contacts.first()
+    google_api_key = os.environ['API_SECRET_KEY']
+
+
     return render(
         request,
-        'website/pages/contacts.html'
+        'website/pages/contacts.html',
+        {
+            'contacts': contacts,
+            'google_api_key': google_api_key,
+        }
     )
 
 def who_we_are(request):

@@ -1,4 +1,5 @@
 {% extends "website/base.html" %}
+{% load static %}
 
 {% block content %}
 
@@ -101,4 +102,7 @@
         </div>
 
     </section>
+
+<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+<script src="{% static 'website/js/banners.js' %}"></script>
 {% endblock content %}

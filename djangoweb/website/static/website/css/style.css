@@ -1,14 +1,19 @@
 :root {
     /* Cores Principais */
-    --color-primary: #1F3A65;        /* Azul escuro(titulos, textos) */
-    --color-secondary: #D90429;      /* Vermelho (botões, destaques) */
-    --color-light: #ECECEC;          /* Fundos claros */
+    --color-primary: #1F3A65;
+    --color-secondary: #D90429;
+    --color-light: #ECECEC;
     --color-white: #FAFAFA;
     --color-gray: #8D99AE;
     --color-md-gray: #979797;
-    --color-dark-gray: #555;         /* Bordas, textos secundários */
+    --color-dark-gray: #555;
     --color-dark: #1e1e1e;
     --color-whatsapp: #128C7E;
+
+    --color-blue: #2f5bea;
+    --color-dark-blue: #2336c4;
+    --color-light-gray: #cccccc;
+    --color-light-dark: #222222;
 
     /* FONTES */
 
@@ -154,7 +159,7 @@ a {
     transform: translateY(0);
 }
 
-/* ===========   HEADER   ============ */
+/* ===========   MAIN HEADER   ============ */
 .container {
     width: 90%;
     max-width: 1100px;
@@ -335,7 +340,7 @@ a {
     width: 100%;
     background: var(--color-white);
     box-shadow: var(--shadow-md);
-    padding-bottom: 1rem 0;
+    padding-bottom: 1rem;
     transform: translateY(-10%);
     opacity: 0;
     pointer-events: none;
@@ -524,7 +529,7 @@ a {
 @media (max-width: 1025px) {
 
     .whatsapp-float{
-        right: 15px;
+        right: 20px;
     }
 
     .whatsapp-tooltip::after{
@@ -1011,3 +1016,317 @@ a {
 
 /* ============== TEMPLATE CONTATOS =============== */
 
+
+/* ====== HEADER PAGINA CONTATOS ======= */
+
+.contact-header {
+    background-color: var(--color-light);
+    padding: 60px 20px;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.contact-header h1{
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--color-dark);
+}
+
+.contact-header p{
+    font-size: 1.5rem;
+    color: var(--color-gray);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* =========== CONTACTS SECTION =========== */
+
+.section-title-contact{
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    color: var(--color-light-dark);
+    text-align: left;
+}
+
+.contact-section{
+    padding: 1.2rem;
+    background-color: var(--color-light);
+}
+
+.contact-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.contact-info, .contact-form{
+    flex: 1 1 400px;
+    min-width: 280px;
+    padding: 40px 20px;
+    background-color: var(--color-light);
+    color: var(--color-dark);
+}
+
+/* ==== CANAIS DE ATENDIMENTO ==== */
+
+.contact-info{
+    background-color: var(--color-light);
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--color-dark);
+    border-bottom: 1px solid var(--color-light);
+}
+
+.contact-list{
+    list-style: none;
+    padding: 0;
+    margin: 0 auto 20px auto;
+    max-width: 600px;
+    text-align: left;
+}
+
+.contact-item{
+    margin-bottom: 20px;
+}
+
+.contact-line{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.contact-sublist{
+    padding-left: 30px;
+    color: var(--color-dark-gray);
+    font-size: 1rem;
+}
+
+.icon{
+    color: var(--color-md-gray);
+    font-size: 1.1rem;
+    min-width: 20px;
+}
+
+.icon:hover{
+    color: var(--color-dark-gray);
+}
+
+.copy-email-button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-md-gray);
+    font-size: 1rem;
+    padding: 2px;
+}
+
+.email-text{
+    word-break: break-all;
+    color: var(--color-dark-gray);
+}
+
+.copy-feedback{
+    display: none;
+    margin-left: 10px;
+    font-size: 0.9rem;
+    color: green;
+    animation: fadeInOut 2s ease-in-out forwards;
+}
+
+.copy-feedback.visible{
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+@keyframes fadeInOut{
+    0% {opacity: 0;}
+    10% {opacity: 1;}
+    90% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+/* ========= FORMULÁRIO ========== */
+
+.form-required-alert{
+    background-color: var(--color-light);
+    color: var(--color-dark-gray);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: -15px;
+}
+
+.form-required-alert .required-symbol{
+    color: var(--color-secondary);
+    font-weight: bold;
+}
+
+.contact-form form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    font-family: inherit;
+    padding: 12px 16px;
+    border: 1px solid var(--color-light-gray);
+    border-radius: 8px;
+    background-color: var(--color-white);
+    font-size: 1rem;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus{
+    outline: none;
+    border-color: var(--color-blue);
+    box-shadow: 0 0 0 3px rgba(100, 100, 255, 0.1);
+    background-color: var(--color-white);
+}
+
+.contact-form textarea{
+    min-height: 120px;
+    resize: vertical;
+}
+
+.contact-form button{
+    padding: 12px 20px;
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    border: none;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+}
+
+.contact-form button:hover{
+    background-color: var(--color-dark-blue);
+}
+
+.contact-form button:active{
+    transform: scale(0.98);
+}
+
+/* ====== ENDEREÇOS E MAPA SECTION ====== */
+
+.location-and-map{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.contact-locations{
+    padding: 0 20px;
+    text-align: left;
+    color: var(--color-dark);
+}
+
+.address-item{
+    margin-bottom: 20px;
+}
+
+.address-text {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--color-dark-gray)
+}
+
+.map-link {
+    display: none;
+}
+
+#custom-map{
+    display: block;
+    width: 100%;
+    height: 450px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    margin: 0 auto;
+}
+
+/* ========= RESPONSIVIDADE ========== */
+
+@media (max-width: 768px) {
+
+    .contact-header{
+        padding: 40px 20px;
+    }
+
+    .contact-grid{
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+
+    /* ---- FORMULÁRIO ----- */
+
+    .contact-form{
+        padding: 20px 5px;
+    }
+
+    /* ----- CANAIS DE ATENDIMENTO ----- */
+
+    .contact-info{
+        padding: 30px 5px;
+    }
+
+    .contact-line i{
+        margin-top: 5px;
+    }
+
+    .contact-list{
+        margin: 0;
+    }
+
+    /* ----- MAPAS ----- */
+    
+    .location-and-map {
+        margin-top: 20px;
+    }
+
+    #custom-map{
+        display: none;
+    }
+
+    .contact-locations{
+        padding: 0 5px;
+        text-align: left;
+        color: var(--color-dark);
+    }
+
+    .map-link {
+        display: inline-block;
+        margin-top: 5px;
+        font-size: 1rem;
+        color: var(--color-secondary);
+        text-decoration: underline;
+    }
+
+    .map-link:hover {
+        color: var(--color-primary);
+    }
+}
+
+@media (max-width: 450px) {
+
+    .contact-info{
+        padding: 20px 5px;
+    }
+
+    .contact-line{
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}

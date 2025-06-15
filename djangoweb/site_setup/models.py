@@ -134,7 +134,11 @@ class Contacts(models.Model):
         null=False,
     )
     address_bonsucesso = models.CharField(max_length=155, default='', verbose_name="Endereço Bonsucesso")
+    address_bonsucesso_link = models.CharField(max_length=155, default='', verbose_name="Endereço Bonsucesso Link")
+
     address_saocristovao = models.CharField(max_length=155, default='', verbose_name="Endereço São Cristóvão")
+    address_saocristovao_link = models.CharField(max_length=155, default='', verbose_name="Endereço São Cristóvão Link")
+
     instagram_url = models.URLField(default='', verbose_name="Instagram")
     facebook_url = models.URLField(default='', verbose_name="Facebook")
 
