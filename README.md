@@ -22,21 +22,4 @@ Este é um projeto de site institucional desenvolvido com **Django**, usando **D
 - 📦 Banco de dados PostgreSQL rodando via Docker
 
 
-
-📂 Estrutura simplificada
-
-├── docker-compose.yml
-├── Dockerfile
-├── djangoweb/
-│   ├── manage.py
-│   ├── project/            # Configurações do projeto
-│   ├── products/           # App de produtos
-│   ├── site_setup/         # Configurações do site
-│   ├── utils/              # Funções auxiliares
-│   ├── website/            # Templates e views
-├── scripts/                # Scripts bash (migrate, runserver etc.)
-├── dotenv_files/           # Variáveis de ambiente
-
-
-
 💡 Desenvolvido por Pedro Tenório • Em construção 🚧
