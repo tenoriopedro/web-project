@@ -19,6 +19,7 @@ class FeaturedProducts(models.Model):
     def __str__(self):
         return self.title
 
+
 class WhyGazil(models.Model):
 
     class Meta:
@@ -31,4 +32,20 @@ class WhyGazil(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class Contacts(models.Model):
+
+    class Meta:
+        verbose_name = "Contato"
+        verbose_name_plural = "Contatos"
+
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email = models.EmailField()
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} - {self.email}"
     

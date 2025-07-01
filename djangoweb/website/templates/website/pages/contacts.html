@@ -26,10 +26,18 @@
         
                     <form action="" method="post">
                         {% csrf_token %}
-        
-                        <input type="text" name="name" placeholder="Seu nome*" required>
-                        <input type="email" name="email" placeholder="Seu email*" required>
-                        <textarea name="message" placeholder="Sua mensagem*" required></textarea>
+                        {{ form_contact.non_field_errors }}
+                        {% for field in form_contact  %}
+                            {% if field.name == 'message' %}
+                                <textarea name="{{ field.name }}" placeholder="{{ field.label }}" required></textarea>
+
+                            {% else %}
+                                <input type="text" name="{{ field.name }}" placeholder="{{ field.label }}" required>
+                            {% endif %}
+
+                            {{ field.errors }}
+
+                        {% endfor %}
                         
                         <div class="form-required-alert">
                             <i class="fas fa-info-circle"></i> 
@@ -145,10 +153,9 @@
         </div>
 
     </section>
-
+    
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="{% static "website/js/contacts.js" %}"></script>
 <script src="{% static "website/js/map.js" %}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key={{ google_api_key }}&callback=initMap&loading=async"
-  async>
-</script>
 {% endblock content %}

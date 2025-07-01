@@ -1,10 +1,11 @@
 from django.urls import path
-from website.views import home, contacts, who_we_are
+from website import views
 
 app_name = 'website'
 
 urlpatterns = [
-    path('', home, name='home'),
-    path('contatos/', contacts, name='contacts'),
-    path('quem-somos/', who_we_are, name='who_we_are'),
+    path('', views.home, name='home'),
+    path('contatos/', views.contacts, name='contacts'),
+    path('contatos/sucesso/', views.success_form, name='success_form'),
+    path('quem-somos/', views.who_we_are, name='who_we_are'),
 ]

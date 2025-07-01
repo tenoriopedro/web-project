@@ -653,7 +653,6 @@ a {
     overflow: hidden;
     background-color: var(--color-white);
     margin-top: 105px;
-    margin-bottom: 2rem;
 }
 
 .banner-slider .glide__track{
@@ -1083,7 +1082,7 @@ a {
 .contact-list{
     list-style: none;
     padding: 0;
-    margin: 0 auto 20px auto;
+    margin: 0;
     max-width: 600px;
     text-align: left;
 }
@@ -1109,11 +1108,11 @@ a {
 
 .icon{
     color: var(--color-md-gray);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     min-width: 20px;
 }
 
-.icon:hover{
+.contact-sublist a .icon:hover{
     color: var(--color-dark-gray);
 }
 
@@ -1217,6 +1216,63 @@ a {
 
 .contact-form button:active{
     transform: scale(0.98);
+}
+
+.errorlist{
+    list-style: none;
+    font-size: 0.9rem;
+    color: var(--color-secondary);
+    margin: 0;
+    padding-left: 15px;
+    margin-top: -10px;
+}
+
+/* ------ FORMULÁRIO ENVIADO COM SUCESSO ------ */
+.success-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-light);
+    padding: 40px 20px;
+    margin-top: 100px;
+    min-height: 70vh;
+}
+
+.success-container{
+    background-color: var(--color-white);
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0, 0.25);
+    text-align: center;
+    max-width: 450px;
+    width: 100%;
+    color: var(--color-dark);
+}
+
+.success-container h1{
+    color: var(--color-primary);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.success-container p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    color: var(--color-dark-gray);
+}
+
+.success-button{
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.success-button:hover {
+    background-color: var(--color-dark-blue);
 }
 
 /* ====== ENDEREÇOS E MAPA SECTION ====== */
@@ -1330,3 +1386,34 @@ a {
         align-items: flex-start;
     }
 }
+
+
+/* ###### SECTION TEMPORÁRIA ###### */
+.temporary-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-light);
+    padding: 40px 20px;
+    margin-top: 100px;
+    min-height: 70vh;
+}
+
+.temporary-container{
+    background-color: var(--color-white);
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0, 0.25);
+    text-align: center;
+    max-width: 450px;
+    width: 100%;
+    color: var(--color-dark);
+}
+
+.temporary-container h1{
+    color: var(--color-primary);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+/* ###################################### */
