@@ -17,6 +17,9 @@ ENV PYTHONUNBUFFERED 1
 COPY djangoweb /djangoweb
 COPY scripts /scripts
 
+# Ensure all .sh files have proper LF line endings
+RUN dos2unix /scripts/*.sh
+
 # Enter the django folder in the container
 WORKDIR /djangoweb
 
