@@ -1,9 +1,11 @@
 /data/
 __localcode
 gunicorn-error-log
-/djangoapp/static/
-/djangoapp/media/
-/djangoapp/project/local_settings.py
+/djangoweb/static/
+/djangoweb/media/
+/djangoweb/project/local_settings.py
+/backup
+backup_dev.sql
 
 
 # Django #
