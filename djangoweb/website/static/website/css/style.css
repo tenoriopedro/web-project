@@ -710,12 +710,13 @@ a {
 .banner-btn{
     background-color: var(--color-secondary);
     color: var(--color-white);
-    padding: var(--space-sm) var(--space-md);
+    padding: 0.6rem 1.25rem;
     font-weight: bold;
     text-transform: uppercase;
     transition: background 0.4s;
     border-radius: var(--border-radius);
     margin-top: 30px;
+    font-size: 1.25rem;
 }
 
 .banner-btn:hover{
