@@ -340,7 +340,6 @@ a {
     width: 100%;
     background: var(--color-white);
     box-shadow: var(--shadow-md);
-    padding-bottom: 1rem;
     transform: translateY(-10%);
     opacity: 0;
     pointer-events: none;
@@ -387,7 +386,7 @@ a {
 
 .menu-mobile .nav-link{
     display: block;
-    padding: var(--space-sm) 0;
+    padding: var(--space-md) 0;
     font-weight: 600;
     border-bottom: 2px solid var(--color-light);
 }
@@ -619,7 +618,6 @@ a {
     .nav-mobile .dropdown-menu {
         position: relative;
         box-shadow: none;
-        margin-top: var(--space-xs);
         display: none;
     }
 
