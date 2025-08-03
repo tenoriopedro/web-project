@@ -1,3 +1,12 @@
 from django.contrib import admin
+from django.apps import apps
+from .models import Bancadas
 
-# Register your models here.
+
+app_config = apps.get_app_config('products')
+app_config.verbose_name = "Produtos"
+
+
+@admin.register(Bancadas)
+class AdminBancadas(admin.ModelAdmin):
+    list_display = 'name',
