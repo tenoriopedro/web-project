@@ -3,11 +3,21 @@ from utils.images import resize_image
 from utils.random_letters import slugify_new
 
 
+PRODUCTS_TYPE = [
+    ('bancadas', 'Bancadas'),
+    ('gabinetes-armários-balcões', 'Gabinetes-Armários-Balcões'),
+    ('estantes', 'Estantes'),
+    ('prateleiras', 'Prateleiras'),
+    ('carrinhos', 'Carrinhos'),
+    ('sistema-exaustão', 'Sistema-Exaustão'),
+    ('sob-medida', 'Sob-Medida'),
+]
 
-class Bancadas(models.Model):
+
+class Products(models.Model):
     class Meta:
-        verbose_name = 'Bancada'
-        verbose_name_plural = 'Bancadas'
+        verbose_name = 'Produto'
+        verbose_name_plural = 'Produtos'
 
     name = models.CharField(max_length=255, verbose_name='Nome')
     short_description = models.TextField(max_length=255, verbose_name='Descrição Curta')
@@ -23,6 +33,11 @@ class Bancadas(models.Model):
         blank=True,
         null=True,
     )
+    product_type = models.CharField(
+        max_length=50,
+        choices=PRODUCTS_TYPE,
+        verbose_name='Tipo de Produto'
+    )
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -35,5 +50,5 @@ class Bancadas(models.Model):
             resize_image(self.image, max_image_size)
 
     def __str__(self):
-        return self.name
+        return f" {self.name} ({self.get_product_type_display()})"
     

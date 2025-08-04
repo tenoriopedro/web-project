@@ -1,22 +1,27 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView
-from .models import Bancadas
+from django.views.generic import TemplateView, ListView, DetailView
+from .models import Products
 
 
-def index(request):
-    return render(
-        request,
-        'products/index.html'
-    )
+class ProductsIndexView(TemplateView):
+    template_name = 'products/index.html'
+
+    def get_context_data(self, **kwargs):
+        categories = Products.objects.values('product_type').distinct()
+        context = {'categories': categories}
+
+        return context
 
 
-class BancadaListView(ListView):
-    model = Bancadas
-    template_name = 'products/bancadas.html'
-    context_object_name = 'bancadas'
+class ProductsListView(ListView):
+    model = Products
+    template_name = 'products/list_products.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        return Products.objects.filter(product_type=self.kwargs['product_type'])
 
 
-class BancadaDetailView(DetailView):
-    model = Bancadas
-    template_name = 'products/bancada_detail.html'
-    context_object_name = 'bancada'
+class ProductDetailView(DetailView):
+    model = Products
+    template_name = 'products/detail_product.html'
+    context_object_name = 'product'
