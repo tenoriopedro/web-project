@@ -1,17 +1,8 @@
 from django.db import models
 from utils.images import resize_image
 from utils.random_letters import slugify_new
+from site_setup.models import SubMenuLink
 
-
-PRODUCTS_TYPE = [
-    ('bancadas', 'Bancadas'),
-    ('gabinetes-armários-balcões', 'Gabinetes-Armários-Balcões'),
-    ('estantes', 'Estantes'),
-    ('prateleiras', 'Prateleiras'),
-    ('carrinhos', 'Carrinhos'),
-    ('sistema-exaustão', 'Sistema-Exaustão'),
-    ('sob-medida', 'Sob-Medida'),
-]
 
 
 class Products(models.Model):
@@ -33,10 +24,10 @@ class Products(models.Model):
         blank=True,
         null=True,
     )
-    product_type = models.CharField(
-        max_length=50,
-        choices=PRODUCTS_TYPE,
-        verbose_name='Tipo de Produto'
+    product_type = models.ForeignKey(
+        SubMenuLink, 
+        on_delete=models.CASCADE,
+        verbose_name='Tipo de Produto',
     )
 
     def save(self, *args, **kwargs):
@@ -50,5 +41,5 @@ class Products(models.Model):
             resize_image(self.image, max_image_size)
 
     def __str__(self):
-        return f" {self.name} ({self.get_product_type_display()})"
+        return f" {self.name} ({self.product_type.text})"
     

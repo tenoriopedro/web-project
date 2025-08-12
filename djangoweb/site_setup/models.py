@@ -22,8 +22,8 @@ class MenuLink(models.Model):
 
 class SubMenuLink(models.Model):
     class Meta:
-        verbose_name = "Sub Menu(Products)"
-        verbose_name_plural = "Sub Menus (Products)"
+        verbose_name = "Sub Menu(Produtos)"
+        verbose_name_plural = "Sub Menus(Produtos)"
 
     text = models.CharField(max_length=100, verbose_name='Texto')
     url_or_path = models.CharField(max_length=2048, default=None)
