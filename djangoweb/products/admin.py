@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.apps import apps
-from .models import Products
+from .models import Products, ProductsSetup
 
 
 app_config = apps.get_app_config('products')
@@ -12,7 +12,8 @@ class ProductsAdmin(admin.ModelAdmin):
     list_display = 'name', 'product_type', 'slug',
     list_filter = 'product_type',
     search_fields = 'name', 'product_type'
-    prepopulated_fields = {'slug': ('name',)}
+    # prepopulated_fields = {'slug': ('name',)}
+    
 
     fieldsets = (
         (None, {
@@ -25,3 +26,8 @@ class ProductsAdmin(admin.ModelAdmin):
             'fields': ('image',)
         }),
     )
+
+
+@admin.register(ProductsSetup)
+class ProductsSetupAdmin(admin.ModelAdmin):
+    list_display = 'product_type', 'image',

@@ -1,18 +1,14 @@
 from django.views.generic import TemplateView, ListView, DetailView
 from .models import Products
-from site_setup.models import SiteSetup
 
 
 class ProductsIndexView(TemplateView):
     template_name = 'products/index.html'
 
     def get_context_data(self, **kwargs):
-        categories = Products.objects.values('product_type__text').distinct()
+        categories = Products.objects.all()
         context = {
-            'categories': [
-                categorie['product_type__text'] 
-                for categorie in categories
-            ]
+            'categories': categories
         }
 
         return context
