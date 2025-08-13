@@ -9,7 +9,7 @@ app_config.verbose_name = "Produtos"
 
 @admin.register(Products)
 class ProductsAdmin(admin.ModelAdmin):
-    list_display = 'name', 'product_type', 'slug',
+    list_display = 'name', 'product_type', 'slug_product',
     list_filter = 'product_type',
     search_fields = 'name', 'product_type'
     # prepopulated_fields = {'slug': ('name',)}
@@ -17,7 +17,7 @@ class ProductsAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('name', 'product_type', 'slug')
+            'fields': ('name', 'product_type', 'slug_product')
         }),
         ('Descrição', {
             'fields': ('short_description', 'long_description')
@@ -30,4 +30,6 @@ class ProductsAdmin(admin.ModelAdmin):
 
 @admin.register(ProductsSetup)
 class ProductsSetupAdmin(admin.ModelAdmin):
-    list_display = 'product_type', 'image',
+    list_display = 'product_type', 'slug_category',
+    ordering = 'product_type',
+

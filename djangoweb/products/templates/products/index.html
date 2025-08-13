@@ -11,22 +11,23 @@
 
     </section>
 
-    <section id="categories-id" class="categories">
+     <section id="categories-id" class="categories">
         <h2>Categorias</h2>
         <div class="categories-grid">
 
             {% for category in categories %}
-                <a href="{% url "products:product-list" category.name %}" class="category-card">
+                <a href="{% url "products:product-list" category.slug_category %}" class="category-card">
 
                     <div class="card-image">
-                        <img src="{{ category.image.url }}" alt="{{ category.name }}">
+                        <img src="{{ category.image.url }}" alt="{{ category.product_type.text }}">
                     </div>
                     <div class="card-content">
-                        <h3>{{ category.name }}</h3>
+                        <h3>{{ category.product_type.text }}</h3>
                     </div>
 
                 </a>
             {% endfor %}
         </div>
     </section>
+
 {% endblock content %}

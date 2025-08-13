@@ -4,6 +4,7 @@ from utils.random_letters import slugify_new
 from site_setup.models import SubMenuLink
 from django.core.exceptions import ValidationError
 from utils.image_upload_path import product_image_upload_path
+from django.utils.text import slugify
 
 
 
@@ -26,15 +27,16 @@ class Products(models.Model):
         null=False,
         verbose_name='Imagem do produto',
     )
-    slug = models.SlugField(
+    slug_product = models.SlugField(
         unique=True,
         blank=True,
         null=True,
+        verbose_name='Slug do Produto'
     )
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify_new(self.name)
+        if not self.slug_product:
+            self.slug_product = slugify_new(self.name)
 
         super().save(*args, **kwargs)
 
@@ -48,6 +50,7 @@ class Products(models.Model):
 
 class ProductsSetup(models.Model):
     class Meta:
+        ordering = ['product_type']
         verbose_name = 'Produto(Setup)'
         verbose_name_plural = 'Produtos(Setup)'
 
@@ -62,8 +65,16 @@ class ProductsSetup(models.Model):
         null=False,
         verbose_name='Imagem do produto',
     )
+    slug_category = models.SlugField(
+        unique=True,
+        blank=True,
+        null=True,
+        verbose_name='Slug da Categoria'
+    )
 
     def save(self, *args, **kwargs):
+        if not self.slug_category:
+            self.slug_category = slugify(self.product_type.text)
 
         super().save(*args, **kwargs)
 

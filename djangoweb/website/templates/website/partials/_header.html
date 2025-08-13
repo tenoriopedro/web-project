@@ -25,9 +25,11 @@
                             {{ menu_link.text }}
                         </a>
                         <ul class="dropdown-menu">
-                            {% for submenu in site_setup.submenu_link.all %}
+                            {% for category in products_setup_list %}
                                 <li>
-                                    <a href="{{ submenu.url_or_path }}" class="dropdown-item">{{ submenu.text }}</a>
+                                    <a href="{% url "products:product-list" slug_category=category.slug_category %}" class="dropdown-item">
+                                        {{ category.product_type.text }}
+                                    </a>
                                 </li>
                             {% endfor %}
                         </ul>
@@ -65,9 +67,11 @@
                             {{ menu_link.text }}
                         </a>
                         <ul class="dropdown-menu">
-                            {% for submenu in site_setup.submenu_link.all %}
+                            {% for category in products_setup_list %}
                                 <li>
-                                    <a href="{{ submenu.url_or_path }}">{{ submenu.text }}</a>
+                                    <a href="{% url "products:product-list" slug_category=category.slug_category %}" class="dropdown-item">
+                                        {{ category.product_type.text }}
+                                    </a>
                                 </li>
                             {% endfor %}
                         </ul>

@@ -18,6 +18,7 @@ class MenuLinkInline(admin.TabularInline):
 class SubMenuLinkInline(admin.TabularInline):
     model = SubMenuLink
     extra = 1
+    readonly_fields = 'url_or_path',
 
 class BannerInline(admin.TabularInline):
     model = Banner

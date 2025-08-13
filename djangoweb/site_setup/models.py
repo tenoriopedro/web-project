@@ -2,6 +2,7 @@ from django.db import models
 from utils.model_validator import validate_png
 from utils.save_check import check_favicon
 from django.core.validators import RegexValidator
+from django.utils.text import slugify
 
 
 class MenuLink(models.Model):
@@ -26,15 +27,22 @@ class SubMenuLink(models.Model):
         verbose_name_plural = "Sub Menus(Produtos)"
 
     text = models.CharField(max_length=100, verbose_name='Texto')
-    url_or_path = models.CharField(max_length=2048, default=None)
+    url_or_path = models.CharField(max_length=250, default=None, null=True, blank=True)
     site_setup = models.ForeignKey(
         'SiteSetup', on_delete=models.CASCADE,
         blank=True, null=True, default=None,
         related_name='submenu_link'
     )
 
+    def save(self, *args, **kwargs):
+        if not self.url_or_path:
+            self.url_or_path = f"/produtos/{slugify(self.text)}/"
+
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.text
+
 
 class SiteSetup(models.Model):
     class Meta:
