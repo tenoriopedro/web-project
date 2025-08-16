@@ -1,7 +1,6 @@
 import os
-from django.http import Http404
 import dotenv
-import time
+from django.http import Http404
 from django.core.cache import cache
 from django.utils import timezone
 from django.shortcuts import render, redirect
@@ -10,6 +9,7 @@ from site_setup.models import SiteSetup
 from website.models import FeaturedProducts, WhyGazil
 from website.forms import ContactsModelForm
 
+
 dotenv.load_dotenv()
 
 def home(request):
@@ -17,6 +17,7 @@ def home(request):
     banners = site_setup.banners.filter(is_active=True).order_by('order') if site_setup else []
     featured_products = FeaturedProducts.objects.all()
     why_gazil = WhyGazil.objects.order_by('id')
+
 
     return render(
         request,

@@ -1,6 +1,7 @@
 :root {
     /* MAIN COLORS */
     --color-primary: #1F3A65;
+    --color-primary-dark: #152947;
     --color-secondary: #D90429;
     --color-light: #ECECEC;
     --color-white: #FAFAFA;
@@ -1018,7 +1019,7 @@ a {
 /* ====== HEADER PAGE CONTACTS ======= */
 
 .contact-header {
-    background-color: var(--color-light);
+    background-color: var(--color-primary);
     padding: 60px 20px;
     text-align: center;
     margin-top: 100px;
@@ -1027,12 +1028,12 @@ a {
 .contact-header h1{
     font-size: 3rem;
     margin-bottom: 20px;
-    color: var(--color-dark);
+    color: var(--color-white);
 }
 
 .contact-header p{
     font-size: 1.5rem;
-    color: var(--color-gray);
+    color: var(--color-light-gray);
     max-width: 800px;
     margin: 0 auto;
 }
@@ -1393,58 +1394,65 @@ a {
 
 /* =================== TEMPLATE WHO WE ARE ======================= */
 
+.main-content{
+    background: var(--color-light);
+}
+
+
 .about-page {
     padding: 4rem 2rem;
     max-width: 960px;
     margin: 0 auto;
-    color: var(--color-dark, #333);
+    color: var(--color-dark);
     font-size: 1.125rem;
     line-height: 1.7;
-    margin-top: 5rem;
+    margin-top: 3rem;
 }
 
 .about-page section{
     margin-bottom: 4rem;
     background-color: var(--color-light);
     border-radius: var(--border-radius);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     padding: 2rem;
+    text-align: center;
 }
 
 .about-page h1{
-    font-size: 2.5rem;
-    color: var(--color-primary, #1a73e8);
+    font-size: 3rem;
+    color: var(--color-primary);
     margin-bottom: 1.5rem;
     line-height: 1.2;
 }
 
 .about-page h2 {
-    font-size: 2rem;
-    color: var(--color-primary, #1a73e8);
+    font-size: 2.5rem;
+    color: var(--color-primary);
     margin-bottom: 1rem;
 }
 
 .about-page p{
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.35rem;
+    font-size: 1.35rem;
 }
 
 .about-page ul {
     list-style: none;
     padding-left: 0;
     margin-bottom: 1.5rem;
+    font-size: 1.25rem;
 }
 
 .about-page ul li::before {
     content: "•";
     position: absolute;
     left: 0;
-    color: var(--color-secondary, #f57c00);
+    color: var(--color-secondary);
     font-weight: bold;
 }
 
 .about-page .note {
     font-size: 1rem;
-    color: var(--color-md-gray, #666);
+    color: var(--color-dark-gray);
     font-style: italic;
 }
 
@@ -1460,7 +1468,7 @@ a {
 .about-page .closing-line{
     margin-top: 2rem;
     font-weight: 500;
-    color: var(--color-md-gray);
+    color: var(--color-dark-gray);
 }
 
 
@@ -1505,32 +1513,51 @@ a {
 
 .hero-content h1 {
     font-family: var(--font-title);
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     margin-bottom: var(--space-md);
 }
 
 .hero-content p {
     font-family: var(--font-body);
-    font-size: 1.125rem;
-    margin-bottom: var(--space-lg);
+    font-size: 1.575rem;
+    margin-bottom: var(--space-xl);
 }
 
-.btn-primary {
-    display: inline-block;
-    background: var(--color-secondary);
-    color: var(--color-white);
-    padding: var(--space-sm) var(--space-md);
-    border-radius: var(--border-radius);
-    text-decoration: none;
-    font-weight: bold;
-    box-shadow: var(--shadow-sm);
+.search-bar {
+    display: flex;
+    align-items: center;
+    max-width: 550px;
+    margin: 0 auto;
+    background: var(--color-white);
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.search-bar input {
+    background: var(--color-white);
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+}
+
+.search-bar button {
+    padding: 0.75rem 1.5rem;
+    background: var(--color-white);
+    color: var(--color-dark);
+    border: none;
+    cursor: pointer;
     transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.btn-primary:hover {
-    background: #b60320;
+.search-bar button:hover{
+    background: var(--color-light-gray);
 }
-
 
 .categories {
     padding: var(--space-xl) var(--space-md);
@@ -1538,21 +1565,33 @@ a {
     text-align: center;
 }
 
-.categories h2 {
-    font-family: var(--font-title);
-    font-size: 2rem;
-    margin-bottom: var(--space-lg);
+.categories-title {
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.categories-subtitle{
+    font-size: 1.375rem;
+    color: var(--color-dark-gray);
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
 .categories-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-md);
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
 .card-image {
+    position: relative;
     width: 100%;
-    height: 160px;
+    height: 250px;
     overflow: hidden;
     border: var(--border-radius) var(--border-radius) 0 0;
 }
@@ -1561,7 +1600,8 @@ a {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    filter: brightness(0.4);
+    transition: transform 0.5s ease, filter 0.5s ease;
 }
 
 .category-card {
@@ -1573,7 +1613,7 @@ a {
     overflow: hidden;
     text-decoration: none;
     color: var(--color-dark);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
 .category-card:hover {
@@ -1582,17 +1622,33 @@ a {
 }
 
 .category-card:hover img {
-    transform: scale(1.05);
+    transform: scale(1.07);
+    filter: brightness(0.8);
 }
 
 .card-content {
-    padding: var(--space-md);
+    padding: 0;
     text-align: center;
 }
 
 .card-content h3 {
     font-family: var(--font-title);
     font-size: 1.25rem;
+}
+
+
+/* ================= RESPONSIVENESS INDEX TEMPLATE =============== */
+
+@media (max-width: 900px) {
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 

@@ -78,7 +78,7 @@ class ProductsSetup(models.Model):
 
         super().save(*args, **kwargs)
 
-        max_image_size = 800
+        max_image_size = 600
         if self.image:
             resize_image(self.image, max_image_size)
 
