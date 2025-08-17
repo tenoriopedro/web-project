@@ -1396,6 +1396,7 @@ a {
 
 .main-content{
     background: var(--color-light);
+    opacity: 0.8;
 }
 
 
