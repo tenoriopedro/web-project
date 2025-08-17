@@ -37,23 +37,23 @@ def contacts(request):
     contacts = site_setup.contacts.first()
     company_email = os.getenv('EMAIL_RECIPIENT_LIST', '')
     ip = get_client_ip(request)
-    time_limit = 300 # 5 minutos
+    time_limit = 300 # 5 min
 
-    # Extrair da página
+    # Extract from page
     if request.method == "POST":
         
         form_contact = ContactsModelForm(request.POST)
 
-        # Verificar cache. 
-        # O usuário enviar de forma seguida
-        # (intervalo de 5 minutos), levanta um erro.
+        # Check cache.
+        # The user sends in succession
+        # (5-minute interval), raises an error
         if cache.get(f"blocked_{ip}"):
             form_contact.add_error(
                 None,
                 "Aguarde alguns minutos antes de enviar novamente.",
             )
 
-        # Verificação do tempo de envio(Proteção contra bots)
+        # Sending time check (Bot protection)
         started_at = request.session.get('form_started_at')
         if started_at:
             elapsed = (timezone.now() - timezone.datetime.fromisoformat(started_at)).total_seconds()
@@ -71,7 +71,7 @@ def contacts(request):
             email = form_contact.cleaned_data['email']
             message = form_contact.cleaned_data['message']
 
-            # Enviar Email
+            # Send Email
             send_mail(
                 subject=f"[Página Contatos] Mensagem de {first_name} {last_name}",
                 message=f"Mensagem:\n{message}\n\nEmail de contato: {email}",
@@ -80,13 +80,13 @@ def contacts(request):
                 fail_silently=False,
             )
 
-            # Salva no banco de dados
+            # Save in database
             form_contact.save()
 
-            # Sinaliza que o envio foi válido
+            # Indicates that the submission was valid
             request.session['form_sucesso'] = True
 
-            # Bloqueia IP por 5 minutos, para evitar SPAM
+            # Block IP for 5 minutes, to avoid SPAM
             cache.set(f"blocked_{ip}", True, timeout=time_limit)
 
             return redirect("website:success_form")
@@ -94,7 +94,7 @@ def contacts(request):
     else:
         form_contact = ContactsModelForm()
 
-        # Armazena hora de abertura do formulário
+        # Stores form opening time
         request.session['form_started_at'] = timezone.now().isoformat()
 
     
@@ -109,7 +109,7 @@ def contacts(request):
 
 
 def get_client_ip(request):
-    # Função para obter o ip real do visitante
+    # Function to get the visitor's real IP
     forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if forwarded_for:
         return forwarded_for.split(',')[0]
@@ -119,14 +119,14 @@ def get_client_ip(request):
 
 def success_form(request):
 
-    # Verificar a requisição(Tentar acessar a página de forma direta). 
-    # Sendo negativa, levanta o erro.
+    # Check the request (Try to access the page directly).
+    # If negative, raise the error
     if not request.session.get('form_sucesso'):
         raise Http404("Página não encontrada.")
     
     del request.session['form_sucesso']
 
-    # Se positiva(formulário enviado com sucesso) renderiza o html
+    # If positive (form submitted successfully) render the html
     return render(request, 'website/pages/success_form.html')
 
 
