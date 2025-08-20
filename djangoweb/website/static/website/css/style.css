@@ -9,7 +9,8 @@
     --color-md-gray: #979797;
     --color-dark-gray: #555;
     --color-dark: #1e1e1e;
-    --color-whatsapp: #128C7E;
+    --color-whatsapp: #1EBE5B;
+    --color-hover-whatsapp: #128C7E;
 
     --color-blue: #2f5bea;
     --color-dark-blue: #2336c4;
@@ -81,8 +82,7 @@ a {
 .whatsapp-float{
     position: fixed;
     width: 100px;
-    height: 100px;
-    bottom: 100px;
+    bottom: 70px;
     right: 60px;
     z-index: var(--z-whatsapp);
     display: flex;
