@@ -11,7 +11,7 @@ class MenuLink(models.Model):
         verbose_name_plural = 'Menu Links'
 
     text = models.CharField(max_length=50, verbose_name='Texto')
-    url_or_path = models.CharField(max_length=2048)
+    url_or_path = models.CharField(max_length=248)
     site_setup = models.ForeignKey(
         'SiteSetup', on_delete=models.CASCADE,
         blank=True, null=True, default=None,
