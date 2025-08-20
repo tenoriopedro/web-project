@@ -1,5 +1,5 @@
 from django.db import models
-from utils.images import resize_image
+from utils.images import resize_image_product
 from utils.random_letters import slugify_new
 from site_setup.models import SubMenuLink
 from django.core.exceptions import ValidationError
@@ -42,7 +42,7 @@ class Products(models.Model):
 
         max_image_size = 800
         if self.image:
-            resize_image(self.image, max_image_size)
+            resize_image_product(self.image, max_image_size)
 
     def __str__(self):
         return f"{self.name}"
@@ -80,7 +80,7 @@ class ProductsSetup(models.Model):
 
         max_image_size = 600
         if self.image:
-            resize_image(self.image, max_image_size)
+            resize_image_product(self.image, max_image_size)
 
     def clean(self):
         if ProductsSetup.objects.filter(
