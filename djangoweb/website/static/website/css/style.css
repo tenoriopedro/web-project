@@ -61,8 +61,10 @@ body {
     color: var(--color-primary);
     background-color: var(--color-white);
     background-image: var(--background-image-url);
+    background-position: center 20%;
     background-attachment: fixed;
-    background-position: left;
+    background-repeat: no-repeat;
+    background-size: auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
