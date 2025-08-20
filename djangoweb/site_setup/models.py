@@ -105,7 +105,7 @@ class Banner(models.Model):
         verbose_name_plural = "Banners"
 
     title = models.CharField(max_length=255, blank=True, verbose_name='Título')
-    description = models.CharField(max_length=500, default='', blank=True, verbose_name='Descrição')
+    description = models.CharField(max_length=250, default='', blank=True, verbose_name='Descrição')
     button_name = models.CharField(max_length=50, blank=True, verbose_name='Button Name')
     button_link = models.CharField(max_length=100, blank=True, verbose_name='Button Link')
     banner_img = models.ImageField(
