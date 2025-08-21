@@ -1741,7 +1741,7 @@ a {
     gap: 6px;
     text-align: center;
     padding: 10px;
-    border-radius: 40px;
+    border-radius: 35px;
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
@@ -1821,7 +1821,7 @@ a {
 }
 
 
-/* ========== RESPONSIVINESS LIST_PRODUCT TEMPLATE ========== */
+/* ========== RESPONSIVENESS LIST_PRODUCT TEMPLATE ========== */
 
 @media (max-width: 768px) {
     .product-card {
@@ -1830,6 +1830,130 @@ a {
 
     .card-image {
         max-width: 100%;
+    }
+}
+
+
+/* =================== DETAIL_PRODUCT TEMPLATE ===================== */
+
+.product-detail-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    background: var(--color-white);
+}
+
+.product-detail-main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+    margin-bottom: 40px;
+}
+
+.product-detail-image{
+    flex: 1 1 400px;
+    text-align: center;
+}
+
+.product-detail-image img{
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-detail-info {
+    flex: 1 1 400px;
+}
+
+.product-detail-title{
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.product-detail-short{
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.product-detail-long{
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.product-detail-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn-back {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-back:hover {
+    background: #5a6268;
+}
+
+.related-section h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    border-bottom: 3px solid var(--color-light-gray);
+    padding-bottom: 10px;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.related-card {
+    background: var(--color-white);
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.related-card:hover {
+    transform: translateY(-4px);
+}
+
+.related-card img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.related-card h3 {
+    font-size: 1.1rem;
+    margin: 10px 0;
+}
+
+.related-card p {
+    font-size: 0.9rem;
+    color: var(--color-dark-gray);
+    margin-bottom: 15px;
+}
+
+.no-related {
+    text-align: center;
+    color: var(--color-gray);
+    font-style: italic;
+    margin-top: 10px;
+}
+
+
+/* ============ RESPONSIVENESS DETAIL_PRODUCT ============= */
+
+@media (max-width: 768px) {
+    .product-main {
+        flex-direction: column;
+    }
+    .product-info {
+        text-align: center;
     }
 }
 

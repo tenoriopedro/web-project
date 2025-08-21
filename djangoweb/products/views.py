@@ -19,7 +19,7 @@ class ProductsListView(ListView):
     model = Products
     template_name = 'products/list_products.html'
     context_object_name = 'products'
-    paginate_by = 9
+    paginate_by = 8
 
 
     def get_queryset(self):
@@ -51,22 +51,32 @@ class ProductsListView(ListView):
 class ProductDetailView(DetailView):
     model = Products
     template_name = 'products/detail_product.html'
-    context_object_name = 'product'
+    context_object_name = 'products'
+    slug_url_kwarg = "slug_product"
+
 
     def get_object(self):
 
-        slug_product = self.kwargs['slug_product']
-        slug_category = self.kwargs['slug_category']
+        slug_category = self.kwargs.get("slug_category")
+        slug_product = self.kwargs.get("slug_product")
 
-        category = get_object_or_404(
-            ProductsSetup, 
-            slug_category=slug_category
-        )
-
-        product = get_object_or_404(
+        return get_object_or_404(
             Products,
-            slug_product=slug_product,
-            product_type=category.product_type
+            slug_product=slug_product
         )
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        product = self.object
 
-        return product
+        related_products = (
+            Products.objects.filter(
+                product_type=product.product_type
+            ).exclude(id=product.id)[:4]
+        )
+        context["related_products"] = related_products
+        context["slug_category"] = self.kwargs.get('slug_category')
+        context["product"] = product
+        
+        return context
+    
