@@ -33,6 +33,7 @@
     /* BORDERS */
 
     --border-radius: 0.5rem;    /* Rounded corners */
+    --border-radius-btn: 2rem;
     --border-gray: 1px solid var(--color-gray);
 
     /* SHADOWS */
@@ -714,7 +715,7 @@ a {
     font-weight: bold;
     text-transform: uppercase;
     transition: background 0.4s;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-btn);
     margin-top: 30px;
     font-size: 1.25rem;
 }
@@ -827,7 +828,7 @@ a {
     background-color: var(--color-secondary);
     color: white;
     padding: 0.6rem 1.2rem;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-btn);
     text-transform: uppercase;
     font-weight: bold;
     transition: background 0.3s;
@@ -1205,7 +1206,7 @@ a {
     color: var(--color-white);
     border: none;
     cursor: pointer;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-btn);
     font-size: 1rem;
     transition: background-color 0.3s ease;
     font-weight: 500;
@@ -1402,18 +1403,18 @@ a {
 
 .about-page {
     padding: 4rem 2rem;
-    max-width: 960px;
+    max-width: 1100px;
     margin: 0 auto;
     color: var(--color-dark);
     font-size: 1.125rem;
     line-height: 1.7;
     margin-top: 3rem;
+    font-weight: 900;
 }
 
 .about-page section{
     margin-bottom: 4rem;
     background-color: var(--color-light);
-    border-radius: var(--border-radius);
     padding: 2rem;
     text-align: center;
 }
@@ -1452,7 +1453,7 @@ a {
 }
 
 .about-page .note {
-    font-size: 1rem;
+    font-size: 1.125rem;
     color: var(--color-dark-gray);
     font-style: italic;
 }
@@ -1468,7 +1469,7 @@ a {
 
 .about-page .closing-line{
     margin-top: 2rem;
-    font-weight: 500;
+    font-weight: 700;
     color: var(--color-dark-gray);
 }
 
@@ -1740,7 +1741,7 @@ a {
     gap: 6px;
     text-align: center;
     padding: 10px;
-    border-radius: 35px;
+    border-radius: var(--border-radius-btn);
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
