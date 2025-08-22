@@ -58,7 +58,7 @@
 
                         {% for related in related_products %}
 
-                            <a href={% url 'products:product-detail' slug_category related.slug_product%}>
+                            <a href={% url 'products:product-detail' related.product_type.slug_category related.slug_product%}>
                                 <div class="related-card">
                                     <img src="{{ related.image.url }}" 
                                     alt="{{ related.name }}">
