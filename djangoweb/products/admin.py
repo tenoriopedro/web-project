@@ -12,9 +12,9 @@ class ProductsAdmin(admin.ModelAdmin):
     list_display = 'name', 'product_type', 'slug_product',
     list_filter = 'product_type',
     search_fields = 'name', 'product_type'
+    
     # prepopulated_fields = {'slug': ('name',)}
     
-
     fieldsets = (
         (None, {
             'fields': ('name', 'product_type', 'slug_product')
