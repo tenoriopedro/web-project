@@ -5,9 +5,12 @@
         <p>Qualidade, design e funcionalidade reunidos em um só lugar.</p>
     </div>
 
-    <form class="search-bar" action="#" method="get" title="Pesquisar">
+    <form class="search-bar" action="{% url "products:products-search" %}" method="get" title="Pesquisar">
 
-        <input type="text" name="q" placeholder="Pesquisar produtos..." />
+        <input type="text" 
+        name="q" 
+        placeholder="Pesquisar produtos..." 
+        value="{{ request.GET.get }}"/>
         <button type="submit">
             <svg xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24" 
