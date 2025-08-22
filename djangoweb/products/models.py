@@ -1,10 +1,11 @@
 from django.db import models
+from django.core.exceptions import ValidationError
+from django.utils.text import slugify
+from django.urls import reverse
+from site_setup.models import SubMenuLink
 from utils.images import resize_image_product
 from utils.random_letters import slugify_new
-from site_setup.models import SubMenuLink
-from django.core.exceptions import ValidationError
 from utils.image_upload_path import product_image_upload_path
-from django.utils.text import slugify
 
 
 
@@ -19,8 +20,8 @@ class Products(models.Model):
         on_delete=models.CASCADE,
         verbose_name='Tipo de Produto',
     )
-    short_description = models.TextField(max_length=255, verbose_name='Descrição Curta')
-    long_description = models.TextField(verbose_name='Descrição Longa')
+    short_description = models.TextField(max_length=255, verbose_name='Descrição Curta', default="Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, fuga. Neque expedita nihil sint.")
+    long_description = models.TextField(verbose_name='Descrição Longa', default="Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, fuga. Neque expedita nihil sint. Harum saepe atque facilis velit sunt, nihil ea reiciendis nulla et facere. Fugit tempore repellat maiores!Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, fuga. Neque expedita nihil sint. Harum saepe atque facilis velit sunt, nihil ea reiciendis nulla et facere. Fugit tempore repellat maiores!")
     image = models.ImageField(
         upload_to=product_image_upload_path,
         blank=False,
@@ -43,6 +44,16 @@ class Products(models.Model):
         max_image_size = 800
         if self.image:
             resize_image_product(self.image, max_image_size)
+
+    def get_absolute_url(self):
+        return reverse(
+            "products:product-detail",
+            kwargs={
+                "slug_category": self.product_type.slug_category,
+                "slug_product": self.slug_product,
+            }
+        )
+    
 
     def __str__(self):
         return f"{self.name}"
