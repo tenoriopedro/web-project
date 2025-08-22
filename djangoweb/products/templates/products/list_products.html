@@ -91,15 +91,22 @@
                 
             {% else %}
 
-                <p>
+                <div class="no-results">
+                    <div class="no-results-icon">
+                        😕
+                    </div>
 
-                    {% if is_search %}
-                        Nenhum produto encontrado para "{{ q }}"
-                    {% else %}
-                        Nenhum produto disponível nesta categoria.
-                    {% endif %}
+                    <h2>
+                        {% if is_search %}
+                            Nenhum produto encontrado para "{{ q }}"
+                        {% else %}
+                            Nenhum produto disponível nesta categoria.
+                        {% endif %}
+                    </h2>
+                    <p>Tente ajustar os filtros ou faça outra busca.</p>
+                    <a href="/produtos/" class="btn-back">Voltar aos produtos</a>
+                </div>
 
-                </p>
 
             {% endif %}
         </div>

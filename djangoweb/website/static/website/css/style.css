@@ -1662,6 +1662,7 @@ a {
 
 .list-product {
     max-width: 1300px;
+    padding-bottom: 5rem;
 }
 
 .ordering {
@@ -1943,11 +1944,56 @@ a {
     margin-bottom: 15px;
 }
 
-.no-related {
+.no-results {
     text-align: center;
-    color: var(--color-gray);
-    font-style: italic;
-    margin-top: 10px;
+    padding: 60px 20px;
+    border: 2px dashed var(--color-md-gray);
+    border-radius: 16px;
+    background: #fafafa;
+    color: #444;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.no-results:hover {
+    border-color: var(--color-dark-gray);
+    background: whitesmoke;
+}
+
+.no-results-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.no-results h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: var(--color-light-dark);
+}
+
+.no-results p {
+    font-size: 16px;
+    margin-bottom: 25px;
+    color: var(--color-dark-gray);
+}
+
+.no-results .btn-back {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 30px;
+    background: #0077cc;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.no-results .btn-back:hover {
+    background: #005fa3;
 }
 
 
