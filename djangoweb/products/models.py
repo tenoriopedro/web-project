@@ -15,7 +15,7 @@ class Products(models.Model):
 
     name = models.CharField(max_length=255, verbose_name='Nome')
     product_type = models.ForeignKey(
-        SubMenuLink, 
+        "ProductsSetup", 
         on_delete=models.CASCADE,
         verbose_name='Tipo de Produto',
     )
