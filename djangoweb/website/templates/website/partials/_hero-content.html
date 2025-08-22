@@ -5,7 +5,7 @@
         <p>Qualidade, design e funcionalidade reunidos em um só lugar.</p>
     </div>
 
-    <form class="search-bar" action="#" method="get" title="Pesquisar">
+    <form class="search-bar" action="{% url "products:products-search" %}" method="get" title="Pesquisar">
 
         <input type="text" name="q" placeholder="Pesquisar produtos..." />
         <button type="submit">
