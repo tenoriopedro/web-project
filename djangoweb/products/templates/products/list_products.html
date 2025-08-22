@@ -22,65 +22,86 @@
                     </select>
                 </form>
             </div>
-
-            <!-- PRODUCTS GRID -->
-            <div class="product-grid">
-
-                {% for product in products %}
-
-                    <div class="product-list-card">
-                        <div class="card-product-image">
-                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                        </div>
-
-                        <div class="card-product-content">
-                            <h2>{{ product.name }}</h2>
-                            <p class="short-desc">{{ product.short_description }}</p>
-
-                            <div class="card-product-actions">
-                                <a href="http://wa.me/{{ site_setup.whatsapp_number }}?text={{ product|whatsapp_product_message:request }}"
-                                class="btn btn-whatsapp"
-                                target="_blank">
-
-                                    <i class="fab fa-whatsapp"></i>
-                                
-                                    Pedir preço via Whatsapp
-                                </a>
-
-                                <form action="#" method="post">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-cart">
-
-                                        <i class="fas fa-shopping-cart"></i>
-
-                                        Adicionar ao carrinho
-                                    </button>
-                                </form>
-
-                                <a href={% url "products:product-detail" slug_category product.slug_product %} class="btn btn-details">
-
-                                    <i class="fas fa-info-circle"></i>
-                                    Ver mais detalhes
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-
-                {% empty %}
-
-                    <p>Nenhum produto encontrado nesta categoria.</p>
+            
+            <div class="list-title">
+                {% if is_search %}
+                    <h2>Resultados da pesquisa por "{{ q }}"</h2>
                 
-                {% endfor %}
+                {% else %}
+                    <h2>
+                        {{ name_category }}
+                    
+                    </h2>
 
+                {% endif %}
             </div>
 
-            <!-- PAGINATION -->
+            <!-- PRODUCTS GRID -->
 
-            {% include "website/partials/_pagination.html" %}
+            {% if products %}
+                <div class="product-grid">
 
+                    {% for product in products %}
+
+                        <div class="product-list-card">
+                            <div class="card-product-image">
+                                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                            </div>
+
+                            <div class="card-product-content">
+                                <h2>{{ product.name }}</h2>
+                                <p class="short-desc">{{ product.short_description }}</p>
+
+                                <div class="card-product-actions">
+                                    <a href="http://wa.me/{{ site_setup.whatsapp_number }}?text={{ product|whatsapp_product_message:request }}"
+                                    class="btn btn-whatsapp"
+                                    target="_blank">
+
+                                        <i class="fab fa-whatsapp"></i>
+                                    
+                                        Pedir preço via Whatsapp
+                                    </a>
+
+                                    <form action="#" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-cart">
+
+                                            <i class="fas fa-shopping-cart"></i>
+
+                                            Adicionar ao carrinho
+                                        </button>
+                                    </form>
+
+                                    <a href={% url "products:product-detail" product.product_type.slug_category product.slug_product %} class="btn btn-details">
+
+                                        <i class="fas fa-info-circle"></i>
+                                        Ver mais detalhes
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    
+                    {% endfor %}
+
+                </div>
+                
+                <!-- PAGINATION -->
+                {% include "website/partials/_pagination.html" %}
+                
+            {% else %}
+
+                <p>
+
+                    {% if is_search %}
+                        Nenhum produto encontrado para "{{ q }}"
+                    {% else %}
+                        Nenhum produto disponível nesta categoria.
+                    {% endif %}
+
+                </p>
+
+            {% endif %}
         </div>
-
     </div>
-
 {% endblock %}
