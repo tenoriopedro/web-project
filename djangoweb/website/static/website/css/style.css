@@ -32,7 +32,7 @@
 
     /* BORDERS */
 
-    --border-radius: 0.5rem;    /* Rounded corners */
+    --border-radius: var(--space-sm);    /* Rounded corners */
     --border-radius-btn: 2rem;
     --border-gray: 1px solid var(--color-gray);
 
@@ -338,7 +338,7 @@ a {
 /* ===== MENU MOBILE ===== */
 .nav-mobile {
     position: absolute;
-    top: 120px;
+    top: 105px;
     left: 0;
     width: 100%;
     background: var(--color-white);
@@ -475,7 +475,6 @@ a {
     gap: var(--space-sm);
 }
 
-
 .footer-links a,
 .footer-contact a {
     text-decoration: none;
@@ -603,15 +602,9 @@ a {
         display: none; 
     }
 
-    .container {
-        width: 100%;
-        padding: 10px 0;
-    }
-
     .logo {
         display: flex;
         align-items: center;
-        margin-left: 2rem;
     }
 
     .logo-img {
@@ -640,10 +633,10 @@ a {
 }
 
 
-/* ------ FINISH TEMPLATE BASE ------- */
+/* ------------------ FINISH TEMPLATE BASE ----------------------- */
 
 
-/* ============ TEMPLATE HOME =========== */
+/* =================== TEMPLATE HOME ========================== */
 
 /* ===== BANNER ===== */
 
@@ -1012,11 +1005,10 @@ a {
     }
 }
 
-/* ------ FINISH TEMPLATE HOME ------ */
+/* ---------------- FINISH TEMPLATE HOME -------------------- */
 
 
 /* ============== TEMPLATE CONTACTS =============== */
-
 
 /* ====== HEADER PAGE CONTACTS ======= */
 
@@ -1390,8 +1382,7 @@ a {
 }
 
 
-/* -------------------- FINISH TEMPLATE CONTACTS--------------------- */
-
+/* ------------------- FINISH TEMPLATE CONTACTS -------------------- */
 
 
 /* =================== TEMPLATE WHO WE ARE ======================= */
@@ -1399,6 +1390,7 @@ a {
 .main-content{
     background: var(--color-light);
     opacity: 0.8;
+    margin-top: 100px;
 }
 
 .about-page {
@@ -1473,15 +1465,13 @@ a {
     color: var(--color-dark-gray);
 }
 
-
 /* ========= RESPONSIVENESS TEMPLATE WHO WE ARE ========== */
-
 
 @media (max-width: 768px) {
     .about-page {
         padding: 2rem 1.5rem;
         font-size: 1rem;
-        margin-top: 10rem;
+        margin-top: 8rem;
     }
 
     .about-page h1 {
@@ -1502,8 +1492,14 @@ a {
 }
 
 
+/* ------------------ FINISH TEMPLATE WHO WE ARE ------------------- */
+
+
 /* ======================= PRODUCTS SECTION ======================== */
 /* ======================= INDEX TEMPLATE ======================== */
+
+
+/* -------- PARTIAL HERO ---------- */
 
 .hero {
     background: var(--color-primary);
@@ -1524,6 +1520,8 @@ a {
     font-size: 1.575rem;
     margin-bottom: var(--space-xl);
 }
+
+/* ---------- SEARCH BAR ------------- */
 
 .search-bar {
     display: flex;
@@ -1560,6 +1558,8 @@ a {
 .search-bar button:hover{
     background: var(--color-light-gray);
 }
+
+/* --------- LISTING OF PRODUCT TYPES ----------- */
 
 .categories {
     padding: var(--space-xl) var(--space-md);
@@ -1654,8 +1654,12 @@ a {
 }
 
 
+/* ------------------- FINISH TEMPLATE INDEX -------------------- */
+
+
 /* ================== LIST PRODUCTS TEMPLATE =================== */
 
+/* ------ MAIN CLASSES ------*/
 .content {
     background: var(--color-white);
 }
@@ -1664,6 +1668,8 @@ a {
     max-width: 1300px;
     padding-bottom: 5rem;
 }
+
+/* -------- ORDERING --------- */
 
 .ordering {
     padding: 1.5rem 0;
@@ -1677,40 +1683,38 @@ a {
     font-size: 0.75rem;
 }
 
+/* ------- LIST TITLE --------- */
+
 .list-title h2 {
     text-align: center;
     font-size: 2.5rem;
 }
 
+
+/* -------------- LISTED PRODUCTS ------------ */
+
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-    gap: 24px;
+    gap: 25px;
 }
 
 .product-list-card {
     display: flex;
     flex-direction: row;
-    overflow: hidden;
     background: var(--color-white);
-    margin-bottom: 1.5rem;
-    transition: box-shadow 0.3s ease-in-out;
+    margin-bottom: 2.5rem;
 }
 
 .card-product-image {
     flex: 1;
-    min-width: 60%;
-    max-width: 50%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f9f9f9;
 }
 
 .card-product-image img {
     width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     object-fit: cover;
 }
 
@@ -1723,13 +1727,13 @@ a {
 }
 
 .card-product-content h2 {
-    font-size: 1.15rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    margin: 1rem;
     color: var(--color-primary);
 }
 
 .card-product-content .short-desc {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: var(--color-dark-gray);
     flex-grow: 1;
 }
@@ -1740,18 +1744,18 @@ a {
     gap: 15px;
 }
 
+/* ------ PRODUCT CARD BUTTONS ------- */
+
 .btn {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
-    text-align: center;
     padding: 10px;
     border-radius: var(--border-radius-btn);
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
     cursor: pointer;
-    text-decoration: none;
     transition: 0.3s ease;
 }
 
@@ -1792,13 +1796,14 @@ a {
 }
 
 .btn i  {
-    font-size: 20px;
+    font-size: 22px;
 }
+
+/* --------- PARTIAL PAGINATION --------- */
 
 .pagination {
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 12px;
     margin-top: 30px;
     flex-wrap: wrap;
@@ -1806,12 +1811,11 @@ a {
 }
 
 .pagination a{
-    text-decoration: none;
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-radius: 6px;
     color: var(--color-light-dark);
-    transition: background 0.2s ease;
+    transition: background 0.5s ease;
 }
 
 .pagination a:hover {
@@ -1826,123 +1830,7 @@ a {
     background: var(--color-light);
 }
 
-
-/* ========== RESPONSIVENESS LIST_PRODUCT TEMPLATE ========== */
-
-@media (max-width: 768px) {
-    .product-card {
-        flex-direction: column;
-    }
-
-    .card-image {
-        max-width: 100%;
-    }
-}
-
-
-/* =================== DETAIL_PRODUCT TEMPLATE ===================== */
-
-.product-detail-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2.5rem;
-    background: var(--color-white);
-}
-
-.product-detail-main {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 35px;
-    margin-bottom: 40px;
-}
-
-.product-detail-image{
-    flex: 1 1 400px;
-    text-align: center;
-}
-
-.product-detail-image img{
-    max-width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.product-detail-info {
-    flex: 1 1 400px;
-}
-
-.product-detail-title{
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
-
-.product-detail-short{
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-
-.product-detail-long{
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-.product-detail-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.btn-back {
-    background: #6c757d;
-    color: white;
-}
-
-.btn-back:hover {
-    background: #5a6268;
-}
-
-.related-section h2 {
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    border-bottom: 3px solid var(--color-light-gray);
-    padding-bottom: 10px;
-}
-
-.related-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.related-card {
-    background: var(--color-white);
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    text-align: center;
-    transition: transform 0.2s;
-}
-
-.related-card:hover {
-    transform: translateY(-4px);
-}
-
-.related-card img {
-    max-width: 100%;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-.related-card h3 {
-    font-size: 1.1rem;
-    margin: 10px 0;
-}
-
-.related-card p {
-    font-size: 0.9rem;
-    color: var(--color-dark-gray);
-    margin-bottom: 15px;
-}
+/* ##### CLASSES FOR WHEN THERE ARE NO RESULTS IN THE SEARCHES ##### */
 
 .no-results {
     text-align: center;
@@ -1996,47 +1884,265 @@ a {
     background: #005fa3;
 }
 
+/* ========== RESPONSIVENESS LIST_PRODUCT TEMPLATE ========== */
 
-/* ============ RESPONSIVENESS DETAIL_PRODUCT ============= */
+@media (max-width: 1440px) {
 
-@media (max-width: 768px) {
-    .product-main {
+    .container {
+        width: 100%;
+        padding: 0 2.5rem;
+    }
+
+    .list-product {
+        padding-bottom: 5rem;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 90px;
+    }
+
+    .product-list-card {
         flex-direction: column;
     }
-    .product-info {
+
+    .card-product-content h2 {
         text-align: center;
     }
 }
 
+@media (max-width: 810px) {
+    .product-grid {
+        gap: 40px;
+        
+    }
+
+    .card-product-content h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .product-grid {
+        padding: 10px 50px;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .container {
+        padding: 5px 20px;
+    }
+
+    .product-grid {
+        padding: 0;
+    }
+
+    .card-product-image {
+        justify-content: center;
+    }
+
+    .card-product-image img {
+        width: 80%;
+    }
+
+    .card-product-content .short-desc {
+        text-align: center;
+    }
+
+}
+
+/* ---------------- FINISH TEMPLATE LIST PRODUCTS ------------------ */
 
 
+/* =================== DETAIL_PRODUCT TEMPLATE ===================== */
 
-/* ###### SECTION TEMPORÁRIA ###### */
-.temporary-section{
+.product-detail-container {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 2.5rem;
+    background: var(--color-white);
+}
+
+.product-detail-main {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 3.5rem;
+}
+
+.product-detail-image{
+    flex: 1 1 400px;
+    display: flex;
     align-items: center;
-    background-color: var(--color-light);
-    padding: 40px 20px;
-    margin-top: 100px;
-    min-height: 70vh;
+    justify-content: center;
 }
 
-.temporary-container{
-    background-color: var(--color-white);
-    padding: 40px 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0, 0.25);
+.product-detail-image img{
+    height: 80%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.product-detail-info {
+    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 100px;
+}
+
+.product-detail-title{
+    font-size: 2rem;
+    margin-bottom: 10px;
     text-align: center;
-    max-width: 450px;
-    width: 100%;
-    color: var(--color-dark);
 }
 
-.temporary-container h1{
-    color: var(--color-primary);
-    font-size: 1.8rem;
+.product-detail-short{
+    font-weight: bold;
     margin-bottom: 15px;
 }
 
-/* ###################################### */
+.product-detail-long{
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.product-detail-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn-back {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-back:hover {
+    background: #5a6268;
+}
+
+/* ----------- RELATED PRODUCTS ------------- */
+
+.related-section h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    border-bottom: 3px solid var(--color-light-gray);
+    padding-bottom: 10px;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.related-card {
+    background: var(--color-white);
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.related-card:hover {
+    transform: translateY(-4px);
+}
+
+.related-card img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.related-card h3 {
+    font-size: 1.1rem;
+    margin: 10px 0;
+}
+
+.related-card p {
+    font-size: 0.9rem;
+    color: var(--color-dark-gray);
+    margin-bottom: 15px;
+}
+
+
+/* ============ RESPONSIVENESS DETAIL_PRODUCT ============= */
+
+@media (max-width: 1440px) {
+    .product-detail-container {
+        padding: 2.5rem 0;
+        max-width: 100%;
+    }
+
+    .product-detail-info {
+        padding-right: 50px;
+    }
+}
+
+@media (max-width: 900px) {
+    .product-detail-image{
+        padding-left: 25px;
+    }
+
+    .product-detail-image img {
+        height: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .product-detail-container {
+        max-width: 100%;
+    }
+
+    .product-detail-main{
+        flex-direction: column;
+        margin-bottom: 3.5rem;
+    }
+
+    .product-detail-image {
+        padding: 0 30px;
+    }
+
+    .product-detail-image img {
+        height: 90%;
+    }
+
+    .product-detail-info {
+        padding: 0 65px;
+    }
+
+    .product-detail-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 649px) {
+    
+    .product-detail-main {
+        margin: 0 0 3.5rem 0;
+    }
+    
+    .product-detail-image img {
+        height: 75%;
+    }
+    
+    .product-detail-info {
+        padding: 0 30px;
+    }
+    
+    .related-section h2 {
+        text-align: center;
+    }
+
+    .related-grid{
+        max-width: 80%;
+        margin: 0 auto;
+    }
+}
+
+
+/* ---------------- FINISH TEMPLATE DETAIL PRODUCTS ---------------- */
