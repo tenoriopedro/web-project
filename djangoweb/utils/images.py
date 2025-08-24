@@ -36,7 +36,7 @@ def resize_image_product(image_django, size=800,
     image_pillow = Image.open(image_path).convert("RGB")
     original_width, original_height = image_pillow.size
 
-    if original_width and original_height <= size:
+    if max(original_width, original_height) <= size:
         image_pillow.close()
         return image_pillow
 
