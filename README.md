@@ -3,8 +3,7 @@
 
 This is a company website project built with **Django**, using **Docker** for an isolated environment and **PostgreSQL** as the database. The goal is to create a solid, scalable, and responsive foundation for a corporate website.
 
--
---
+
 
 
 ## Technologies
@@ -53,6 +52,27 @@ The homepage presents the company's identity clearly and responsively. Built wit
 - **Mobile-specific UX:** map hidden on smaller screens, replaced with a direct Google Maps button
 
 
+### ✅ Products Page
+
+A products section was implemented to display and organize the company’s catalog (focused on industrial kitchen equipment).  
+
+**Main features:**
+- **Categories:** users can choose a product type and view only the relevant items.  
+- **Product list with pagination:** navigation is optimized with sorting options (name, id).  
+- **Actions available per product:**
+  - **Request price via WhatsApp** → sends a pre-filled message directly to the company.  
+  - **Add to cart** → integrates with the cart system.  
+  - **View details** → opens a dedicated page with extended description and related products.  
+- **Search bar:** query by product name, short description, or category.  
+- **Admin integration:** management via Django Admin, including image resizing, automatic slug generation, and validation for product setup.  
+
+**Tech highlights:**
+- Django Class-Based Views (`ListView`, `DetailView`, `TemplateView`)  
+- Custom search with `Q` objects  
+- Slug generation + URL structure for SEO-friendly navigation  
+- Image upload with automatic resizing  
+- Django Admin customization and data validation  
+
 ---
 
 
@@ -80,6 +100,7 @@ This project is deployed on **AWS EC2**, running on an **Ubuntu VM**. Key detail
 - 🛡️ Secure deployment with HTTPS, Gunicorn, and Nginx
 - ✅ Home Page completed  
 - ✅ Contact Page completed  
+- ✅ Products Page completed
 - 🔄 Modular structure with multiple Django apps  
 - ⚙️ Automated scripts to simplify development  
 - 📦 PostgreSQL database running via Docker (dev)
