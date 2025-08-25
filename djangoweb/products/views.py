@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView, ListView, DetailView
 from .models import Products, ProductsSetup
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.db.models import Q
 
 
@@ -111,3 +111,10 @@ class ProductsSearchView(ListView):
         context["is_search"] = True
 
         return context
+    
+
+def cart_view(request):
+    return render(
+        request,
+        'products/cart.html'
+    )

@@ -2146,3 +2146,33 @@ a {
 
 
 /* ---------------- FINISH TEMPLATE DETAIL PRODUCTS ---------------- */
+
+
+
+/* ###### SECTION TEMPORARY ###### */
+.temporary-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-light);
+    padding: 40px 20px;
+    margin-top: 100px;
+    min-height: 70vh;
+}
+
+.temporary-container{
+    background-color: var(--color-white);
+    padding: 40px 30px;
+    border-radius: 12px;
+	box-shadow: 0 4px 10px rgba(0,0,0, 0.25);
+	max-width: 450px;
+    width: 100%;
+    color: var(--color-dark);
+    text-align: center;
+}
+
+.temporary-container h1{
+    color: var(--color-primary);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}

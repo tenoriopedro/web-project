@@ -7,7 +7,7 @@
 
     <div class="content">
 
-        <div class="list-product">
+        <div class="container list-product">
 
             <!-- ORDERING -->
             <div class="ordering">
@@ -62,7 +62,7 @@
                                         Pedir preço via Whatsapp
                                     </a>
 
-                                    <form action="#" method="post">
+                                    <form action="{% url "products:cart" %}" method="post">
                                         {% csrf_token %}
                                         <button type="submit" class="btn btn-cart">
 

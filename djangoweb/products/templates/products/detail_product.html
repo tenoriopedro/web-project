@@ -31,7 +31,7 @@
                         </a>
 
                         <!-- CARRINHO -->
-                        <form action="#" method="post">
+                        <form action="{% url "products:cart" %}" method="post">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-cart">
 

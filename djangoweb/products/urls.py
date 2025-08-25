@@ -1,5 +1,5 @@
 from django.urls import path
-from products.views import ProductsIndexView, ProductsListView, ProductDetailView, ProductsSearchView
+from products.views import ProductsIndexView, ProductsListView, ProductDetailView, ProductsSearchView, cart_view
 
 app_name = 'products'
 
@@ -7,6 +7,9 @@ urlpatterns = [
 
     # Index Page
     path('', ProductsIndexView.as_view(), name='index'),
+
+    # Cart Page
+    path('carrinho/', cart_view, name='cart'),
 
     # Search Page
     path(
