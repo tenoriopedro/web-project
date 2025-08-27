@@ -7,7 +7,7 @@
 
     <div class="content">
 
-        <div class="container list-product">
+        <div class="list-product container">
 
             <!-- ORDERING -->
             <div class="ordering">
@@ -44,39 +44,44 @@
                     {% for product in products %}
 
                         <div class="product-list-card">
-                            <div class="card-product-image">
-                                <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                            </div>
-
+                            <a href="{% url "products:product-detail" product.product_type.slug_category product.slug_product %}">
+                                <div class="card-product-image">
+                                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                                </div>
+                            </a>
                             <div class="card-product-content">
                                 <h2>{{ product.name }}</h2>
                                 <p class="short-desc">{{ product.short_description }}</p>
-
+                                
                                 <div class="card-product-actions">
-                                    <a href="http://wa.me/{{ site_setup.whatsapp_number }}?text={{ product|whatsapp_product_message:request }}"
-                                    class="btn btn-whatsapp"
-                                    target="_blank">
-
-                                        <i class="fab fa-whatsapp"></i>
-                                    
-                                        Pedir preço via Whatsapp
-                                    </a>
-
-                                    <form action="{% url "products:cart" %}" method="post">
-                                        {% csrf_token %}
-                                        <button type="submit" class="btn btn-cart">
-
-                                            <i class="fas fa-shopping-cart"></i>
-
-                                            Adicionar ao carrinho
-                                        </button>
-                                    </form>
-
                                     <a href={% url "products:product-detail" product.product_type.slug_category product.slug_product %} class="btn btn-details">
-
-                                        <i class="fas fa-info-circle"></i>
-                                        Ver mais detalhes
+        
+                                        Ver Detalhes
                                     </a>
+                                    <div class="card-product-actions btn-group-inline">
+                                        <a href="http://wa.me/{{ site_setup.whatsapp_number }}?text={{ product|whatsapp_product_message:request }}"
+                                        class="btn btn-whatsapp"
+                                        target="_blank">
+
+                                            <i class="fa-brands fa-whatsapp"></i>
+                                        
+                                            <span class="btn-text">
+                                                Pedir preço via Whatsapp
+                                            </span>
+                                        </a>
+
+                                        <form action="{% url "products:cart" %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-cart">
+
+                                                <i class="fa-solid fa-cart-plus"></i>
+
+                                                <span class="btn-text">
+                                                    Adicionar ao carrinho
+                                                </span>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
 
@@ -98,12 +103,26 @@
 
                     <h2>
                         {% if is_search %}
-                            Nenhum produto encontrado para "{{ q }}"
+                            Não encontrou o que queria?
                         {% else %}
                             Nenhum produto disponível nesta categoria.
                         {% endif %}
                     </h2>
-                    <p>Tente ajustar os filtros ou faça outra busca.</p>
+                    <p>
+                       <strong>Entre em contato conosco agora pelo whatsapp 
+                        <a href="http://wa.me/{{ site_setup.whatsapp_number }}?text="
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Fale conosco no Whatsapp"
+                            title="Contactar Via Whatsapp">
+                                <i class="fa-brands fa-whatsapp"></i>
+
+                            </a></strong> 
+                    </p>
+                            
+                    <p>
+                        Ou tente ajustar os filtros e faça outra busca.
+                    </p>
                     <a href="/produtos/" class="btn-back">Voltar aos produtos</a>
                 </div>
 

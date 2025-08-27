@@ -7,7 +7,7 @@
 
     <div class="content">
 
-        <div class="product-detail-container">
+        <div class="product-detail-container container">
 
             <!-- MAIN SECTION -->
             <div class="product-detail-main">
@@ -16,9 +16,12 @@
                 </div>
 
                 <div class="product-detail-info">
-                    <h1 class="product-detail-title">{{ product.name }}</h1>
-                    <p class="product-detail-short">{{ product.short_description }}</p>
-                    <p class="product-detail-long">{{ product.long_description }}</p>
+                    <h1 class="product-detail-title">
+                        {{ product.name }}
+                    </h1>
+                    <p class="product-detail-short">
+                        {{ product.short_description }}
+                    </p>
 
                     <div class="product-detail-buttons">
                         <!-- Whatsapp -->
@@ -26,8 +29,8 @@
                         href="http://wa.me/{{ site_setup.whatsapp_number }}?text={{ product|whatsapp_product_message:request }}"
                         class="btn btn-whatsapp"
                         target="_blank">
-                            <i class="fab fa-whatsapp"></i>
-                            Pedir preço via Whatsapp
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <span class="btn-text">Pedir preço via Whatsapp</span>
                         </a>
 
                         <!-- CARRINHO -->
@@ -35,16 +38,16 @@
                             {% csrf_token %}
                             <button type="submit" class="btn btn-cart">
 
-                                <i class="fas fa-shopping-cart"></i>
+                                <i class="fa-solid fa-cart-plus"></i>
 
-                                Adicionar ao carrinho
                             </button>
                         </form>
+                    </div>
+                    <div class="product-detail-long">
 
-                        <!-- VOLTAR -->
-                        <a href="{% url 'products:product-list' slug_category %}" class="btn btn-back">
-                            Voltar aos Produtos
-                        </a>
+                        <h2>Descrição Geral</h2>
+                        <p>{{ product.long_description }}</p>
+                    
                     </div>
                 </div>
             </div>
@@ -70,14 +73,23 @@
 
                     </div>
                 {% else %}
-                    <p class="no-related">
-                        Nenhum produto relacionado foi encontrado.
-                    </p>
+
+                    <div class="no-results">
+
+                        <h2>
+                            Nenhum produto relacionado encontrado nesta categoria.
+                        </h2>
+                        <p>
+                            Tente ajustar os filtros ou faça outra busca.
+                        </p>
+                        <a href="/produtos/" class="btn-back">
+                            Voltar aos produtos
+                        </a>
+                    </div>
                 
                 {% endif %}
             </div>
         </div>
-    
     </div>
 
 {% endblock %}
