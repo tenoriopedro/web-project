@@ -125,9 +125,14 @@ class ProductsSearchView(ListView):
     def get_context_data(self, **kwargs):
 
         context = super().get_context_data(**kwargs)
-        context["q"] = self.request.GET.get("q", "")
+        query = self.request.GET.get("q", "")
+        context["q"] = query
         context["is_search"] = True
-
+        context["breadcrumbs"] = [
+            {"name": "Home", "url": reverse("website:home")},
+            {"name": "Produtos", "url": reverse("products:index")},
+            {"name": f"Pesquisa por '{query}'", "url": None},
+        ]
         return context
     
 

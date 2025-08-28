@@ -1486,7 +1486,7 @@ a {
 
 @media (max-width: 1440px) {
     .main-content{
-        padding: 100px;
+        padding: 50px;
     }
 }
 
@@ -1494,13 +1494,13 @@ a {
 @media (max-width: 768px) {
 
     .main-content{
-        padding: 50px 0;
+        padding: 20px 0;
     }
 
     .about-page {
         padding: 2rem 1.5rem;
         font-size: 1rem;
-        margin-top: 6rem;
+        margin-top: 3rem;
     }
 
     .about-page h1 {
@@ -1928,7 +1928,6 @@ a {
 
 .no-results p {
     font-size: 16px;
-    margin-bottom: 25px;
     color: var(--color-dark-gray);
 }
 
@@ -1948,6 +1947,12 @@ a {
     background: var(--color-hover-back-button);
 }
 
+.no-results i {
+    font-size: 40px;
+    color: var(--color-whatsapp);
+    display: block;
+    margin: .5rem 0 0;
+}
 /* ========== RESPONSIVENESS LIST_PRODUCT TEMPLATE ========== */
 
 @media (max-width: 1440px) {
@@ -1962,6 +1967,10 @@ a {
 
     .product-grid {
         gap: 10px;
+    }
+
+    .content:has(.no-results){
+        padding: 4rem 0;
     }
 
 }
@@ -1983,6 +1992,10 @@ a {
 
     .btn i {
         font-size: 20px;
+    }
+
+    .no-results {
+        padding: 20px;
     }
 
 }
@@ -2027,7 +2040,6 @@ a {
     }
 
     .card-product-actions .btn-whatsapp {
-        background: var(--color-white);
         color: var(--color-whatsapp);
         border: none;
     }
@@ -2039,7 +2051,6 @@ a {
     }
 
     .card-product-actions .btn-cart {
-        background: var(--color-white);
         color: var(--color-primary-dark);
         border: none;
     }
@@ -2108,10 +2119,6 @@ a {
 
     .btn i {
         font-size: 2.25rem;
-    }
-
-    .content:has(.no-results){
-        padding: 4rem 0;
     }
 
     .no-results h2 {
