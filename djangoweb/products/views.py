@@ -2,21 +2,26 @@ from django.views.generic import TemplateView, ListView, DetailView
 from .models import Products, ProductsSetup
 from django.shortcuts import get_object_or_404, render
 from django.db.models import Q
+from django.urls import reverse
+from utils.mixins import BreadcrumbsMixin
 
 
-class ProductsIndexView(TemplateView):
+class ProductsIndexView(BreadcrumbsMixin, TemplateView):
     template_name = 'products/index.html'
 
     def get_context_data(self, **kwargs):
-        categories = ProductsSetup.objects.all()
-        context = {
-            'categories': categories
-        }
-
+        
+        context = super().get_context_data(**kwargs)
+        context["categories"] = ProductsSetup.objects.all()
         return context
         
+    def get_breadcrumbs(self):
+        return [
+            {"name": "Home", "url": reverse("website:home")},
+            {"name": "Produtos", "url": reverse("products:index")},
+        ]
 
-class ProductsListView(ListView):
+class ProductsListView(BreadcrumbsMixin, ListView):
     model = Products
     template_name = 'products/list_products.html'
     context_object_name = 'products'
@@ -25,10 +30,10 @@ class ProductsListView(ListView):
 
     def get_queryset(self):
         category_slug = self.kwargs['slug_category']
-        category = ProductsSetup.objects.get(slug_category=category_slug)
+        self.category = ProductsSetup.objects.get(slug_category=category_slug)
 
         queryset = Products.objects.filter(
-            product_type=category
+            product_type=self.category
         )
 
         order = self.request.GET.get('order', 'name')
@@ -40,20 +45,23 @@ class ProductsListView(ListView):
     def get_context_data(self, **kwargs):
 
         context = super().get_context_data(**kwargs)
-        slug_category = self.kwargs.get('slug_category')
-        name_category = ProductsSetup.objects.get(
-            slug_category=slug_category
-        )
 
         context['current_order'] = self.request.GET.get('order', 'name')
-        context['slug_category'] = slug_category
-        context['name_category'] = name_category
+        context['slug_category'] = self.category.slug_category
+        context['name_category'] = self.category
         context["is_search"] = False
 
         return context
+    
+    def get_breadcrumbs(self):
+        return [
+            {"name": "Home", "url": reverse("website:home")},
+            {"name": "Produtos", "url": reverse("products:index")},
+            {"name": self.category.product_type.text, "url": self.category.get_absolute_url()},
+        ]
         
 
-class ProductDetailView(DetailView):
+class ProductDetailView(BreadcrumbsMixin, DetailView):
     model = Products
     template_name = 'products/detail_product.html'
     context_object_name = 'products'
@@ -82,6 +90,16 @@ class ProductDetailView(DetailView):
         context["product"] = product
         
         return context
+    
+    def get_breadcrumbs(self):
+        product = self.get_object()
+        category = product.product_type
+        return [
+            {"name": "Home", "url": reverse("website:home")},
+            {"name": "Produtos", "url": reverse("products:index")},
+            {"name": category, "url": category.get_absolute_url()},
+            {"name": product.name, "url": product.get_absolute_url()},
+        ]
     
 
 class ProductsSearchView(ListView):

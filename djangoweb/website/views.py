@@ -5,9 +5,11 @@ from django.core.cache import cache
 from django.utils import timezone
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
+from django.urls import reverse
 from site_setup.models import SiteSetup
 from website.models import FeaturedProducts, WhyGazil
 from website.forms import ContactsModelForm
+from utils.mixins import get_website_breadcrumbs
 
 
 dotenv.load_dotenv()
@@ -33,6 +35,9 @@ def home(request):
 
 def contacts(request):
 
+    breadcrumbs = get_website_breadcrumbs(extra=[
+        {"name": "Contatos", "url": ""}
+    ])
     site_setup = SiteSetup.objects.first()
     contacts = site_setup.contacts.first()
     company_email = os.getenv('EMAIL_RECIPIENT_LIST', '')
@@ -104,6 +109,7 @@ def contacts(request):
         {
             'contacts': contacts,
             'form_contact': form_contact,
+            'breadcrumbs': breadcrumbs,
         }
     )
 
@@ -124,14 +130,31 @@ def success_form(request):
     if not request.session.get('form_sucesso'):
         raise Http404("Página não encontrada.")
     
+    breadcrumbs = get_website_breadcrumbs(extra=[
+        {"name": "Contatos", "url": reverse("website:contacts")},
+        {"name": "Sucesso", "url": ""}
+    ])
+
     del request.session['form_sucesso']
 
     # If positive (form submitted successfully) render the html
-    return render(request, 'website/pages/success_form.html')
+    return render(
+        request, 
+        'website/pages/success_form.html',
+        {
+            "breadcrumbs": breadcrumbs,
+        }
+    )
 
 
 def who_we_are(request):
+    breadcrumbs = get_website_breadcrumbs(extra=[
+        {"name": "Quem Somos", "url": ""}
+    ])
     return render(
         request,
-        'website/pages/who_we_are.html'
+        'website/pages/who_we_are.html',
+        {
+            'breadcrumbs': breadcrumbs,
+        }
     )

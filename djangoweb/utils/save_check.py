@@ -14,12 +14,3 @@ def check_favicon(favicon, current_favicon_name, favicon_changed):
     else:
         return
     
-
-def check_background(background, current_background, background_changed):
-    background_changed_def = background_changed
-
-    if background:
-        background_changed_def = current_background != background.name
-
-    if background_changed_def:
-        return

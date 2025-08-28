@@ -54,7 +54,6 @@ class Products(models.Model):
             }
         )
     
-
     def __str__(self):
         return f"{self.name}"
     
@@ -100,8 +99,14 @@ class ProductsSetup(models.Model):
             ).exists():
 
             raise ValidationError(f"Já existe um produto do tipo '{self.product_type}'. Apenas um é permitido.")
+        
+    def get_absolute_url(self):
+        return reverse(
+            "products:product-list", 
+            args=[self.slug_category],
+        )
+    
 
     def __str__(self):
         return f"{self.product_type.text}"
     
-

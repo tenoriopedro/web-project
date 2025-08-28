@@ -1250,7 +1250,6 @@ a {
     align-items: center;
     background-color: var(--color-light);
     padding: 40px 20px;
-    margin-top: 100px;
     min-height: 70vh;
 }
 
@@ -1425,7 +1424,6 @@ a {
 .main-content{
     background: var(--color-light);
     opacity: 0.8;
-    padding-top: 50px;
 }
 
 .about-page {
@@ -1435,7 +1433,6 @@ a {
     color: var(--color-dark);
     font-size: 1.125rem;
     line-height: 1.7;
-    margin-top: 3rem;
     font-weight: 900;
 }
 
@@ -1732,7 +1729,7 @@ a {
 
 /* ------ MAIN CLASSES ------*/
 .content {
-    background: var(--color-white);
+    background: var(--color-light);
 }
 
 .list-product {
@@ -1772,7 +1769,7 @@ a {
 .product-list-card {
     display: flex;
     flex-direction: column;
-    background: var(--color-white);
+    background: var(--color-light);
     margin-bottom: 2.5rem;
     padding: 3px;
     border: 1px solid transparent;
@@ -2141,7 +2138,7 @@ a {
 .product-detail-container {
     margin: 0 auto;
     padding: 2.5rem 0;
-    background: var(--color-white);
+    background: var(--color-light);
 }
 
 .product-detail-main {
@@ -2435,6 +2432,50 @@ a {
 
 /* ---------------- FINISH TEMPLATE DETAIL PRODUCTS ---------------- */
 
+
+/* ################# PARTIAL _BREADCRUMBS ################### */
+
+.content-who-are {
+    background-color: var(--color-light);
+    margin-top: 100px;
+    opacity: 0.8;
+}
+
+.content-contacts {
+    background-color: var(--color-light);
+    padding: 0 0 0 2rem;
+}
+
+.content-success {
+    background-color: var(--color-light);
+    margin-top: 100px;
+}
+
+.content-products {
+    background-color: var(--color-light);
+}
+
+.breadcrumb {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    font-size: 1.1rem;
+    color: var(--color-primary-dark);
+    padding: 1rem 0 0;
+    font-weight: bold;
+}
+
+.breadcrumb li {
+    display: flex;
+    align-items: center;
+    padding: 0 .35rem;
+}
+
+@media (max-width: 768px){
+    .breadcrumb {
+        font-size: .9rem
+    }
+}
 
 
 /* ###### SECTION TEMPORARY ###### */
