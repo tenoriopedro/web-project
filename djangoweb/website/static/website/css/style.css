@@ -2399,7 +2399,6 @@ a {
     }
 
     .product-detail-buttons .btn-whatsapp {
-        background: var(--color-white);
         color: var(--color-whatsapp);
         border: none;
     }
@@ -2411,7 +2410,6 @@ a {
     }
 
     .product-detail-buttons .btn-cart {
-        background: var(--color-white);
         color: var(--color-primary-dark);
         border: none;
     }
