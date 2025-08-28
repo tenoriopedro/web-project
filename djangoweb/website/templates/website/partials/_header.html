@@ -46,14 +46,16 @@
 
         <div class="header-socials">
             <!-- Instagram -->
-            <a href="https://www.instagram.com/gazilequipamentos?igsh=MXhmamZ5ZmdhYjc1aA%3D%3D&utm_source=qr" target="_blank" aria-label="Instagram" title="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
+            {% for contact in site_setup.contacts.all %}
+                <a href="{{ contact.instagram_url }}" target="_blank" aria-label="Instagram" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
 
-            <!-- Facebook -->
-            <a href="https://www.facebook.com/share/1FqVLHRSGZ/?mibextid=wwXIfr" target="_blank" aria-label="Facebook" title="Facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
+                <!-- Facebook -->
+                <a href="{{ contact.facebook_url }}" target="_blank" aria-label="Facebook" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+            {% endfor %}
         </div>
 
     </nav>
