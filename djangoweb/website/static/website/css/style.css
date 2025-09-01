@@ -2255,7 +2255,6 @@ a {
 .product-detail-main {
     display: flex;
     gap: 3rem;
-    padding: 100px 0;
     align-items: start;
 }
 
@@ -2591,9 +2590,15 @@ a {
     }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 550px){
     .breadcrumb {
-        font-size: .8rem;
+        font-size: .75rem
+    }
+}
+
+@media (max-width: 420px) {
+    .breadcrumb {
+        font-size: .57rem;
     }
 }
 
