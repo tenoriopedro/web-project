@@ -1,37 +1,42 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import TemplateView
 from django.views import View
 from django.urls import reverse
 from django.core.mail import send_mail
 from django.contrib import messages
 from products.models import Products
-from .models import BudgetRequest
-from .forms import BudgetRequestModelForm
+from cart.models import BudgetRequest
+from cart.forms import BudgetRequestModelForm
+from utils.mixins import BreadcrumbsMixin
 import os
 import dotenv
 
 
 dotenv.load_dotenv()
 
-class CartView(View):
+class CartView(BreadcrumbsMixin, TemplateView):
+    template_name = "cart/cart.html"
 
-    def get(self, request):
-        cart = request.session.get("cart", [])
+    def get_breadcrumbs(self):
+        return [
+            {"name": "Home", "url": reverse("website:home")},
+            {"name": "Produtos", "url": reverse("products:index")},
+            {"name": "Carrinhos", "url": None},
+        ]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        cart = self.request.session.get("cart", [])
         products = Products.objects.filter(id__in=cart)
-        form = BudgetRequestModelForm()
 
-        return render(
-            request,
-            "cart/cart.html",
-            {
-                "products": products,
-                "form": form,
-            }
-        )
+        context["products"] = products
+        context["form"] = BudgetRequestModelForm()
+        return context
     
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         remove_id = request.POST.get("remove")
 
-        if remove_id:
+        if remove_id:  # Remove product
             cart = request.session.get("cart", [])
             
             if int(remove_id) in cart:
@@ -62,14 +67,13 @@ class CartView(View):
             )
 
             # Save in database
-            BudgetRequest.objects.create(
+            budget_request = BudgetRequest.objects.create(
                 name=name,
                 phone=phone,
                 email=email,
-                products=products,
                 message=message,
             )
-
+            budget_request.products.set(products)
 
             send_mail(
                 subject="[Site Gazil] Novo Pedido de Orçamento",
@@ -79,36 +83,27 @@ class CartView(View):
                 fail_silently=False,
             )
 
-            
-
             request.session["cart"] = []
             return render(
                 request,
-                "cart/cart.html",
+                self.template_name,
                 {
                     "products": [],
                     "form": BudgetRequestModelForm(),
                     "success": True,
+                    "breadcrumbs": self.get_breadcrumbs(),
                 }
             )
 
         return render(
             request,
-            "cart/cart.html",
+            self.template_name,
             {
                 "products": products,
                 "form": form,
+                "breadcrumbs": self.get_breadcrumbs(),
             }
         )
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["breadcrumbs"] = [
-            {"name": "Home", "url": reverse("website:home")},
-            {"name": "Produtos", "url": reverse("products:index")},
-            {"name": "Carrinho", "url": None},
-        ]
-        return context
     
 
 class AddToCartView(View):

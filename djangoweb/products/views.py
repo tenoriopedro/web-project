@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView, ListView, DetailView
 from .models import Products, ProductsSetup
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 from django.db.models import Q
 from django.urls import reverse
 from utils.mixins import BreadcrumbsMixin
@@ -135,9 +135,3 @@ class ProductsSearchView(ListView):
         ]
         return context
     
-
-def cart_view(request):
-    return render(
-        request,
-        'products/cart.html'
-    )

@@ -11,12 +11,6 @@ class BudgetRequest(models.Model):
     products = models.ManyToManyField(Products, related_name="budget_requests")
     created_at = models.DateTimeField(auto_now_add=True)
 
-    def get_absolute_url(self):
-        return reverse(
-            "cart:cart", 
-            args=[self.slug_category],
-        )
-
     def __str__(self):
         return f"""
 Orçamento de 
