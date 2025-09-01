@@ -8,9 +8,6 @@ urlpatterns = [
     # Index Page
     path('', ProductsIndexView.as_view(), name='index'),
 
-    # Cart Page
-    path('carrinho/', cart_view, name='cart'),
-
     # Search Page
     path(
         "pesquisa/",

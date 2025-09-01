@@ -20,8 +20,8 @@ class Products(models.Model):
         on_delete=models.CASCADE,
         verbose_name='Tipo de Produto',
     )
-    short_description = models.TextField(max_length=255, verbose_name='Descrição Curta', default="Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, fuga. Neque expedita nihil sint.")
-    long_description = models.TextField(verbose_name='Descrição Longa', default="Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, fuga. Neque expedita nihil sint. Harum saepe atque facilis velit sunt, nihil ea reiciendis nulla et facere. Fugit tempore repellat maiores!Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, fuga. Neque expedita nihil sint. Harum saepe atque facilis velit sunt, nihil ea reiciendis nulla et facere. Fugit tempore repellat maiores!")
+    short_description = models.TextField(max_length=255, verbose_name='Descrição Curta')
+    long_description = models.TextField(verbose_name='Descrição Longa')
     image = models.ImageField(
         upload_to=product_image_upload_path,
         blank=False,

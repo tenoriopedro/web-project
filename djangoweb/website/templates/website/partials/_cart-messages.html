@@ -1,0 +1,12 @@
+{% if messages %}
+    <ul class="messages">
+
+        {% for message in messages %}
+            <li class="message {{ message.tags }}">
+                {{ message }}
+                <a href="{% url "cart:cart" %}">Ver Carrinho</a>
+            </li>
+        {% endfor %}
+
+    </ul>
+{% endif %}

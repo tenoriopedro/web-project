@@ -39,6 +39,8 @@
                 {% endif %}
             </div>
 
+            {% include "website/partials/_cart-messages.html" %}
+
             <!-- PRODUCTS GRID -->
 
             {% if products %}
@@ -73,7 +75,7 @@
                                             </span>
                                         </a>
 
-                                        <form action="{% url "products:cart" %}" method="post">
+                                        <form method="post" action="{% url "cart:cart_add" product.slug_product %}" >
                                             {% csrf_token %}
                                             <button type="submit" class="btn btn-cart">
 

@@ -1,0 +1,71 @@
+{% extends "website/base.html" %}
+
+{% block content %}
+
+    <div class="cart-content">
+        <div class="container">
+
+            {% include "website/partials/_breadcrumbs.html" %}
+
+            <div class="cart-header">
+                    <h1>O meu carrinho</h1>
+                    <span>{{ products|length }} produto(s)</span>
+            </div>
+
+            <div class="cart-container">
+
+                {% if products %}
+                    <div class="cart-list">
+
+                        {% for product in products %}
+                            <div class="cart-card">
+
+                                <div class="cart-image">
+                                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                                </div>
+
+                                <div class="cart-details">
+                                    <h2>{{ product.name }}</h2>
+                                    <p>{{ product.short_description }}</p>
+
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="remove" value="{{ product.id }}">
+                                        <button type="submit" class="remove-btn">
+                                            <i class="fas fa-trash"></i>
+                                            Remover
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                {% else %}
+                    <div class="cart-empty">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h2>Carrinho Vazio</h2>
+                        <p>Explore o site e adicione produtos ao seu carrinho.</p>
+                    </div>
+                {% endif %}
+
+                <div class="cart-budget">
+                    <h3>Pedido de Orçamento</h3>
+                    <form method="post">
+                        {% csrf_token %}
+                        {% for field in form  %}
+                        {% if field.name == 'message' %}
+                            <textarea name="{{ field.name }}" placeholder="{{ field.label }}"></textarea>
+
+                        {% else %}
+                            <input type="text" name="{{ field.name }}" placeholder="{{ field.label }}" required>
+                        {% endif %}
+
+                    {% endfor %}
+                        <button type="submit">Enviar Orçamento</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock  %}
