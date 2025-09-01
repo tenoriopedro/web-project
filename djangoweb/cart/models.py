@@ -3,6 +3,11 @@ from products.models import Products
 
 
 class BudgetRequest(models.Model):
+
+    class Meta:
+        verbose_name = 'Pedido de Orçamento'
+        verbose_name_plural = 'Pedidos de Orçamentos'
+
     name = models.CharField(max_length=100, verbose_name="Nome")
     phone = models.CharField(max_length=20, verbose_name="Telefone")
     email = models.EmailField(verbose_name="Email")
