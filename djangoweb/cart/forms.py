@@ -9,8 +9,8 @@ class BudgetRequestModelForm(forms.ModelForm):
         model = BudgetRequest
         fields = 'name', 'phone', 'email', 'message'
         labels = {
-            'name': 'Seu nome*',
-            'phone': 'Seu telefone*',
+            'name': 'Nome*(Ex: João Silva)',
+            'phone': 'Telefone*(Ex: 21 999999999)',
             'email': 'Seu email*',
             'message': 'Deixe sua mensagem(opcional)'
         }
@@ -21,6 +21,21 @@ class BudgetRequestModelForm(forms.ModelForm):
         
         # Just letters 
         if not re.match(r"^[A-Za-zÀ-ÿ\s]+$", name):
-            self.add_error('name', 'ERRO! Detectado caracteres inválidos.')
+            self.add_error(
+                'name', 
+                'ERRO! Detectado caracteres inválidos.'
+            )
 
         return name
+    
+    def clean_phone(self):
+        phone = self.cleaned_data.get('phone')
+
+        # Just numbers
+        if not re.match(r"^\d{2}\s?9\d{8}$", phone):
+            self.add_error(
+                'phone', 
+                'ERRO! O telefone deve estar no formato: 21 999999999'
+            )
+
+        return phone

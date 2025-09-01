@@ -55,6 +55,7 @@
                     <h3>Pedido de Orçamento</h3>
                     <form method="post">
                         {% csrf_token %}
+                        {{ form.non_field_errors }}
                         {% for field in form  %}
                         {% if field.name == 'message' %}
                             <textarea name="{{ field.name }}" placeholder="{{ field.label }}"></textarea>
@@ -62,6 +63,8 @@
                         {% else %}
                             <input type="text" name="{{ field.name }}" placeholder="{{ field.label }}" required>
                         {% endif %}
+
+                        {{ field.errors }}
 
                     {% endfor %}
                         <button type="submit">Enviar Orçamento</button>
