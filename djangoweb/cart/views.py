@@ -43,6 +43,10 @@ class CartView(BreadcrumbsMixin, TemplateView):
                 cart.remove(int(remove_id))
                 request.session["cart"] = cart
 
+            messages.info(
+                request,
+                'ℹ️ Produto foi removido.'
+            )
             return redirect(reverse("cart:cart"))
         
         # SEND BUDGE
@@ -54,7 +58,7 @@ class CartView(BreadcrumbsMixin, TemplateView):
         if not products.exists():
             messages.error(
                 request,
-                "Seu Carrinho está vazio"
+                "❌ Seu Carrinho está vazio"
             )
 
         if form.is_valid() and products.exists():
@@ -91,7 +95,7 @@ class CartView(BreadcrumbsMixin, TemplateView):
 
             messages.success(
                 request,
-                "Orçamento enviado com sucesso."
+                "✔️ Orçamento enviado com sucesso."
             )
 
             request.session["cart"] = []
@@ -127,12 +131,12 @@ class AddToCartView(View):
             request.session["cart"] = cart
             messages.success(
                 request,
-                "Produto adicionado com sucesso!"
+                "✔️ Produto adicionado com sucesso!"
             )
         else:
             messages.info(
                 request,
-                f"Produto já está no carrinho."
+                f"ℹ️ Produto já está no carrinho."
             )
 
         return redirect(

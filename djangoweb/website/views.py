@@ -55,7 +55,7 @@ def contacts(request):
         if cache.get(f"blocked_{ip}"):
             form_contact.add_error(
                 None,
-                "Aguarde alguns minutos antes de enviar novamente.",
+                "❌ Aguarde alguns minutos antes de enviar novamente.",
             )
 
         # Sending time check (Bot protection)
@@ -66,7 +66,7 @@ def contacts(request):
             if elapsed < 5:
                 form_contact.add_error(
                     None,
-                    'Erro ao processar dados. Tente novamente.'
+                    '❌ Erro ao processar dados. Tente novamente.'
                 )
 
         if form_contact.is_valid():
