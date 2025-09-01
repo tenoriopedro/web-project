@@ -4,7 +4,9 @@
         {% for message in messages %}
             <li class="message {{ message.tags }}">
                 {{ message }}
-                <a href="{% url "cart:cart" %}">Ver Carrinho</a>
+                {% if cart_item_count %}
+                    <a href="{% url "cart:cart" %}">Ver Carrinho</a>
+                {% endif %}
             </li>
         {% endfor %}
 

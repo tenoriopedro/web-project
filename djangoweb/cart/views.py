@@ -51,6 +51,12 @@ class CartView(BreadcrumbsMixin, TemplateView):
 
         products = Products.objects.filter(id__in=cart)
 
+        if not products.exists():
+            messages.error(
+                request,
+                "Seu Carrinho está vazio"
+            )
+
         if form.is_valid() and products.exists():
 
             name = form.cleaned_data["name"]
@@ -83,6 +89,11 @@ class CartView(BreadcrumbsMixin, TemplateView):
                 fail_silently=False,
             )
 
+            messages.success(
+                request,
+                "Orçamento enviado com sucesso."
+            )
+
             request.session["cart"] = []
             return render(
                 request,
@@ -90,7 +101,6 @@ class CartView(BreadcrumbsMixin, TemplateView):
                 {
                     "products": [],
                     "form": BudgetRequestModelForm(),
-                    "success": True,
                     "breadcrumbs": self.get_breadcrumbs(),
                 }
             )
