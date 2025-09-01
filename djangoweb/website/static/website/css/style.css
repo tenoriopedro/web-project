@@ -255,6 +255,11 @@ a {
     height: 90px;
 }
 
+.header-content {
+    display: flex;
+    flex-direction: row;
+}
+
 .logo-text{
     display: none;
     font-family: var(--font-title);
@@ -469,11 +474,12 @@ a {
 }
 
 
-/* =========== SOCIAL MEDIA ========== */
+/* =========== SOCIAL MEDIA HEADER ========== */
 .header-socials{
     display: flex;
     gap: 1.5rem;
     margin-left: 2rem;
+    align-items: center;
 }
 
 .header-socials a,
@@ -487,6 +493,37 @@ a {
 .mobile-socials a:hover{
     color: var(--color-secondary);
 }
+
+/* =========== CART HEADER ========== */
+.header-cart {
+    margin: 0 0 0 1.3rem;
+    display: flex;
+    align-items: center;
+}
+
+.cart-link {
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    top: 4px;
+}
+
+.cart-link i {
+    font-size: 1.3rem;
+}
+
+.cart-count {
+    background-color: #e63946;
+    color: #fff;
+    font-size: .6rem;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: .3rem .6rem;
+    position: absolute;
+    top: -13px;
+    right: -18px;
+}
+
 
 /* ======= FOOTER ======== */
 
@@ -642,6 +679,10 @@ a {
 
     /* ==== HEADER + MENU DROPDOWN(HAMBURGUER) ==== */
 
+    .header-content {
+        gap: 2rem;
+    }
+
     .hamburger {
         display: block;
         margin-left: auto;
@@ -652,7 +693,10 @@ a {
         justify-content: center;
         gap: 2rem;
         padding: 1rem 0;
-        margin-right: 4rem;
+    }
+
+    .header-cart {
+        margin: 0;
     }
 
     .header-socials a,
@@ -993,11 +1037,16 @@ a {
         height: 100%;
         padding: var(--space-md);
     }
+
+    .reasons-grid {
+    grid-template-columns: repeat(2, 1fr);
+
+    }
 }
 
 @media (max-width: 600px) {
 
-    /* ====== BANNER ====== */
+    /* ====== HOME PAGE ====== */
 
     .banner-slider{
         aspect-ratio: 14 / 8;
@@ -1019,12 +1068,18 @@ a {
         font-size: 1rem;
     }
 
-    .header-socials{
-        margin-right: 2rem;
+    .reasons-grid {
+    grid-template-columns: repeat(1, 1fr);
+
     }
+
 }
 
 @media (max-width: 460px){
+
+    .header-content {
+        gap: 1rem;
+    }
 
     /* ====== BANNER ====== */
 
@@ -2027,7 +2082,7 @@ a {
 @media (max-width: 1000px) {
 
     .header .nav-desktop {
-        padding: 0 30px;
+        padding: 0 10px;
     }
 
     .container {
@@ -2529,6 +2584,7 @@ a {
     padding: 0 .35rem;
 }
 
+
 @media (max-width: 768px){
     .breadcrumb {
         font-size: .9rem
@@ -2701,6 +2757,19 @@ a {
 
 .messages a:hover{
     text-decoration: none;
+}
+
+
+/* ============== RESPONSIVENESS CART TEMPLATE ================= */
+
+@media (max-width: 768px) {
+    .cart-container {
+        flex-direction: column;
+    }
+
+    .cart-budget {
+        width: auto;
+    }
 }
 
 

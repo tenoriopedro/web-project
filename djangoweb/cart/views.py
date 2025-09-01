@@ -21,7 +21,7 @@ class CartView(BreadcrumbsMixin, TemplateView):
         return [
             {"name": "Home", "url": reverse("website:home")},
             {"name": "Produtos", "url": reverse("products:index")},
-            {"name": "Carrinhos", "url": None},
+            {"name": "Carrinho", "url": None},
         ]
 
     def get_context_data(self, **kwargs):

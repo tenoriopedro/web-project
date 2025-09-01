@@ -11,53 +11,63 @@
             </a>
         </div>
 
-        <button class="hamburger" aria-label="Menu" aria-expanded="false">
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-        </button>
+        <div class="header-content">
 
-        <ul class="menu">
-            {% for menu_link in site_setup.menulink_set.all %}
-                {% if menu_link.text == 'produtos' %}
-                    <li class="dropdown-parent">
-                        <a href="{{ menu_link.url_or_path }}" class="nav-link dropdown-toggle">
-                            {{ menu_link.text }}
-                        </a>
-                        <ul class="dropdown-menu">
-                            {% for category in products_setup_list %}
-                                <li>
-                                    <a href="{% url "products:product-list" slug_category=category.slug_category %}" class="dropdown-item">
-                                        {{ category.product_type.text }}
-                                    </a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                {% else %}
-                    <li>
-                        <a href="{{ menu_link.url_or_path }}" class="nav-link">{{ menu_link.text }}</a>
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-        
-        <!-- SOCIAL MEDIA MOBILE -->
+            <button class="hamburger" aria-label="Menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
 
-        <div class="header-socials">
-            <!-- Instagram -->
-            {% for contact in site_setup.contacts.all %}
-                <a href="{{ contact.instagram_url }}" target="_blank" aria-label="Instagram" title="Instagram">
-                    <i class="fab fa-instagram"></i>
+            <ul class="menu">
+                {% for menu_link in site_setup.menulink_set.all %}
+                    {% if menu_link.text == 'produtos' %}
+                        <li class="dropdown-parent">
+                            <a href="{{ menu_link.url_or_path }}" class="nav-link dropdown-toggle">
+                                {{ menu_link.text }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% for category in products_setup_list %}
+                                    <li>
+                                        <a href="{% url "products:product-list" slug_category=category.slug_category %}" class="dropdown-item">
+                                            {{ category.product_type.text }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{{ menu_link.url_or_path }}" class="nav-link">{{ menu_link.text }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            
+            <!-- SOCIAL MEDIA MOBILE -->
+
+            <div class="header-socials">
+                <!-- Instagram -->
+                {% for contact in site_setup.contacts.all %}
+                    <a href="{{ contact.instagram_url }}" target="_blank" aria-label="Instagram" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                    <!-- Facebook -->
+                    <a href="{{ contact.facebook_url }}" target="_blank" aria-label="Facebook" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                {% endfor %}
+            </div>
+
+            <!-- CART -->
+            <div class="header-cart">
+                <a href="{% url 'cart:cart' %}" class="cart-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">{{ cart_item_count }}</span>
                 </a>
-
-                <!-- Facebook -->
-                <a href="{{ contact.facebook_url }}" target="_blank" aria-label="Facebook" title="Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-            {% endfor %}
+            </div>
         </div>
-
     </nav>
 
     <!-- Menu Mobile -->
