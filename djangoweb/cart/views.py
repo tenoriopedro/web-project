@@ -1,13 +1,16 @@
+from django.utils import timezone
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView
 from django.views import View
 from django.urls import reverse
 from django.core.mail import send_mail
+from django.core.cache import cache
 from django.contrib import messages
 from products.models import Products
 from cart.models import BudgetRequest
 from cart.forms import BudgetRequestModelForm
 from utils.mixins import BreadcrumbsMixin
+from website.views import get_client_ip
 import os
 import dotenv
 
@@ -31,10 +34,29 @@ class CartView(BreadcrumbsMixin, TemplateView):
 
         context["products"] = products
         context["form"] = BudgetRequestModelForm()
+
+        # Stores form opening time
+        self.request.session['form_started_at'] = timezone.now().isoformat()
+
         return context
     
     def post(self, request, *args, **kwargs):
         remove_id = request.POST.get("remove")
+        form = BudgetRequestModelForm(request.POST)
+        cart = request.session.get("cart", [])
+        ip = get_client_ip(request)
+        time_limit = 600  # 10 min
+
+        # Sending time check (Bot protection)
+        started_at = request.session.get('form_started_at')
+        if started_at:
+            elapsed = (timezone.now() - timezone.datetime.fromisoformat(started_at)).total_seconds()
+
+            if elapsed < 5:
+                form.add_error(
+                    None,
+                    '❌ Erro ao processar dados. Tente novamente.'
+                )
 
         if remove_id:  # Remove product
             cart = request.session.get("cart", [])
@@ -48,10 +70,6 @@ class CartView(BreadcrumbsMixin, TemplateView):
                 'ℹ️ Produto foi removido.'
             )
             return redirect(reverse("cart:cart"))
-        
-        # SEND BUDGE
-        form = BudgetRequestModelForm(request.POST)
-        cart = request.session.get("cart", [])
 
         products = Products.objects.filter(id__in=cart)
 
@@ -59,6 +77,15 @@ class CartView(BreadcrumbsMixin, TemplateView):
             messages.error(
                 request,
                 "❌ Seu Carrinho está vazio"
+            )
+
+        # Check cache.
+        # The user sends in succession
+        # (5-minute interval), raises an error
+        if cache.get(f"blocked_{ip}"):
+            form.add_error(
+                None,
+                "❌ Aguarde alguns minutos antes de enviar novamente.",
             )
 
         if form.is_valid() and products.exists():
@@ -98,6 +125,9 @@ class CartView(BreadcrumbsMixin, TemplateView):
                 "✔️ Orçamento enviado com sucesso."
             )
 
+            # Block IP for 5 minutes, to avoid SPAM
+            cache.set(f"blocked_{ip}", True, timeout=time_limit)
+
             request.session["cart"] = []
             return render(
                 request,
@@ -108,7 +138,7 @@ class CartView(BreadcrumbsMixin, TemplateView):
                     "breadcrumbs": self.get_breadcrumbs(),
                 }
             )
-
+        
         return render(
             request,
             self.template_name,
