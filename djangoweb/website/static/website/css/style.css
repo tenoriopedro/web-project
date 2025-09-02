@@ -2604,12 +2604,12 @@ a {
     color: var(--color-primary-dark);
     padding: 1rem 0 0;
     font-weight: bold;
+    gap: .3rem;
 }
 
 .breadcrumb li {
     display: flex;
     align-items: center;
-    padding: 0 .35rem;
 }
 
 
@@ -2691,7 +2691,7 @@ a {
 }
 
 .cart-details {
-    flex: 1
+    flex: 1;
 }
 
 .cart-details h2 {
