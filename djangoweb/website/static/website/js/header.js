@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navMobile = document.querySelector('.nav-mobile');
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 
-    // Função para verificar o tamanho da tela
+    // Function to check screen size
     function handleResponsiveMenu() {
         const isMobileMenu = window.innerWidth <= 768;
         const isTablet = window.innerWidth <= 1024;
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (isTablet) {
                 toggle.addEventListener('click', handleDropdownToggle);
-                // Previne o redirecionamento do link
+                // Prevents link redirection
                 toggle.addEventListener('click', (e) => {
                     if (toggle.nextElementSibling) {
                         e.preventDefault();
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const submenu = this.nextElementSibling;
         
         if (submenu) {
-            // Fecha outros dropdowns abertos
+            // Closes other open dropdowns
             document.querySelectorAll('.dropdown-menu.open').forEach(openMenu => {
                 if (openMenu !== submenu) {
                     openMenu.classList.remove('open');
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
             
-            // Alterna o dropdown atual
+            // Toggles the current dropdown
             submenu.classList.toggle('open');
             this.classList.toggle('open');
         }
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburger.setAttribute('aria-expanded', !isExpanded);
         navMobile.setAttribute('data-visible', !isExpanded);
         
-        // Fecha todos os dropdowns quando o menu mobile é fechado
+        // Closes all dropdowns when the mobile menu is closed
         if (isExpanded) {
             document.querySelectorAll('.dropdown-menu.open').forEach(menu => {
                 menu.classList.remove('open');
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Fecha dropdowns ao clicar fora (abaixo de 1024px)
+    // Close dropdowns on click outside (below 1024px)
     document.addEventListener('click', (e) => {
         if (window.innerWidth > 1024) return;
         
@@ -82,9 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Verifica ao carregar a página
+    // Check when loading the page
     handleResponsiveMenu();
 
-    // Verifica quando a janela é redimensionada
+    // Check when loading the page
     window.addEventListener('resize', handleResponsiveMenu);
 });

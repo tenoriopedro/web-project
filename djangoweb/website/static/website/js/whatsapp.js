@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (shown) return;
         shown = true;
 
-        // Animação pulsante
+        // Pulse animation
         whatsappBtn.classList.add("pulse");
         tooltip.classList.add("show");
         span.textContent = phrases[0];
@@ -52,14 +52,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 6000);
     }
 
-    // Gatilho por scroll
+    // Scroll Trigger
     window.addEventListener("scroll", () => {
         if (window.scrollY > window.innerHeight * 0.4) {
             triggerAttention();
         }
     });
 
-    // Fallback por tempo(usuário não rolou)
+    // Fallback by time (user did not roll)
     setTimeout(() => {
         triggerAttention();
     }, 7000);

@@ -1,7 +1,7 @@
 from django.urls import reverse
 
 
-# Para as CBVs 
+# CBVs 
 class BreadcrumbsMixin:
 
     breadcrumbs = []
@@ -16,7 +16,7 @@ class BreadcrumbsMixin:
         return context
     
 
-# Para as function view
+# Function view
 def get_website_breadcrumbs(extra=None):
 
     breadcrumbs = [

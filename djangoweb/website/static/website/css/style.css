@@ -972,6 +972,7 @@ a {
     font-size: 2.5rem;
     margin-bottom: 1rem;
     color: var(--color-primary);
+    font-style: normal;
 }
 
 .reason-card p {

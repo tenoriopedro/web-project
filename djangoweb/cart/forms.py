@@ -1,6 +1,7 @@
 import re
 from django import forms
 from cart.models import BudgetRequest
+from utils.clean_functions import validate_letters_only, validate_phone
 
 
 class BudgetRequestModelForm(forms.ModelForm):
@@ -15,27 +16,16 @@ class BudgetRequestModelForm(forms.ModelForm):
             'message': 'Deixe sua mensagem(opcional)'
         }
 
-    # Validation to the NAME field
     def clean_name(self):
-        name = self.cleaned_data.get('name')
-        
-        # Just letters 
-        if not re.match(r"^[A-Za-zÀ-ÿ\s]+$", name):
-            self.add_error(
-                'name', 
-                'ERRO! Detectado caracteres inválidos.'
-            )
-
-        return name
+        return validate_letters_only(
+            self.cleaned_data.get("name"),
+            "name",
+            self
+        )
     
     def clean_phone(self):
-        phone = self.cleaned_data.get('phone')
-
-        # Just numbers
-        if not re.match(r"^\d{2}\s?9\d{8}$", phone):
-            self.add_error(
-                'phone', 
-                'ERRO! O telefone deve estar no formato: 21 999999999'
-            )
-
-        return phone
+        return validate_phone(
+            self.cleaned_data.get("phone"),
+            "phone",
+            self
+        )

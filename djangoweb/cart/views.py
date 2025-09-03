@@ -58,7 +58,7 @@ class CartView(BreadcrumbsMixin, TemplateView):
                     '❌ Erro ao processar dados. Tente novamente.'
                 )
 
-        if remove_id:  # Remove product
+        if remove_id:
             cart = request.session.get("cart", [])
             
             if int(remove_id) in cart:
@@ -80,8 +80,6 @@ class CartView(BreadcrumbsMixin, TemplateView):
             )
 
         # Check cache.
-        # The user sends in succession
-        # (5-minute interval), raises an error
         if cache.get(f"blocked_{ip}"):
             form.add_error(
                 None,
@@ -125,7 +123,7 @@ class CartView(BreadcrumbsMixin, TemplateView):
                 "✔️ Orçamento enviado com sucesso."
             )
 
-            # Block IP for 5 minutes, to avoid SPAM
+            # Block IP for 10 minutes, to avoid SPAM
             cache.set(f"blocked_{ip}", True, timeout=time_limit)
 
             request.session["cart"] = []
