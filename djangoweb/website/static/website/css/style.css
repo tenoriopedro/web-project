@@ -680,6 +680,14 @@ a {
 
     /* ==== HEADER + MENU DROPDOWN(HAMBURGUER) ==== */
 
+    body::before {
+        background-image: none;
+        background-color: var(--color-light);
+        opacity: unset;
+
+    }
+
+
     .header-content {
         gap: 2rem;
     }
