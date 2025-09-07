@@ -16,11 +16,11 @@
             {% for category in categories %}
                 <a href="{% url "products:product-list" category.slug_category %}" class="category-card">
 
-                    <div class="card-image">
-                        <img src="{{ category.image.url }}" alt="{{ category.product_type.text }}">
-                    </div>
                     <div class="card-content">
                         <h3>{{ category.product_type.text }}</h3>
+                    </div>
+                    <div class="card-image">
+                        <img src="{{ category.image.url }}" alt="{{ category.product_type.text }}">
                     </div>
 
                 </a>
