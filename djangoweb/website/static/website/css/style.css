@@ -1847,6 +1847,14 @@ a {
     .categories-grid {
         grid-template-columns: 1fr;
     }
+
+    .category-card {
+        padding: .3rem;
+    }
+
+    .card-content h3 {
+        font-size: 1rem;
+    }
 }
 
 
