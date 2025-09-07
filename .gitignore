@@ -6,6 +6,7 @@ gunicorn-error-log
 /djangoweb/project/local_settings.py
 /backup
 backup_dev.sql
+deploy.txt
 
 
 # Django #
