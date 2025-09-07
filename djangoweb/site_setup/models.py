@@ -88,10 +88,8 @@ class SiteSetup(models.Model):
 
         current_favicon_name = str(self.favicon.name)
         super().save(*args, **kwargs)
-        favicon_changed = False
 
-        check_favicon(self.favicon, current_favicon_name, favicon_changed)
-        
+        check_favicon(self.favicon, current_favicon_name)
 
     def __str__(self):
         return self.title
