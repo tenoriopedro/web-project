@@ -3,10 +3,10 @@ from django.core.exceptions import ValidationError
 from django.utils.text import slugify
 from django.urls import reverse
 from site_setup.models import SubMenuLink
-from utils.images import resize_image_product
 from utils.random_letters import slugify_new
+from utils.model_validator import validate_png
 from utils.image_upload_path import product_image_upload_path
-
+from utils.save_check import check_product_image
 
 
 class Products(models.Model):
@@ -39,11 +39,10 @@ class Products(models.Model):
         if not self.slug_product:
             self.slug_product = slugify_new(self.name)
 
+        current_image_name = str(self.image.name)
         super().save(*args, **kwargs)
-
-        max_image_size = 800
-        if self.image:
-            resize_image_product(self.image, max_image_size)
+        
+        check_product_image(self.image, current_image_name)
 
     def get_absolute_url(self):
         return reverse(
@@ -71,6 +70,7 @@ class ProductsSetup(models.Model):
     )
     image = models.ImageField(
         upload_to=product_image_upload_path,
+        validators=[validate_png],
         blank=False,
         null=False,
         verbose_name='Imagem do produto',
@@ -87,10 +87,6 @@ class ProductsSetup(models.Model):
             self.slug_category = slugify(self.product_type.text)
 
         super().save(*args, **kwargs)
-
-        max_image_size = 600
-        if self.image:
-            resize_image_product(self.image, max_image_size)
 
     def clean(self):
         if ProductsSetup.objects.filter(
