@@ -66,12 +66,20 @@ A products section was implemented to display and organize the company’s catal
 - **Search bar:** query by product name, short description, or category.  
 - **Admin integration:** management via Django Admin, including image resizing, automatic slug generation, and validation for product setup.  
 
-**Tech highlights:**
-- Django Class-Based Views (`ListView`, `DetailView`, `TemplateView`)  
-- Custom search with `Q` objects  
-- Slug generation + URL structure for SEO-friendly navigation  
-- Image upload with automatic resizing  
-- Django Admin customization and data validation  
+
+### ✅ Cart & Quote Flow
+
+The cart and quotation system was implemented to allow users to select products and request a quote in a simple and integrated way.
+
+**Main features:**
+
+- **Functional cart**: session-based, using Class-Based Views for better code organization.
+
+- **Quotation flow**: server-side validated form, saving data into the database and sending an email to the company.
+
+- **Visual feedback**: success/error messages with the messages framework, dynamic cart icon with item counter, and a styled cart page.
+
+- **Dynamic breadcrumbs**: implemented with a mixin, fully responsive for smaller screens.
 
 ---
 
@@ -101,6 +109,7 @@ This project is deployed on **AWS EC2**, running on an **Ubuntu VM**. Key detail
 - ✅ Home Page completed  
 - ✅ Contact Page completed  
 - ✅ Products Page completed
+- ✅ Cart & Quote Flow completed
 - 🔄 Modular structure with multiple Django apps  
 - ⚙️ Automated scripts to simplify development  
 - 📦 PostgreSQL database running via Docker (dev)
