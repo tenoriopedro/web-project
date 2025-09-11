@@ -9,5 +9,6 @@ def random_letters(k=5):
         k=k
     ))
 
+
 def slugify_new(text, k=5):
     return slugify(text) + '-' + random_letters(k)

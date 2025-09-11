@@ -1,4 +1,3 @@
-import re
 from django import forms
 from cart.models import BudgetRequest
 from utils.clean_functions import validate_letters_only, validate_phone
@@ -22,7 +21,7 @@ class BudgetRequestModelForm(forms.ModelForm):
             "name",
             self
         )
-    
+
     def clean_phone(self):
         return validate_phone(
             self.cleaned_data.get("phone"),

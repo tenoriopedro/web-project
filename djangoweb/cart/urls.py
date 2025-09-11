@@ -9,7 +9,7 @@ urlpatterns = [
     path("", CartView.as_view(), name="cart"),
     path(
         "adicionar/<slug:slug_product>/",
-        AddToCartView.as_view(), 
+        AddToCartView.as_view(),
         name="cart_add",
     ),
 ]

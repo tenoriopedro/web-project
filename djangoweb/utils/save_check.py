@@ -17,11 +17,13 @@ def _check_image(image, current_image_name, size):
 
     return
 
+
 def check_favicon(image, current_image_name):
     return _check_image(
         image, current_image_name, size=64
     )
-    
+
+
 def check_product_image(image, current_image_name):
     return _check_image(
         image, current_image_name, size=800

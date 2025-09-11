@@ -1,4 +1,4 @@
-from django.db import models 
+from django.db import models
 
 
 class FeaturedProducts(models.Model):
@@ -8,11 +8,17 @@ class FeaturedProducts(models.Model):
         verbose_name_plural = "Produtos Destacados"
 
     title = models.CharField(max_length=300, blank=True, verbose_name='Título')
-    description = models.CharField(max_length=1000, default='', blank=True, verbose_name='Descrição')
-    button_name = models.CharField(max_length=50, blank=True, verbose_name='Button Name')
-    button_link = models.CharField(max_length=100, blank=True, verbose_name='Button Link')
+    description = models.CharField(
+        max_length=1000, default='', blank=True, verbose_name='Descrição'
+    )
+    button_name = models.CharField(
+        max_length=50, blank=True, verbose_name='Button Name'
+    )
+    button_link = models.CharField(
+        max_length=100, blank=True, verbose_name='Button Link'
+    )
     image = models.ImageField(
-        upload_to='assets/featured_products/%Y/%m', 
+        upload_to='assets/featured_products/%Y/%m',
         blank=True, default='', verbose_name='Imagem'
     )
 
@@ -27,12 +33,14 @@ class WhyGazil(models.Model):
         verbose_name_plural = "Por que Gazil"
 
     title = models.CharField(max_length=50, default='', verbose_name='Título')
-    description = models.TextField(default='', blank=True, verbose_name='Descrição')
+    description = models.TextField(
+        default='', blank=True, verbose_name='Descrição'
+    )
     icon = models.CharField(max_length=10, default='', verbose_name='Ícone')
 
     def __str__(self):
         return self.title
-    
+
 
 class Contacts(models.Model):
 
@@ -48,4 +56,3 @@ class Contacts(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.email}"
-    

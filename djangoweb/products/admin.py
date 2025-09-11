@@ -12,7 +12,7 @@ class ProductsAdmin(admin.ModelAdmin):
     list_display = 'name', 'product_type', 'slug_product',
     list_filter = 'product_type',
     search_fields = 'name', 'product_type'
-    
+
     fieldsets = (
         (None, {
             'fields': ('name', 'product_type', 'slug_product')
@@ -30,4 +30,3 @@ class ProductsAdmin(admin.ModelAdmin):
 class ProductsSetupAdmin(admin.ModelAdmin):
     list_display = 'product_type', 'slug_category',
     ordering = 'product_type',
-

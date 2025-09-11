@@ -5,15 +5,19 @@ from datetime import datetime
 
 def product_image_upload_path(instance, filename):
 
-    base_folder = 'image_products_setup' if instance._meta.model_name == 'productssetup' else 'image_products'
+    base_folder = (
+        'image_products_setup'
+        if instance._meta.model_name == 'productssetup'
+        else 'image_products'
+    )
     if instance._meta.model_name == 'productssetup':
         product_type = slugify(
-            instance.product_type.text 
+            instance.product_type.text
             if instance.product_type else "sem-tipo"
         )
     else:  # Products
         product_type = slugify(
-            instance.product_type.slug_category 
+            instance.product_type.slug_category
             if instance.product_type else "sem-categoria"
         )
 

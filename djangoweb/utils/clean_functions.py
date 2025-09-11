@@ -4,10 +4,11 @@ import re
 def validate_letters_only(value, field_name, form):
     if not re.match(r"^[A-Za-zÀ-ÿ\s]+$", value or ""):
         form.add_error(
-            field_name, 
+            field_name,
             'ERRO! Detectado caracteres inválidos.'
         )
     return value
+
 
 def validate_phone(value, field_name, form):
     """
@@ -20,4 +21,3 @@ def validate_phone(value, field_name, form):
             'ERRO! O telefone deve estar no formato: 21 999999999'
         )
         return value
-    

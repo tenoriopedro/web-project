@@ -17,6 +17,7 @@ import dotenv
 
 dotenv.load_dotenv()
 
+
 class CartView(BreadcrumbsMixin, TemplateView):
     template_name = "cart/cart.html"
 
@@ -39,7 +40,7 @@ class CartView(BreadcrumbsMixin, TemplateView):
         self.request.session['form_started_at'] = timezone.now().isoformat()
 
         return context
-    
+
     def post(self, request, *args, **kwargs):
         remove_id = request.POST.get("remove")
         form = BudgetRequestModelForm(request.POST)
@@ -50,7 +51,8 @@ class CartView(BreadcrumbsMixin, TemplateView):
         # Sending time check (Bot protection)
         started_at = request.session.get('form_started_at')
         if started_at:
-            elapsed = (timezone.now() - timezone.datetime.fromisoformat(started_at)).total_seconds()
+            elapsed = (timezone.now() - timezone.datetime
+                       .fromisoformat(started_at)).total_seconds()
 
             if elapsed < 5:
                 form.add_error(
@@ -60,7 +62,7 @@ class CartView(BreadcrumbsMixin, TemplateView):
 
         if remove_id:
             cart = request.session.get("cart", [])
-            
+
             if int(remove_id) in cart:
                 cart.remove(int(remove_id))
                 request.session["cart"] = cart
@@ -98,7 +100,7 @@ class CartView(BreadcrumbsMixin, TemplateView):
             body = (
                 f"Pedido de orçamento de {name}\n"
                 f"Telefone: {phone}\nEmail: {email}\n\n"
-                f"Produtos:\n{product_list}\n\nMensagem:\n{message}" 
+                f"Produtos:\n{product_list}\n\nMensagem:\n{message}"
             )
 
             # Save in database
@@ -136,7 +138,7 @@ class CartView(BreadcrumbsMixin, TemplateView):
                     "breadcrumbs": self.get_breadcrumbs(),
                 }
             )
-        
+
         return render(
             request,
             self.template_name,
@@ -146,14 +148,14 @@ class CartView(BreadcrumbsMixin, TemplateView):
                 "breadcrumbs": self.get_breadcrumbs(),
             }
         )
-    
+
 
 class AddToCartView(View):
 
     def post(self, request, slug_product):
         product = get_object_or_404(Products, slug_product=slug_product)
         cart = request.session.get("cart", [])
-        
+
         if product.id not in cart:
             cart.append(product.id)
             request.session["cart"] = cart
@@ -164,10 +166,9 @@ class AddToCartView(View):
         else:
             messages.info(
                 request,
-                f"ℹ️ Produto já está no carrinho."
+                "ℹ️ Produto já está no carrinho.",
             )
 
         return redirect(
             request.META.get('HTTP_REFERER', 'products:list_product')
         )
-    

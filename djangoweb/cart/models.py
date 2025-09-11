@@ -16,9 +16,6 @@ class BudgetRequest(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"""
-Orçamento de 
-{self.name} ({self.email}) - 
-{self.created_at:%Y-%m-%d}
-"""
-
+        return f'''
+Orçamento de {self.name} ({self.email}) - {self.created_at:%Y-%m-%d}
+'''

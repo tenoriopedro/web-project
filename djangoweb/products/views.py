@@ -10,23 +10,23 @@ class ProductsIndexView(BreadcrumbsMixin, TemplateView):
     template_name = 'products/index.html'
 
     def get_context_data(self, **kwargs):
-        
+
         context = super().get_context_data(**kwargs)
         context["categories"] = ProductsSetup.objects.all()
         return context
-        
+
     def get_breadcrumbs(self):
         return [
             {"name": "Home", "url": reverse("website:home")},
             {"name": "Produtos", "url": reverse("products:index")},
         ]
 
+
 class ProductsListView(BreadcrumbsMixin, ListView):
     model = Products
     template_name = 'products/list_products.html'
     context_object_name = 'products'
     paginate_by = 8
-
 
     def get_queryset(self):
         category_slug = self.kwargs['slug_category']
@@ -41,7 +41,7 @@ class ProductsListView(BreadcrumbsMixin, ListView):
             queryset = queryset.order_by(order)
 
         return queryset
-    
+
     def get_context_data(self, **kwargs):
 
         context = super().get_context_data(**kwargs)
@@ -52,14 +52,17 @@ class ProductsListView(BreadcrumbsMixin, ListView):
         context["is_search"] = False
 
         return context
-    
+
     def get_breadcrumbs(self):
         return [
             {"name": "Home", "url": reverse("website:home")},
             {"name": "Produtos", "url": reverse("products:index")},
-            {"name": self.category.product_type.text, "url": self.category.get_absolute_url()},
+            {
+                "name": self.category.product_type.text,
+                "url": self.category.get_absolute_url()
+             },
         ]
-        
+
 
 class ProductDetailView(BreadcrumbsMixin, DetailView):
     model = Products
@@ -75,7 +78,7 @@ class ProductDetailView(BreadcrumbsMixin, DetailView):
             Products,
             slug_product=slug_product
         )
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         product = self.object
@@ -88,9 +91,9 @@ class ProductDetailView(BreadcrumbsMixin, DetailView):
         context["related_products"] = related_products
         context["slug_category"] = self.kwargs.get('slug_category')
         context["product"] = product
-        
+
         return context
-    
+
     def get_breadcrumbs(self):
         product = self.get_object()
         category = product.product_type
@@ -100,7 +103,7 @@ class ProductDetailView(BreadcrumbsMixin, DetailView):
             {"name": category, "url": category.get_absolute_url()},
             {"name": product.name, "url": product.get_absolute_url()},
         ]
-    
+
 
 class ProductsSearchView(ListView):
     model = Products
@@ -121,7 +124,7 @@ class ProductsSearchView(ListView):
             )
 
         return queryset
-    
+
     def get_context_data(self, **kwargs):
 
         context = super().get_context_data(**kwargs)
@@ -134,4 +137,3 @@ class ProductsSearchView(ListView):
             {"name": f"Pesquisa por '{query}'", "url": None},
         ]
         return context
-    

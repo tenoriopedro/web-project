@@ -14,7 +14,7 @@ class ContactsModelForm(forms.ModelForm):
             'email': 'Seu email*',
             'message': 'Sua mensagem*',
         }
-    
+
     # Validation for the "NOME" field in the form
     def clean_first_name(self):
         return validate_letters_only(
@@ -22,7 +22,7 @@ class ContactsModelForm(forms.ModelForm):
             "first_name",
             self
         )
-    
+
     # Validation for the "SOBRENOME" field in the form
     def clean_last_name(self):
         return validate_letters_only(
@@ -30,12 +30,12 @@ class ContactsModelForm(forms.ModelForm):
             "last_name",
             self
         )
-    
+
     # Validação para o campo "MENSAGEM" no formulário
     def clean_message(self):
         message = self.cleaned_data.get('message')
 
         if len(message.strip()) < 10:
-            self.add_error('message','ERRO! Mensagem muito curta.')
+            self.add_error('message', 'ERRO! Mensagem muito curta.')
 
         return message

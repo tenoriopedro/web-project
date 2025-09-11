@@ -16,11 +16,13 @@ class Products(models.Model):
 
     name = models.CharField(max_length=255, verbose_name='Nome')
     product_type = models.ForeignKey(
-        "ProductsSetup", 
+        "ProductsSetup",
         on_delete=models.CASCADE,
         verbose_name='Tipo de Produto',
     )
-    short_description = models.TextField(max_length=255, verbose_name='Descrição Curta')
+    short_description = models.TextField(
+        max_length=255, verbose_name='Descrição Curta'
+    )
     long_description = models.TextField(verbose_name='Descrição Longa')
     image = models.ImageField(
         upload_to=product_image_upload_path,
@@ -41,7 +43,7 @@ class Products(models.Model):
 
         current_image_name = str(self.image.name)
         super().save(*args, **kwargs)
-        
+
         check_product_image(self.image, current_image_name)
 
     def get_absolute_url(self):
@@ -52,10 +54,10 @@ class Products(models.Model):
                 "slug_product": self.slug_product,
             }
         )
-    
+
     def __str__(self):
         return f"{self.name}"
-    
+
 
 class ProductsSetup(models.Model):
     class Meta:
@@ -64,7 +66,7 @@ class ProductsSetup(models.Model):
         verbose_name_plural = 'Produtos(Setup)'
 
     product_type = models.ForeignKey(
-        SubMenuLink, 
+        SubMenuLink,
         on_delete=models.CASCADE,
         verbose_name='Tipo de Produto',
     )
@@ -91,18 +93,18 @@ class ProductsSetup(models.Model):
     def clean(self):
         if ProductsSetup.objects.filter(
             product_type=self.product_type).exclude(
-                pk=self.pk
-            ).exists():
+                pk=self.pk).exists():
 
-            raise ValidationError(f"Já existe um produto do tipo '{self.product_type}'. Apenas um é permitido.")
-        
+            raise ValidationError(
+                f"Já existe um produto do tipo '{self.product_type}'."
+                "Apenas um é permitido."
+            )
+
     def get_absolute_url(self):
         return reverse(
-            "products:product-list", 
+            "products:product-list",
             args=[self.slug_category],
         )
-    
 
     def __str__(self):
         return f"{self.product_type.text}"
-    

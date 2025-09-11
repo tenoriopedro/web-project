@@ -14,12 +14,13 @@ from utils.mixins import get_website_breadcrumbs
 
 dotenv.load_dotenv()
 
+
 def home(request):
     site_setup = SiteSetup.objects.first()
-    banners = site_setup.banners.filter(is_active=True).order_by('order') if site_setup else []
+    banners = site_setup.banners.filter(is_active=True)\
+        .order_by('order') if site_setup else []
     featured_products = FeaturedProducts.objects.all()
     why_gazil = WhyGazil.objects.order_by('id')
-
 
     return render(
         request,
@@ -42,11 +43,11 @@ def contacts(request):
     contacts = site_setup.contacts.first()
     company_email = os.getenv('EMAIL_RECIPIENT_LIST', '')
     ip = get_client_ip(request)
-    time_limit = 300 # 5 min
+    time_limit = 300  # 5 min
 
     # Extract from page
     if request.method == "POST":
-        
+
         form_contact = ContactsModelForm(request.POST)
 
         # Check cache.
@@ -61,7 +62,9 @@ def contacts(request):
         # Sending time check (Bot protection)
         started_at = request.session.get('form_started_at')
         if started_at:
-            elapsed = (timezone.now() - timezone.datetime.fromisoformat(started_at)).total_seconds()
+            elapsed = (
+                timezone.now() - timezone.datetime.fromisoformat(started_at)).\
+                    total_seconds()
 
             if elapsed < 5:
                 form_contact.add_error(
@@ -70,7 +73,7 @@ def contacts(request):
                 )
 
         if form_contact.is_valid():
-            
+
             first_name = form_contact.cleaned_data['first_name']
             last_name = form_contact.cleaned_data['last_name']
             email = form_contact.cleaned_data['email']
@@ -78,7 +81,9 @@ def contacts(request):
 
             # Send Email
             send_mail(
-                subject=f"[Página Contatos] Mensagem de {first_name} {last_name}",
+                subject=(
+                    f"[Página Contatos] Mensagem de {first_name} {last_name}"
+                ),
                 message=f"Mensagem:\n{message}\n\nEmail de contato: {email}",
                 from_email=os.getenv('DEFAULT_FROM_EMAIL', ''),
                 recipient_list=[company_email],
@@ -102,7 +107,6 @@ def contacts(request):
         # Stores form opening time
         request.session['form_started_at'] = timezone.now().isoformat()
 
-    
     return render(
         request,
         'website/pages/contacts.html',
@@ -119,7 +123,7 @@ def get_client_ip(request):
     forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if forwarded_for:
         return forwarded_for.split(',')[0]
-    
+
     return request.META.get('REMOTE_ADDR')
 
 
@@ -129,7 +133,7 @@ def success_form(request):
     # If negative, raise the error
     if not request.session.get('form_sucesso'):
         raise Http404("Página não encontrada.")
-    
+
     breadcrumbs = get_website_breadcrumbs(extra=[
         {"name": "Contatos", "url": reverse("website:contacts")},
         {"name": "Sucesso", "url": ""}
@@ -139,7 +143,7 @@ def success_form(request):
 
     # If positive (form submitted successfully) render the html
     return render(
-        request, 
+        request,
         'website/pages/success_form.html',
         {
             "breadcrumbs": breadcrumbs,
