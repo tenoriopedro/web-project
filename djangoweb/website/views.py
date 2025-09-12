@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.urls import reverse
 from site_setup.models import SiteSetup
-from website.models import FeaturedProducts, WhyGazil
+from website.models import FeaturedProducts, WhyGazil, SocialAprovation
 from website.forms import ContactsModelForm
 from utils.mixins import get_website_breadcrumbs
 
@@ -152,6 +152,7 @@ def success_form(request):
 
 
 def who_we_are(request):
+    clients_image = SocialAprovation.objects.all()
     breadcrumbs = get_website_breadcrumbs(extra=[
         {"name": "Quem Somos", "url": ""}
     ])
@@ -160,5 +161,6 @@ def who_we_are(request):
         'website/pages/who_we_are.html',
         {
             'breadcrumbs': breadcrumbs,
+            'clients_image': clients_image,
         }
     )

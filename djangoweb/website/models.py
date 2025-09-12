@@ -56,3 +56,19 @@ class Contacts(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.email}"
+
+
+class SocialAprovation(models.Model):
+
+    class Meta:
+        verbose_name = "Aprovação Social"
+        verbose_name_plural = "Aprovações Sociais"
+        ordering = ['-created_at']
+
+    image = models.ImageField(
+        upload_to='assets/social_aprovation/%Y/%m',
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Client Image {self.id}"

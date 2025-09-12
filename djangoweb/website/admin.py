@@ -1,5 +1,6 @@
 from django.contrib import admin
-from website.models import FeaturedProducts, WhyGazil, Contacts
+from website.models import (FeaturedProducts, WhyGazil,
+                            Contacts, SocialAprovation)
 
 
 @admin.register(FeaturedProducts)
@@ -23,3 +24,8 @@ class ContactsAdmin(admin.ModelAdmin):
         'message', 'created_at',
     )
     ordering = '-created_at',
+
+
+@admin.register(SocialAprovation)
+class SocialAprovationAdmin(admin.ModelAdmin):
+    list_display = 'id', 'image', 'created_at',

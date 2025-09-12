@@ -23,6 +23,7 @@
                 </p>
 
             </section>
+
             <section class="section-commitments">
 
                 <h1>Compromissos inegociáveis</h1>
@@ -52,6 +53,30 @@
 
             </section>
 
+            <section class="section-clients" id="momentos-gazil">
+
+                <h1>Nossos Clientes</h1>
+                <div class="carousel" id="carousel">
+
+                    <div class="track" id="track">
+                        {% for client in clients_image %}
+                            <figure class="slide">
+                                <img src="{{ client.image.url }}" 
+                                alt="Cliente {{ forloop.counter }}">
+                            </figure>
+                        {% empty %}
+                            <p>Nenhuma imagem cadastrada.</p>
+                        {% endfor %}
+                    </div>
+                    <button class="control prev" id="prevBtn">◀</button>
+                    <button class="control next" id="nextBtn">▶</button>
+
+                    <div class="dots" id="dots"></div>
+
+                </div>
+
+            </section>
+
             <section class="section-future">
 
                 <h1>Onde queremos chegar</h1>
@@ -68,4 +93,5 @@
 
     </section>
 
+<script src="{% static 'website/js/carousel.js' %}"></script>
 {% endblock content %}

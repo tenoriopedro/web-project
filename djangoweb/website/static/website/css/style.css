@@ -1617,6 +1617,78 @@ a {
     color: var(--color-dark-gray);
 }
 
+.section-clients{
+    max-width: 960px;
+    margin: 60px auto;
+    text-align: center;
+}
+
+.section-clients h1 {
+    margin-bottom: 20px;
+}
+
+.carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.track {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+}
+
+.slide {
+    transition: flex 0.3s ease;
+    margin: 0 20px;
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    display: block;
+}
+
+.control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--color-light);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 20%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    font-size: 1rem;
+    z-index: 10;
+}
+
+.control.prev { left: 10px; }
+.control.next { right: 10px; }
+
+.dots {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.dot {
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    margin: 0 5px;
+    background-color: var(--color-dark);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: var(--color-secondary);
+}
+
 /* ========= RESPONSIVENESS TEMPLATE WHO WE ARE ========== */
 
 @media (max-width: 1440px) {
@@ -1625,6 +1697,14 @@ a {
     }
 }
 
+@media (max-width: 1024px) {
+    .slide {
+        flex: 0 0 35% !important; /* Sobrescreve o JS se necessário */
+        max-width: 35% !important;
+        margin: 0 15px;
+        min-width: 45%;
+    }
+}
 
 @media (max-width: 768px) {
 
@@ -1648,6 +1728,35 @@ a {
 
     .about-page p {
         font-size: 1rem;
+    }
+
+    .slide {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        margin: 0;
+    }
+    
+    .control {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
+    
+    .dot {
+        height: 10px;
+        width: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .slide {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        margin: 0;
+    }
+    
+    .control {
+        padding: 6px;
+        top: 40%;
     }
 }
 
