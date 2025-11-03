@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.apps import apps
-from .models import Products, ProductsSetup
+from .models import Products, ProductsSetup, SobMedidaProject
 
 
 app_config = apps.get_app_config('products')
@@ -30,3 +30,12 @@ class ProductsAdmin(admin.ModelAdmin):
 class ProductsSetupAdmin(admin.ModelAdmin):
     list_display = 'product_type', 'slug_category',
     ordering = 'product_type',
+
+
+@admin.register(SobMedidaProject)
+class SobMedidaProjectAdmin(admin.ModelAdmin):
+
+    list_display = 'title', 'order',
+    list_editable = 'order',
+    search_fields = 'title', 'description',
+    fields = 'title', 'description', 'image_sob_medida', 'order',

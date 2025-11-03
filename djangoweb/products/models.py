@@ -108,3 +108,22 @@ class ProductsSetup(models.Model):
 
     def __str__(self):
         return f"{self.product_type.text}"
+
+
+class SobMedidaProject(models.Model):
+
+    title = models.CharField(max_length=100, verbose_name='Título')
+    image_sob_medida = models.ImageField(
+        upload_to='portfolio_sob_medida/%Y/%m',
+        verbose_name='Imagem'
+    )
+    description = models.TextField(blank=True, verbose_name='Descrição')
+    order = models.PositiveIntegerField(default=0, verbose_name='Ordem')
+
+    class Meta:
+        ordering = ['order', 'title']
+        verbose_name = "Item do Portfólio"
+        verbose_name_plural = "Itens do Portfólio(Sob Medida)"
+
+    def __str__(self):
+        return self.title
