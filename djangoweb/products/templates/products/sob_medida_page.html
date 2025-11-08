@@ -1,0 +1,108 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block content %}
+
+    {% include "website/partials/_hero-content.html" with is_sob_medida_page=True %}
+
+    <div class="content-products">
+
+        <div class="container">
+
+            {% include "website/partials/_breadcrumbs.html" %}
+
+            {% include "website/partials/_messages.html" %}
+
+            <div class="custom-made-layout">
+
+                <div class="custom-made-form">
+
+                    <div class="form-fields-column">
+                        <h3>Solicitar Orçamento</h3>
+
+                        <form method="post" action="{% url 'products:custom-made' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                {{ form.name.errors }}
+                                <label for="{{ form.name.id_for_label }}">
+                                    {{ form.name.label }}
+                                </label>
+                                {{ form.name }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form.email.errors }}
+                                <label for="{{ form.email.id_for_label }}">
+                                    {{ form.email.label }}
+                                </label>
+                                {{ form.email }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form.phone.errors }}
+                                <label for="{{ form.phone.id_for_label }}">
+                                    {{ form.phone.label }}
+                                </label>
+                                {{ form.phone }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form.project_description.errors }}
+                                <label for="{{ form.project_description.id_for_label }}">
+                                    {{ form.project_description.label }}
+                                </label>
+                                {{ form.project_description }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form.attachment.errors }}
+
+                                <label for="{{ form.attachment.id_for_label }}">
+                                    {{ form.attachment.label }}
+                                </label>
+
+                                {{ form.attachment }}
+                                {% if form.attachment.help_text %}
+                                    <p class="help-text">{{ form.attachment.help_text }}</p>
+                                {% endif %}
+                            </div>
+
+                            <button type="submit">Enviar Pedido</button>
+                        </form>
+                    </div>
+                    <div class="form-image-column">
+                        <img src="{% static 'website/images_form_SM/sob_medida_project_image.png' %}" alt="Orçamentos Sob Medida">
+                    </div>
+
+                </div>
+
+                <div class="custom-made-gallery">
+                    <h3>Nosso Portfólio</h3>
+                    
+                    <div class="gallery-grid">
+                        {% for item in gallery_items %}
+                            <div class="gallery-item">
+                                <img src="{{ item.image_sob_medida.url }}" alt="{{ item.title }}">
+                                <div class="gallery-item-content">
+                                    <h4>{{ item.title }}</h4>
+                                    <p>
+                                        {{ item.description|truncatewords:20 }}
+                                    </p>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <p>
+                                Nenhum projeto de portfólio cadastrado ainda.
+                            </p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock content %}

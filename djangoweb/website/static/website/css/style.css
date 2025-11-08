@@ -1784,10 +1784,16 @@ a {
     margin-bottom: var(--space-md);
 }
 
+.hero-content h2 {
+    font-family: var(--font-body);
+    font-size: 2rem;
+    margin: 3rem auto 0;
+}
+
 .hero-content p {
     font-family: var(--font-body);
     font-size: 1.575rem;
-    margin-bottom: var(--space-xl);
+    margin: 0 auto 3rem;
 }
 
 /* ---------- SEARCH BAR ------------- */
@@ -2952,30 +2958,225 @@ a {
 }
 
 
-/* ###### SECTION TEMPORARY ###### */
-.temporary-section{
+
+/* ======================= TEMPLATE SOB MEDIDA =========================== */
+
+.custom-made-layout {
+    display: grid;
+    gap: var(--space-xl);
+    padding-bottom: var(--space-xl);
+    margin-top: 3rem;
+}
+
+.custom-made-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    padding: var(--space-lg);
+    border-radius: var(--border-radius);
+}
+
+.form-image-column {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-light);
-    padding: 40px 20px;
-    margin-top: 100px;
-    min-height: 70vh;
 }
 
-.temporary-container{
-    background-color: var(--color-white);
-    padding: 40px 30px;
-    border-radius: 12px;
-	box-shadow: 0 4px 10px rgba(0,0,0, 0.25);
-	max-width: 450px;
-    width: 100%;
-    color: var(--color-dark);
-    text-align: center;
+.form-image-column img {
+    width: 90%;
+    height: auto;
+    border-radius: var(--border-radius);
+    opacity: 0.9;
 }
 
-.temporary-container h1{
+.custom-made-form h3,
+.custom-made-gallery h3 {
+    font-size: 1.75rem;
     color: var(--color-primary);
-    font-size: 1.8rem;
-    margin-bottom: 15px;
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--color-light-gray);
+}
+
+/* --- Coluna 1: Estilos do Formulário --- */
+/*
+  Replicando os estilos de .contact-form e .cart-budget
+  para manter a consistência visual do site.
+*/
+.custom-made-form .form-group {
+    margin-bottom: var(--space-md);
+}
+
+.custom-made-form label {
+    display: block;
+    margin-bottom: var(--space-sm);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.custom-made-form input,
+.custom-made-form textarea,
+.custom-made-form input[type="file"] {
+    font-family: inherit;
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--color-light-gray);
+    border-radius: var(--border-radius);
+    background-color: var(--color-white);
+    font-size: 1rem;
+    transition: border 0.3s, box-shadow 0.3s;
+    box-sizing: border-box; /* Garante que o padding não quebre o layout */
+}
+
+.custom-made-form input:focus,
+.custom-made-form textarea:focus {
+    outline: none;
+    border-color: var(--color-blue);
+    box-shadow: 0 0 0 3px rgba(47, 91, 234, 0.2);
+}
+
+.custom-made-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Texto de ajuda para o campo de anexo */
+.custom-made-form .help-text {
+    font-size: 0.85rem;
+    color: var(--color-dark-gray);
+    margin-top: var(--space-sm);
+}
+
+/* Botão de envio (reutilizando o estilo do form de contato) */
+.custom-made-form button[type="submit"] {
+    padding: 12px 20px;
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    border: none;
+    cursor: pointer;
+    border-radius: var(--border-radius-btn);
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+    width: 100%;
+}
+
+.custom-made-form button[type="submit"]:hover {
+    background-color: var(--color-dark-blue);
+}
+
+/* --- Coluna 2: Estilos da Galeria --- */
+
+.gallery-grid {
+    display: grid;
+    /* 2 colunas dentro da coluna da galeria */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: var(--space-md);
+}
+
+.gallery-item {
+    background: var(--color-light);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--color-light-gray);
+    max-width: 320px;
+}
+
+.gallery-item:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.gallery-item img {
+    width: 100%;
+    object-fit: contain;
+    display: block;
+    padding: 5px;
+}
+
+.gallery-item-content {
+    padding: var(--space-md);
+}
+
+.gallery-item h4 {
+    font-size: 1.1rem;
+    color: var(--color-primary);
+    margin: 0 0 var(--space-xs) 0;
+}
+
+.gallery-item p {
+    font-size: 0.9rem;
+    color: var(--color-dark-gray);
+    margin: 0;
+    line-height: 1.5;
+}
+
+
+/* --- Responsividade da Página Sob Medida --- */
+
+@media (max-width: 1024px) {
+    /* Em telas médias, passa o layout principal para 1 coluna */
+    .custom-made-layout {
+        grid-template-columns: 1fr;
+        margin-top: 2rem;
+    }
+
+    .custom-made-form {
+        grid-template-columns: 1fr;
+        width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .custom-made-gallery {
+        margin: 0;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .form-image-column {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .custom-made-layout {
+        max-width: 100%;
+    }
+
+    .custom-made-form {
+        margin: 0;
+        width: 100%;
+    }
+
+
+}
+
+@media (max-width: 550px) {
+    /* Em telas pequenas, passa a galeria para 1 coluna */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .custom-made-form h3,
+    .custom-made-gallery h3 {
+        font-size: 1.5rem;
+    }
+
+    .custom-made-form {
+        padding: 0;
+    }
+
+    .hero.content h2 {
+        margin: 1rem auto 0;
+        font-size: 1.7rem;
+    }
 }

@@ -1,6 +1,7 @@
 from django.urls import path
 from products.views import (ProductsIndexView, ProductsListView,
-                            ProductDetailView, ProductsSearchView
+                            ProductDetailView, ProductsSearchView,
+                            CustomMadeView
                             )
 
 app_name = 'products'
@@ -9,6 +10,9 @@ urlpatterns = [
 
     # Index Page
     path('', ProductsIndexView.as_view(), name='index'),
+
+    # Sob Medida Page
+    path('sob-medida/', CustomMadeView.as_view(), name='custom-made'),
 
     # Search Page
     path(

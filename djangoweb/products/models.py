@@ -110,20 +110,55 @@ class ProductsSetup(models.Model):
         return f"{self.product_type.text}"
 
 
-class SobMedidaProject(models.Model):
+class SobMedidaPortfolio(models.Model):
 
-    title = models.CharField(max_length=100, verbose_name='Título')
+    title = models.CharField(max_length=100, verbose_name='Título do Projeto')
     image_sob_medida = models.ImageField(
         upload_to='portfolio_sob_medida/%Y/%m',
-        verbose_name='Imagem'
+        verbose_name='Imagem do Projeto'
     )
-    description = models.TextField(blank=True, verbose_name='Descrição')
-    order = models.PositiveIntegerField(default=0, verbose_name='Ordem')
+    description = models.TextField(blank=True, verbose_name='Descrição Curta')
+    order = models.PositiveIntegerField(
+        default=0,
+        verbose_name='Ordem de Exibição'
+    )
 
     class Meta:
         ordering = ['order', 'title']
-        verbose_name = "Item do Portfólio"
+        verbose_name = "Item do Portfólio(Sob Medida)"
         verbose_name_plural = "Itens do Portfólio(Sob Medida)"
+
+    def save(self, *args, **kwargs):
+        current_image_name = str(self.image_sob_medida.name)
+        super().save(*args, **kwargs)
+
+        check_product_image(self.image_sob_medida, current_image_name)
 
     def __str__(self):
         return self.title
+
+
+class SobMedidaRequest(models.Model):
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = "Pedido Sob Medida"
+        verbose_name_plural = "Pedidos Sob Medida"
+
+    name = models.CharField(max_length=100, verbose_name="Nome")
+    phone = models.CharField(max_length=20, verbose_name="Telefone")
+    email = models.EmailField(verbose_name="Email")
+
+    project_description = models.TextField(verbose_name="Descrição do Projeto")
+    attachment = models.FileField(
+        upload_to="projetos_sob_medida/%Y/%m",
+        blank=True,
+        null=True,
+        verbose_name="Anexo (Planta/Desenho)"
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'''
+Pedido Sob Medida de {self.name} ({self.created_at.strftime("%d/%m/%Y")})'''
