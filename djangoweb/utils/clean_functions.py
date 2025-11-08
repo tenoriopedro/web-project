@@ -11,13 +11,14 @@ def validate_letters_only(value, field_name, form):
 
 
 def validate_phone(value, field_name, form):
-    """
-    Validates Brazilian cell phone numbers
-    21 999999999
-    """
-    if not re.match(r"^\d{2}\s?9\d{8}$", value or ""):
+
+    if not value:
+        return value
+
+    if not re.match(r"^\d{2}9\d{8}$", value):
         form.add_error(
             field_name,
-            'ERRO! O telefone deve estar no formato: 21 999999999'
+            'Telefone inválido. O formato deve ser (XX) 9XXXX-XXXX.'
         )
-        return value
+
+    return value

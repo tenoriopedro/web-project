@@ -1,6 +1,7 @@
 from django import forms
 from .models import SobMedidaRequest
 from utils.clean_functions import validate_letters_only, validate_phone
+import re
 
 
 class SobMedidaRequestModelForm(forms.ModelForm):
@@ -52,11 +53,16 @@ class SobMedidaRequestModelForm(forms.ModelForm):
         )
 
     def clean_phone(self):
-        return validate_phone(
-            self.cleaned_data.get("phone"),
-            "phone",
-            self
-        )
+
+        phone_data = self.cleaned_data.get("phone")
+
+        if not phone_data:
+            return phone_data
+
+        sanitized_phone = re.sub(r'\D', '', phone_data)
+        validate_phone(sanitized_phone, "phone", self)
+
+        return sanitized_phone
 
     def clean_attachment(self):
 
