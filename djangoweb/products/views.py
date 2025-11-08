@@ -8,6 +8,7 @@ from django.urls import reverse
 from django.contrib import messages
 from django.core.mail import EmailMessage
 from django.conf import settings
+from django.urls import reverse_lazy
 import os
 from utils.mixins import BreadcrumbsMixin
 
@@ -149,6 +150,7 @@ class CustomMadeView(BreadcrumbsMixin, CreateView):
     model = SobMedidaRequest
     form_class = SobMedidaRequestModelForm
     template_name = 'products/sob_medida_page.html'
+    success_url = reverse_lazy('products:custom-made')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
