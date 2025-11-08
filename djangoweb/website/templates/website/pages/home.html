@@ -26,7 +26,7 @@
                                         </h2>
 
                                         {% if banner.button_name %}
-                                            <a href="{% url "products:index" %}" class="banner-btn">
+                                            <a href="{{ banner.button_link }}" class="banner-btn">
                                                 {{ banner.button_name }}
                                             </a>
                                         {% endif %}

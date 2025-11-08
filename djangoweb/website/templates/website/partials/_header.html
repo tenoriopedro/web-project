@@ -34,6 +34,11 @@
                                         </a>
                                     </li>
                                 {% endfor %}
+                                <li>
+                                    <a href="{% url 'products:custom-made' %}"  class="dropdown-item">
+                                        Projetos Sob Medida
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     {% else %}
@@ -89,6 +94,11 @@
                                     </a>
                                 </li>
                             {% endfor %}
+                            <li>
+                                <a href="{% url 'products:custom-made' %}"  class="dropdown-item">
+                                    Projetos Sob Medida
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 {% else %}
