@@ -6,11 +6,9 @@
     {% include "website/partials/_hero-content.html" %}
 
     <div class="content-products">
-        {% include "website/partials/_breadcrumbs.html" %}
-    </div>
-    <div class="content">
 
-        <div class="list-product container">
+        <div class="container product-header-container">
+            {% include "website/partials/_breadcrumbs.html" %}
 
             <!-- ORDERING -->
             <div class="ordering">
@@ -24,7 +22,14 @@
                         <option value="-id" {% if current_order == "-id" %}selected{% endif %}>Mais recentes</option>
                     </select>
                 </form>
+                
             </div>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <div class="list-product container">
             
             <div class="list-title">
                 {% if is_search %}
