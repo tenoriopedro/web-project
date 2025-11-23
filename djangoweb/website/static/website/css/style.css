@@ -3061,6 +3061,33 @@ a {
 
 /* ======================= TEMPLATE SOB MEDIDA =========================== */
 
+.hero-scroll-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-white);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.hero-scroll-link:hover {
+    opacity: 1;
+    transform: translateY(2px);
+}
+
+.hero-scroll-link i {
+    font-size: .9rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-5px);}
+    60% {transform: translateY(-3px);}
+}
+
 .custom-made-layout {
     display: grid;
     gap: var(--space-xl);
@@ -3098,11 +3125,8 @@ a {
     border-bottom: 2px solid var(--color-light-gray);
 }
 
-/* --- Coluna 1: Estilos do Formulário --- */
-/*
-  Replicando os estilos de .contact-form e .cart-budget
-  para manter a consistência visual do site.
-*/
+/* --- Column 1: Form --- */
+
 .custom-made-form .form-group {
     margin-bottom: var(--space-md);
 }
@@ -3125,7 +3149,7 @@ a {
     background-color: var(--color-white);
     font-size: 1rem;
     transition: border 0.3s, box-shadow 0.3s;
-    box-sizing: border-box; /* Garante que o padding não quebre o layout */
+    box-sizing: border-box;
 }
 
 .custom-made-form input:focus,
@@ -3140,14 +3164,12 @@ a {
     resize: vertical;
 }
 
-/* Texto de ajuda para o campo de anexo */
 .custom-made-form .help-text {
     font-size: 0.85rem;
     color: var(--color-dark-gray);
     margin-top: var(--space-sm);
 }
 
-/* Botão de envio (reutilizando o estilo do form de contato) */
 .custom-made-form button[type="submit"] {
     padding: 12px 20px;
     background-color: var(--color-blue);
@@ -3165,11 +3187,10 @@ a {
     background-color: var(--color-dark-blue);
 }
 
-/* --- Coluna 2: Estilos da Galeria --- */
+/* --- Column 2: Gallery --- */
 
 .gallery-grid {
     display: grid;
-    /* 2 colunas dentro da coluna da galeria */
     grid-template-columns: repeat(4, 1fr); 
     gap: var(--space-md);
 }
@@ -3242,6 +3263,12 @@ a {
 }
 
 @media (max-width: 768px) {
+
+    .hero-scroll-link {
+        font-size: 1rem;
+    }
+
+
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -3259,7 +3286,11 @@ a {
 }
 
 @media (max-width: 550px) {
-    /* Em telas pequenas, passa a galeria para 1 coluna */
+
+    .hero-scroll-link {
+        font-size: .9rem;
+    }
+
     .gallery-grid {
         grid-template-columns: 1fr;
     }
