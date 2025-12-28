@@ -2778,10 +2778,11 @@ a {
 
 /* ################# PARTIAL _BREADCRUMBS ################### */
 
-.content-who-are {
+.content-breadcrumb {
     background-color: var(--color-light);
     margin-top: 100px;
     opacity: 0.8;
+    padding-top: 1rem;
 }
 
 .content-contacts {
@@ -2891,7 +2892,7 @@ a {
 .cart-content {
     background: var(--color-light);
     margin: 6rem 0 0;
-    padding: .1rem 0 5rem;
+    padding: 1rem 0 5rem;
 }
 
 .cart-container {
