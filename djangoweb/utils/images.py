@@ -1,5 +1,4 @@
 from pathlib import Path
-
 from django.conf import settings
 from PIL import Image
 
@@ -29,31 +28,25 @@ def resize_image(image_django, new_width=800, optimize=True, quality=70):
     return new_image
 
 
-def resize_image_product(image_django, size=800, optimize=True, quality=70):
+def resize_image_product(image_django, size=800, optimize=True, quality=90):
     image_path = Path(settings.MEDIA_ROOT / image_django.name).resolve()
+
     image_pillow = Image.open(image_path).convert("RGB")
     original_width, original_height = image_pillow.size
 
-    if max(original_width, original_height) <= size:
+    if original_width <= size and original_height <= size:
         image_pillow.close()
         return image_pillow
 
-    # Resize proportionally
-    # To ensure that the smallest side >= size
-    ratio = size / min(original_width, original_height)
-    new_width = int(original_width * ratio)
-    new_height = int(original_height * ratio)
-    image_pillow = image_pillow.resize(
-        (new_width, new_height), Image.LANCZOS
-    )
+    image_pillow.thumbnail((size, size), Image.LANCZOS)
+
+    new_image = Image.new("RGB", (size, size), (255, 255, 255))
 
     # Calculates the coordinates of the central crop
-    left = (new_width - size) // 2
-    top = (new_height - size) // 2
-    right = left + size
-    bottom = top + size
+    left = (size - image_pillow.width) // 2
+    top = (size - image_pillow.height) // 2
 
-    new_image = image_pillow.crop((left, top, right, bottom))
+    new_image.paste(image_pillow, (left, top))
 
     # Saves replacing the original image
     new_image.save(
